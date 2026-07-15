@@ -69,13 +69,15 @@ export default function DashboardDetailPage({ params }: { params: Promise<{ id: 
   const isAset = resolvedParams.id === 'aset';
   const isHelpdesk = resolvedParams.id === 'helpdesk';
   const isPerdin = resolvedParams.id === 'perjalanan-dinas';
+  const isUangMuka = resolvedParams.id === 'uang-muka';
   const isPembayaran = resolvedParams.id === 'pembayaran';
 
   const title = isKepegawaian ? "Dashboard Kepegawaian" : 
                 isAbsensi ? "Dashboard Absensi" :
                 isAset ? "Dashboard Aset IT" :
                 isHelpdesk ? "Dashboard Helpdesk" :
-                isPerdin ? "Perjalanan Dinas & Uang Muka" :
+                isPerdin ? "Perjalanan Dinas" :
+                isUangMuka ? "Uang Muka & Pengadaan" :
                 isPembayaran ? "Pembiayaan" :
                 "Dashboard Detail";
 
@@ -88,10 +90,11 @@ export default function DashboardDetailPage({ params }: { params: Promise<{ id: 
         {isAbsensi && <AbsensiDashboard />}
         {isAset && <AsetDashboard />}
         {isHelpdesk && <HelpdeskDashboard />}
-        {isPerdin && <PerdinUangMukaDashboard initialTab="perdin" />}
-        {isPembayaran && <PerdinUangMukaDashboard initialTab="pembayaran" />}
+        {isPerdin && <PerdinView />}
+        {isUangMuka && <UangMukaView />}
+        {isPembayaran && <PembayaranView />}
         
-        {(!isKepegawaian && !isAbsensi && !isAset && !isHelpdesk && !isPerdin && !isPembayaran) && (
+        {(!isKepegawaian && !isAbsensi && !isAset && !isHelpdesk && !isPerdin && !isUangMuka && !isPembayaran) && (
           <div className="px-5 md:px-8 py-10 flex flex-col items-center justify-center text-center">
             <div className="w-16 h-16 bg-slate-200 rounded-full flex items-center justify-center mb-4">
               <span className="text-slate-500 font-bold text-xl">?</span>
@@ -654,9 +657,7 @@ function KepegawaianDashboard() {
 }
 
 
-function PerdinUangMukaDashboard({ initialTab = 'perdin' }: { initialTab?: 'perdin' | 'uang_muka' | 'pembayaran' }) {
-  const [activeTab, setActiveTab] = useState<'perdin' | 'uang_muka' | 'pembayaran'>(initialTab);
-
+function UangMukaView() {
   return (
     <div className="px-5 md:px-8 mt-4 space-y-6 md:space-y-8 pb-8">
       {/* Filters */}
@@ -679,14 +680,12 @@ function PerdinUangMukaDashboard({ initialTab = 'perdin' }: { initialTab?: 'perd
       {/* Summary KPI */}
       <div>
         <h2 className="text-[18px] md:text-[22px] font-bold text-ink mb-4">Summary</h2>
-        <div className="flex overflow-x-auto md:grid md:grid-cols-4 gap-4 pb-2 md:pb-0 scrollbar-hide -mx-5 px-5 md:mx-0 md:px-0">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pb-2 md:pb-0 scrollbar-hide -mx-5 px-5 md:mx-0 md:px-0">
           {[
-            { title: 'Pengajuan Perjalanan Dinas', value: '2689', desc: 'Informasi jumlah pengajuan perjalan dinas dengan uang muka atau tidak' },
             { title: 'Pengajuan Uang Muka Kegiatan /Diluar Perdin', value: '279', desc: 'Informasi jumlah pengajuan uang muka kegiatan' },
             { title: 'Pengajuan Uang Muka Pengadaan', value: '0', desc: 'Informasi jumlah pengajuan uang muka kegiatan atau diluar perjalanan dinas' },
-            { title: 'Pengajuan Reimbursement Kegiatan /Diluar Perdin', value: '5903', desc: 'Informasi pengajuan reimbursement kegiatan atau diluar perjalanan dinas' }
           ].map((kpi, idx) => (
-            <div key={idx} className="min-w-[240px] md:min-w-0 bg-white rounded-[24px] p-5 md:p-6 shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-slate-50 flex flex-col justify-between">
+            <div key={idx} className="bg-white rounded-[24px] p-5 md:p-6 shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-slate-50 flex flex-col justify-between">
               <h3 className="text-[13px] md:text-[15px] font-bold text-ink mb-4 leading-tight">{kpi.title}</h3>
               <div>
                 <h2 className="text-[32px] md:text-[40px] font-bold text-ink tracking-tight mb-2 leading-none">{kpi.value}</h2>
@@ -697,40 +696,6 @@ function PerdinUangMukaDashboard({ initialTab = 'perdin' }: { initialTab?: 'perd
           ))}
         </div>
       </div>
-
-      {/* Tabs */}
-      <div className="flex gap-2 overflow-x-auto scrollbar-hide pb-2 -mx-5 px-5 md:mx-0 md:px-0">
-        <button 
-          onClick={() => setActiveTab('perdin')}
-          className={cn("whitespace-nowrap px-6 py-3 text-[13px] font-bold rounded-full transition-colors", activeTab === 'perdin' ? "bg-orange text-white shadow-md shadow-orange/20" : "bg-white border border-slate-200 text-ink hover:bg-slate-50")}
-        >
-          Pengajuan Perjalanan Dinas & Reimbursement
-        </button>
-        <button 
-          onClick={() => setActiveTab('uang_muka')}
-          className={cn("whitespace-nowrap px-6 py-3 text-[13px] font-bold rounded-full transition-colors", activeTab === 'uang_muka' ? "bg-orange text-white shadow-md shadow-orange/20" : "bg-white border border-slate-200 text-ink hover:bg-slate-50")}
-        >
-          Pengajuan Uang Muka Kegiatan & Pengadaan
-        </button>
-        <button 
-          onClick={() => setActiveTab('pembayaran')}
-          className={cn("whitespace-nowrap px-6 py-3 text-[13px] font-bold rounded-full transition-colors", activeTab === 'pembayaran' ? "bg-orange text-white shadow-md shadow-orange/20" : "bg-white border border-slate-200 text-ink hover:bg-slate-50")}
-        >
-          Pembiayaan
-        </button>
-      </div>
-
-      {activeTab === 'perdin' && <PerdinView />}
-      {activeTab === 'uang_muka' && <UangMukaView />}
-      {activeTab === 'pembayaran' && <PembayaranView />}
-
-    </div>
-  );
-}
-
-function UangMukaView() {
-  return (
-    <>
       {/* Row 1: 2 Charts */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="bg-white rounded-[24px] md:rounded-[32px] p-5 md:p-8 shadow-[0_8px_24px_rgba(0,0,0,0.02)] border border-slate-50">
@@ -906,13 +871,51 @@ function UangMukaView() {
           </table>
         </div>
       </div>
-    </>
+      </div>
+    </div>
   );
 }
 
 function PerdinView() {
   return (
-    <>
+    <div className="px-5 md:px-8 mt-4 space-y-6 md:space-y-8 pb-8">
+      {/* Filters */}
+      <div className="flex flex-col md:flex-row md:items-center gap-4 bg-white p-4 md:p-6 rounded-[24px] md:rounded-[32px] shadow-[0_8px_24px_rgba(0,0,0,0.02)]">
+        <div className="flex flex-col flex-1">
+          <label className="text-[12px] font-bold text-ink mb-2">Filter By: Tanggal Diajukan</label>
+          <div className="flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-xl px-4 py-3">
+            <span className="text-[13px] text-ink font-medium">4/17/2023 - 7/14/2026</span>
+          </div>
+        </div>
+        <div className="flex flex-col flex-1">
+          <label className="text-[12px] font-bold text-ink mb-2">Unit Kerja</label>
+          <div className="flex items-center justify-between bg-slate-50 border border-slate-200 rounded-xl px-4 py-3">
+            <span className="text-[13px] text-ink font-medium">All</span>
+            <span className="text-[12px] text-muted">▼</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Summary KPI */}
+      <div>
+        <h2 className="text-[18px] md:text-[22px] font-bold text-ink mb-4">Summary</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pb-2 md:pb-0 scrollbar-hide -mx-5 px-5 md:mx-0 md:px-0">
+          {[
+            { title: 'Pengajuan Perjalanan Dinas', value: '2689', desc: 'Informasi jumlah pengajuan perjalan dinas dengan uang muka atau tidak' },
+            { title: 'Pengajuan Reimbursement Kegiatan /Diluar Perdin', value: '5903', desc: 'Informasi pengajuan reimbursement kegiatan atau diluar perjalanan dinas' }
+          ].map((kpi, idx) => (
+            <div key={idx} className="bg-white rounded-[24px] p-5 md:p-6 shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-slate-50 flex flex-col justify-between">
+              <h3 className="text-[13px] md:text-[15px] font-bold text-ink mb-4 leading-tight">{kpi.title}</h3>
+              <div>
+                <h2 className="text-[32px] md:text-[40px] font-bold text-ink tracking-tight mb-2 leading-none">{kpi.value}</h2>
+                <span className="text-[10px] font-bold text-white bg-orange px-2 py-0.5 rounded-full mb-3 inline-block">Pengajuan</span>
+                <p className="text-[10px] md:text-[11px] text-muted leading-tight mt-1">{kpi.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="bg-white rounded-[24px] md:rounded-[32px] p-5 md:p-8 shadow-[0_8px_24px_rgba(0,0,0,0.02)] border border-slate-50">
           <h3 className="text-[14px] md:text-[16px] font-bold text-ink mb-2">Status Persetujuan Pengajuan Perjalanan Dinas</h3>
@@ -990,14 +993,32 @@ function PerdinView() {
             </tbody>
           </table>
         </div>
+        </div>
       </div>
-    </>
+    </div>
   );
 }
 
 function PembayaranView() {
   return (
-    <>
+    <div className="px-5 md:px-8 mt-4 space-y-6 md:space-y-8 pb-8">
+      {/* Filters */}
+      <div className="flex flex-col md:flex-row md:items-center gap-4 bg-white p-4 md:p-6 rounded-[24px] md:rounded-[32px] shadow-[0_8px_24px_rgba(0,0,0,0.02)]">
+        <div className="flex flex-col flex-1">
+          <label className="text-[12px] font-bold text-ink mb-2">Filter By: Tanggal Diajukan</label>
+          <div className="flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-xl px-4 py-3">
+            <span className="text-[13px] text-ink font-medium">4/17/2023 - 7/14/2026</span>
+          </div>
+        </div>
+        <div className="flex flex-col flex-1">
+          <label className="text-[12px] font-bold text-ink mb-2">Unit Kerja</label>
+          <div className="flex items-center justify-between bg-slate-50 border border-slate-200 rounded-xl px-4 py-3">
+            <span className="text-[13px] text-ink font-medium">All</span>
+            <span className="text-[12px] text-muted">▼</span>
+          </div>
+        </div>
+      </div>
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="bg-white rounded-[24px] md:rounded-[32px] p-5 md:p-8 shadow-[0_8px_24px_rgba(0,0,0,0.02)] border border-slate-50">
           <h3 className="text-[14px] md:text-[16px] font-bold text-ink mb-2">Antrian Pembayaran (SAP/CMS)</h3>
@@ -1024,8 +1045,9 @@ function PembayaranView() {
           <p className="text-[10px] md:text-[12px] text-muted mb-auto self-start">Informasi proporsi realisasi pembayaran bulan ini</p>
           <div className="text-muted text-[13px] font-medium mt-auto mb-auto">Dalam proses penarikan data dari SAP</div>
         </div>
+        </div>
       </div>
-    </>
+    </div>
   );
 }
 

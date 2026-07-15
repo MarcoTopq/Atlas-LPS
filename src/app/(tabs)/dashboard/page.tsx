@@ -35,7 +35,8 @@ export default function DashboardPage() {
         { id: "keuangan", name: "Keuangan", icon: Wallet, color: "text-orange", bg: "bg-orange/10", suffix: `${MOCK_DASHBOARD.keuangan.penyerapanPct}% penyerapan` },
         { id: "anggaran", name: "Anggaran Realisasi", icon: LineChart, color: "text-rose-500", bg: "bg-rose-50" },
         { id: "pembayaran", name: "Pembayaran", icon: Receipt, color: "text-teal-500", bg: "bg-teal-50" },
-        { id: "perjalanan-dinas", name: "Perjalanan Dinas & Uang Muka", icon: Plane, color: "text-sky-500", bg: "bg-sky-50", alert: true },
+        { id: "perjalanan-dinas", name: "Perjalanan Dinas", icon: Plane, color: "text-sky-500", bg: "bg-sky-50", alert: true },
+        { id: "uang-muka", name: "Uang Muka & Pengadaan", icon: CreditCard, color: "text-indigo-500", bg: "bg-indigo-50" },
       ]
     },
     {
