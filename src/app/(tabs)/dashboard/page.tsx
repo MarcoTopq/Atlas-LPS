@@ -25,7 +25,6 @@ export default function DashboardPage() {
       title: "HR & Personalia",
       items: [
         { id: "kepegawaian", name: "Kepegawaian", icon: Users, color: "text-blue-500", bg: "bg-blue-50" },
-        { id: "training", name: "Training", icon: GraduationCap, color: "text-purple-500", bg: "bg-purple-50" },
         { id: "absensi", name: "Absensi", icon: CalendarClock, color: "text-emerald-500", bg: "bg-emerald-50" },
       ]
     },
