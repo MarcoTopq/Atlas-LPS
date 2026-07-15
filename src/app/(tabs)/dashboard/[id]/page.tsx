@@ -871,7 +871,6 @@ function UangMukaView() {
           </table>
         </div>
       </div>
-      </div>
     </div>
   );
 }
@@ -993,7 +992,6 @@ function PerdinView() {
             </tbody>
           </table>
         </div>
-        </div>
       </div>
     </div>
   );
@@ -1044,7 +1042,6 @@ function PembayaranView() {
           <h3 className="text-[14px] md:text-[16px] font-bold text-ink mb-2 self-start">Realisasi Pembayaran</h3>
           <p className="text-[10px] md:text-[12px] text-muted mb-auto self-start">Informasi proporsi realisasi pembayaran bulan ini</p>
           <div className="text-muted text-[13px] font-medium mt-auto mb-auto">Dalam proses penarikan data dari SAP</div>
-        </div>
         </div>
       </div>
     </div>
