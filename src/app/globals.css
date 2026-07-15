@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+@plugin "tailwindcss-animate";
+
+:root {
+  --background: #EEF1F5;
+  --foreground: #1E2532;
+  
+  --orange: #F26E22;
+  --orange-d: #D95E15;
+  --navy: #12294D;
+  --navy-2: #1B355E;
+  --ink: #1E2532;
+  --muted: #6B7280;
+  --light: #9A9A9C;
+  --bg: #EEF1F5;
+  --card: #FFFFFF;
+  --line: #ECEEF2;
+  --chip: #F4F6F9;
+  --ai: #4C46D9;
+  --ai-soft: #ECEBFB;
+  
+  --ok: #1E9E6A;
+  --ok-soft: #E4F5EE;
+  --warn: #E0A100;
+  --warn-soft: #FBF1D6;
+  --danger: #D64545;
+  --danger-soft: #FDEAEA;
+  
+  --radius-card: 16px;
+  --radius-pill: 20px;
+  --radius-btn: 12px;
+  --radius-sheet: 22px;
+}
+
+@theme {
+  --color-orange: var(--orange);
+  --color-orange-d: var(--orange-d);
+  --color-navy: var(--navy);
+  --color-navy-2: var(--navy-2);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-light: var(--light);
+  --color-bg: var(--bg);
+  --color-card: var(--card);
+  --color-line: var(--line);
+  --color-chip: var(--chip);
+  --color-ai: var(--ai);
+  --color-ai-soft: var(--ai-soft);
+  
+  --color-ok: var(--ok);
+  --color-ok-soft: var(--ok-soft);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  
+  --radius-card: var(--radius-card);
+  --radius-pill: var(--radius-pill);
+  --radius-btn: var(--radius-btn);
+  --radius-sheet: var(--radius-sheet);
+  
+  --shadow-soft: 0 4px 14px rgba(18,41,77,0.07);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+  @apply antialiased;
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    /* IE and Edge */
+    -ms-overflow-style: none;
+    /* Firefox */
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
