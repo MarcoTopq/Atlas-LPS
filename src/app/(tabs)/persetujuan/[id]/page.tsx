@@ -9,15 +9,6 @@ import { useState } from "react";
 import { use } from "react";
 import { cn } from "@/lib/utils";
 
-export async function generateStaticParams() {
-  return [
-    { id: encodeURIComponent("ND-1610/2026") },
-    { id: "BPM-4521" },
-    { id: "VT-0912" },
-    { id: "ST-2207" }
-  ];
-}
-
 export default function PersetujuanDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = use(params);
   const id = decodeURIComponent(resolvedParams.id);

@@ -59,20 +59,6 @@ const ASET_COLORS = ['#E0A100', '#F26E22', '#3B82F6', '#D64545'];
 const ABSEN_COLORS = ['#3B82F6', '#1E9E6A', '#E0A100', '#D64545', '#8B5CF6'];
 
 
-export async function generateStaticParams() {
-  return [
-    { id: 'kepegawaian' },
-    { id: 'training' },
-    { id: 'absensi' },
-    { id: 'keuangan' },
-    { id: 'anggaran' },
-    { id: 'aset' },
-    { id: 'helpdesk' },
-    { id: 'perjalanan-dinas' },
-    { id: 'pembayaran' },
-  ];
-}
-
 export default function DashboardDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = use(params);
   const isKepegawaian = resolvedParams.id === 'kepegawaian';
