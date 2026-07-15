@@ -910,12 +910,87 @@ function UangMukaView() {
   );
 }
 
-// I need to rename PerdinDashboard to PerdinView and remove its Headers and Tabs.
-// And PembayaranDashboard to PembayaranView and remove its Headers and Tabs.
-
 function PerdinView() {
   return (
     <>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="bg-white rounded-[24px] md:rounded-[32px] p-5 md:p-8 shadow-[0_8px_24px_rgba(0,0,0,0.02)] border border-slate-50">
+          <h3 className="text-[14px] md:text-[16px] font-bold text-ink mb-2">Status Persetujuan Pengajuan Perjalanan Dinas</h3>
+          <p className="text-[10px] md:text-[12px] text-muted mb-8">Informasi jumlah pengajuan perjalanan dinas berdasarkan status persetujuan</p>
+          <div className="h-[250px] w-full">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={MOCK_UM_STATUS_KEGIATAN} margin={{ top: 20, right: 0, left: -20, bottom: 20 }}>
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
+                <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: '#94a3b8' }} dy={10} interval={0} />
+                <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: '#94a3b8' }} />
+                <Tooltip cursor={{fill: 'transparent'}} contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 15px rgba(0,0,0,0.1)' }} />
+                <Bar dataKey="value" radius={[4, 4, 0, 0]} maxBarSize={60}>
+                  {MOCK_UM_STATUS_KEGIATAN.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.fill} />
+                  ))}
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        <div className="bg-white rounded-[24px] md:rounded-[32px] p-5 md:p-8 shadow-[0_8px_24px_rgba(0,0,0,0.02)] border border-slate-50 flex flex-col">
+          <h3 className="text-[14px] md:text-[16px] font-bold text-ink mb-2">Status Pertanggungjawaban Perjalanan Dinas</h3>
+          <p className="text-[10px] md:text-[12px] text-muted mb-6">Informasi jumlah pertanggungjawaban perjalanan dinas berdasarkan status</p>
+          <div className="h-[250px] w-full mt-auto relative flex items-center justify-center">
+            <ResponsiveContainer width="100%" height="100%">
+              <PieChart>
+                <Pie data={MOCK_UM_SPJ_KEGIATAN} cx="50%" cy="50%" innerRadius={60} outerRadius={90} dataKey="value" stroke="none">
+                  {MOCK_UM_SPJ_KEGIATAN.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.fill} />
+                  ))}
+                </Pie>
+                <Tooltip contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 15px rgba(0,0,0,0.1)' }} />
+              </PieChart>
+            </ResponsiveContainer>
+          </div>
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 mt-4">
+             {MOCK_UM_SPJ_KEGIATAN.map((item, idx) => (
+               <div key={idx} className="flex items-center gap-1.5">
+                 <div className="w-2 h-2 rounded-full" style={{ backgroundColor: item.fill }} />
+                 <span className="text-[9px] font-medium text-muted">{item.name}</span>
+               </div>
+             ))}
+          </div>
+        </div>
+      </div>
+      
+      {/* Table Data for Perdin */}
+      <div className="bg-white rounded-[24px] md:rounded-[32px] shadow-[0_8px_24px_rgba(0,0,0,0.02)] border border-slate-50 overflow-hidden mt-6 md:mt-8">
+        <div className="overflow-x-auto">
+          <table className="w-full text-left border-collapse min-w-[1200px]">
+            <thead>
+              <tr className="text-[12px] text-muted border-b-2 border-slate-100 bg-slate-50/50 uppercase tracking-wider">
+                <th className="font-bold p-4">No. Surat Tugas</th>
+                <th className="font-bold p-4">Nama Pegawai</th>
+                <th className="font-bold p-4 text-center">Tujuan</th>
+                <th className="font-bold p-4 text-center">Durasi</th>
+                <th className="font-bold p-4 text-center">Tanggal Berangkat</th>
+                <th className="font-bold p-4 text-center">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {MOCK_UM_DETAIL.slice(0, 3).map((row, i) => (
+                <tr key={i} className="border-b border-slate-100 hover:bg-slate-50/50 transition-colors">
+                  <td className="p-4 text-[13px] font-bold text-ink">ST-{2024 + i}/0{i+1}</td>
+                  <td className="p-4 text-[13px] text-ink font-medium">{row.pemohon}</td>
+                  <td className="p-4 text-[13px] text-center text-muted font-bold">Jakarta - Bali</td>
+                  <td className="p-4 text-[13px] font-medium text-center text-muted">{i + 2} Hari</td>
+                  <td className="p-4 text-[13px] font-medium text-center text-muted">{row.tglAju}</td>
+                  <td className="p-4 text-[13px] text-center">
+                    <span className="text-emerald-600 px-3 py-1 font-bold uppercase">{row.status}</span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </>
   );
 }
@@ -923,6 +998,33 @@ function PerdinView() {
 function PembayaranView() {
   return (
     <>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="bg-white rounded-[24px] md:rounded-[32px] p-5 md:p-8 shadow-[0_8px_24px_rgba(0,0,0,0.02)] border border-slate-50">
+          <h3 className="text-[14px] md:text-[16px] font-bold text-ink mb-2">Antrian Pembayaran (SAP/CMS)</h3>
+          <p className="text-[10px] md:text-[12px] text-muted mb-8">Informasi jumlah antrian pembayaran berdasarkan status proses</p>
+          <div className="h-[250px] w-full">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={MOCK_UM_STATUS_REIMBURSE_KEGIATAN} margin={{ top: 20, right: 0, left: -20, bottom: 20 }}>
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
+                <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: '#94a3b8' }} dy={10} interval={0} />
+                <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: '#94a3b8' }} />
+                <Tooltip cursor={{fill: 'transparent'}} contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 15px rgba(0,0,0,0.1)' }} />
+                <Bar dataKey="value" radius={[4, 4, 0, 0]} maxBarSize={60}>
+                  {MOCK_UM_STATUS_REIMBURSE_KEGIATAN.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.fill} />
+                  ))}
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        <div className="bg-white rounded-[24px] md:rounded-[32px] p-5 md:p-8 shadow-[0_8px_24px_rgba(0,0,0,0.02)] border border-slate-50 flex flex-col items-center justify-center min-h-[300px]">
+          <h3 className="text-[14px] md:text-[16px] font-bold text-ink mb-2 self-start">Realisasi Pembayaran</h3>
+          <p className="text-[10px] md:text-[12px] text-muted mb-auto self-start">Informasi proporsi realisasi pembayaran bulan ini</p>
+          <div className="text-muted text-[13px] font-medium mt-auto mb-auto">Dalam proses penarikan data dari SAP</div>
+        </div>
+      </div>
     </>
   );
 }
