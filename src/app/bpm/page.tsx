@@ -6,7 +6,7 @@ import { ChevronRight, FileStack, Database, CornerUpRight, ListChecks, CreditCar
 
 export default function BpmMenuPage() {
   const menuItems = [
-    { title: "Tasklist", icon: FileStack, href: "/persetujuan" },
+    { title: "Tasklist", icon: FileStack, href: "/bpm/tasklist" },
     { title: "Riwayat", icon: Database, href: "#" },
     { title: "Delegasi", icon: CornerUpRight, href: "#" },
     { title: "Reviewer", icon: ListChecks, href: "#" },
