@@ -207,9 +207,60 @@ export default function BpmTasklistDetailPage({ params }: { params: Promise<{ id
           </div>
         )}
 
-        {(activeTab === "Dokumen" || activeTab === "Riwayat") && (
-          <div className="flex items-center justify-center py-10 bg-white rounded-[24px] shadow-sm border border-slate-50 text-muted text-sm font-medium animate-in fade-in slide-in-from-bottom-2 duration-300">
-            Konten {activeTab} akan tampil di sini.
+        {activeTab === "Dokumen" && (
+          <div className="animate-in fade-in slide-in-from-bottom-2 duration-300">
+            <h2 className="text-[16px] font-bold text-ink mb-4">Dokumen</h2>
+            <div className="flex flex-col">
+              {data.dokumen.map((doc, idx) => (
+                <div key={idx} className={cn("py-4 flex flex-col gap-1", idx !== 0 && "border-t border-line")}>
+                  <p className="text-[12px] md:text-[13px] font-medium text-muted leading-relaxed">
+                    {doc.title}
+                  </p>
+                  <p className="text-[12px] md:text-[13px] italic text-light mt-1">
+                    {doc.status}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {activeTab === "Riwayat" && (
+          <div className="animate-in fade-in slide-in-from-bottom-2 duration-300">
+            <h2 className="text-[16px] font-bold text-ink mb-6">Riwayat</h2>
+            <div className="relative pl-6 border-l-2 border-line/60 ml-3 md:ml-4 space-y-8">
+              {data.riwayat.map((hist, idx) => (
+                <div key={idx} className="relative">
+                  {/* Status Indicator */}
+                  <div className="absolute -left-[35px] md:-left-[39px] top-0 w-6 h-6 rounded-full bg-[#1E9E6A] flex items-center justify-center border-4 border-[#F8FAFC]">
+                    <CheckCircle2 size={12} className="text-white" strokeWidth={3} />
+                  </div>
+                  
+                  {/* Content */}
+                  <div className="flex flex-col gap-1">
+                    <p className="text-[12px] md:text-[13px] font-medium text-muted">
+                      {hist.name} - {hist.role}
+                    </p>
+                    <p className="text-[11px] md:text-[12px] text-light mb-1">
+                      {hist.unit}
+                    </p>
+                    <p className="text-[14px] md:text-[15px] font-bold text-ink mb-1">
+                      {hist.status}
+                    </p>
+                    
+                    {hist.notes && (
+                      <div className="bg-slate-50 border border-slate-100 rounded-lg p-2.5 my-1.5 w-full">
+                        <p className="text-[12px] md:text-[13px] text-ink/80 italic">"{hist.notes}"</p>
+                      </div>
+                    )}
+                    
+                    <p className="text-[10px] md:text-[11px] text-light mt-1">
+                      {hist.date}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         )}
       </div>

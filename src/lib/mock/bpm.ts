@@ -102,5 +102,45 @@ export const MOCK_BPM_DETAIL = {
         total: "-1,975,000"
       }
     ]
-  }
+  },
+  dokumen: [
+    { title: "Dasar Pemohonan/Pelaksanaan Kegiatan (Persetujuan/Kontrak/SPK, dst)", status: "Tidak ada dokumen" },
+    { title: "Invoice/Kwitansi/Form pengajuan UM/Form atau bentuk lainnya sebagai dokumen penagihan, Faktur Pajak (Jika Ada)", status: "Tidak ada dokumen" },
+    { title: "Bukti pelaksanaan kegiatan (daftar hadir, laporan kegiatan, dokumentasi kegiatan atau bentuk lainnya (kecuali uang muka))", status: "Tidak ada dokumen" },
+    { title: "Dokumen Lainnya", status: "Tidak ada dokumen" }
+  ],
+  riwayat: [
+    {
+      name: "Arif Rahman H",
+      role: "Initiator",
+      unit: "Tenaga Pendukung Helpdesk - STI",
+      status: "Selesai submit",
+      date: "24 Jun 2026, 11:14",
+      notes: ""
+    },
+    {
+      name: "Monang Siringoringo",
+      role: "Approver 1",
+      unit: "Direktur Group Sistem Informasi - STI",
+      status: "Disetujui",
+      date: "13 Jul 2026, 10:57",
+      notes: "Approve"
+    },
+    {
+      name: "Samsu Adi Nugroho",
+      role: "Approver 2",
+      unit: "Direktur Eksekutif SDM&Administrasi - SKL",
+      status: "Disetujui",
+      date: "13 Jul 2026, 10:57",
+      notes: "Approve"
+    },
+    {
+      name: "K.M. Nuruddin",
+      role: "Approver 3",
+      unit: "Plt.Direktur Eksekutif Keuangan - SKL",
+      status: "Disetujui",
+      date: "13 Jul 2026, 10:59",
+      notes: "Approve"
+    }
+  ]
 };
