@@ -41,6 +41,16 @@ export const MOCK_BPM_DETAIL = {
     period: "11",
     currency: "IDR"
   },
+  brief: {
+    ringkasan: "Pengajuan reimbursement ini ditujukan untuk biaya pelaksanaan simulasi kegiatan pengembangan awareness dan partisipasi dalam simulasi DRC (Disaster Recovery Center) LPS Semester 2.",
+    kv: [
+      { k: "Kesesuaian Nilai", v: "Sesuai standar ✓" },
+      { k: "Anggaran", v: "Tersedia (Cukup)" },
+      { k: "Dasar Aturan", v: "SE Logistik No.07/2024" }
+    ],
+    sitasi: "Peraturan Keuangan LPS Bab IV Pasal 12 (2): 'Penggantian biaya kegiatan di luar perdin wajib melampirkan rincian pengeluaran maksimal 14 hari kerja.'",
+    flag: "normal"
+  },
   catatan: "Simulasi Pengaktifan DRC LPS Semester 2",
   jurnal: {
     totalDebit: "77,100,000",
