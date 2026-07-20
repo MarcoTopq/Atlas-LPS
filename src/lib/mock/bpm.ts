@@ -31,6 +31,45 @@ export const MOCK_BPM_TASKS = [
   }
 ];
 
+export const MOCK_BPM_RIWAYAT_LIST = [
+  {
+    id: "REV-2026-04-02",
+    jenis: "Konsinyering - Luar Kota",
+    title: "test perdin 30/06-3",
+    noSAP: "2606300008",
+    idBPM: "26000040",
+    pemohon: "Arif Rahman H, 17 Juli 2026",
+    status: "Disetujui"
+  },
+  {
+    id: "UM-Keg-perdin2-1",
+    jenis: "Uang Muka Kegiatan atau Diluar Perdin",
+    title: "UM Keg-perdin2",
+    noSAP: "2606240004",
+    idBPM: "1124000010",
+    pemohon: "Arif Rahman H, 13 Juli 2026",
+    status: "Disetujui"
+  },
+  {
+    id: "UM-Keg-perdin2-2",
+    jenis: "Uang Muka Kegiatan atau Diluar Perdin",
+    title: "UM Keg-perdin2",
+    noSAP: "2606240004",
+    idBPM: "1124000010",
+    pemohon: "Arif Rahman H, 13 Juli 2026",
+    status: "Disetujui"
+  },
+  {
+    id: "UM-Keg-perdin2-3",
+    jenis: "Uang Muka Kegiatan atau Diluar Perdin",
+    title: "UM Keg-perdin2",
+    noSAP: "2606240004",
+    idBPM: "1124000010",
+    pemohon: "Arif Rahman H, 13 Juli 2026",
+    status: "Disetujui"
+  }
+];
+
 export const MOCK_BPM_DETAIL = {
   id: "S-475-DSDA-2025",
   title: "S-475/DSDA/2025",
