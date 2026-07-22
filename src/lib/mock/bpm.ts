@@ -352,11 +352,38 @@ export const MOCK_NASKAH_OUTBOX_DETAIL = {
 };
 
 export const MOCK_NASKAH_TASKLIST = [
+  // Items under "Nota Dinas" tab
+  {
+    id: "Temporary:ND-R.31/GSTI",
+    title: "perihal - test nota dinas biasa 1 11/06/2026",
+    noND: "Temporary:ND-R.31/GSTI",
+    tabCategory: "Nota Dinas",
+    jenisBadge: "Nota Dinas",
+    isRahasia: true,
+    tgl: "11 Juni 2026",
+    dikirimOleh: "Konseptor (Training 4)",
+    status: "Menunggu"
+  },
+  {
+    id: "Temporary:ND-R.30/GSTI",
+    title: "Permohonan Fasilitas Server Proyek Audit TI",
+    noND: "Temporary:ND-R.30/GSTI",
+    tabCategory: "Nota Dinas",
+    jenisBadge: "Nota Dinas",
+    isRahasia: false,
+    tgl: "10 Juni 2026",
+    dikirimOleh: "Training 3",
+    status: "Menunggu"
+  },
+
+  // Items under "Persetujuan Nota Dinas" tab
   {
     id: "ND-13/GSTI",
     title: "Keterangan nota dinas berjenjang-02-02",
     noND: "ND-13/GSTI",
+    tabCategory: "Persetujuan Nota Dinas",
     jenisBadge: "Persetujuan Nota Dinas",
+    isRahasia: false,
     tgl: "1 April 2026",
     dikirimOleh: "Training 2",
     status: "Menunggu"
@@ -365,7 +392,9 @@ export const MOCK_NASKAH_TASKLIST = [
     id: "ND-11/GSTI",
     title: "Perihal nota dinas berjenjang-01-01",
     noND: "ND-11/GSTI",
+    tabCategory: "Persetujuan Nota Dinas",
     jenisBadge: "Persetujuan Nota Dinas",
+    isRahasia: false,
     tgl: "1 April 2026",
     dikirimOleh: "Training 2",
     status: "Menunggu"
@@ -374,7 +403,9 @@ export const MOCK_NASKAH_TASKLIST = [
     id: "ND-9/GSTI",
     title: "Perihal nota dinas berjenjang-03-02",
     noND: "ND-9/GSTI",
+    tabCategory: "Persetujuan Nota Dinas",
     jenisBadge: "Persetujuan Nota Dinas",
+    isRahasia: false,
     tgl: "1 April 2026",
     dikirimOleh: "Training 2",
     status: "Menunggu"
@@ -383,7 +414,9 @@ export const MOCK_NASKAH_TASKLIST = [
     id: "ND-7/GSTI",
     title: "Perihal nota dinas berjenjang-04-02",
     noND: "ND-7/GSTI",
+    tabCategory: "Persetujuan Nota Dinas",
     jenisBadge: "Persetujuan Nota Dinas",
+    isRahasia: false,
     tgl: "1 April 2026",
     dikirimOleh: "Training 2",
     status: "Menunggu"
@@ -392,7 +425,9 @@ export const MOCK_NASKAH_TASKLIST = [
     id: "ND-5/GSTI",
     title: "Perihal nota dinas berjenjang-05-02",
     noND: "ND-5/GSTI",
+    tabCategory: "Persetujuan Nota Dinas",
     jenisBadge: "Persetujuan Nota Dinas",
+    isRahasia: false,
     tgl: "1 April 2026",
     dikirimOleh: "Training 2",
     status: "Menunggu"
@@ -404,6 +439,7 @@ export const MOCK_NASKAH_TASKLIST_DETAIL = {
   title: "Keterangan nota dinas berjenjang-02-02",
   jenisBadge: "Persetujuan Nota Dinas",
   statusBadge: "Menunggu",
+  isRahasia: false,
   metadata: {
     pengajuan: "1 April 2026",
     tindakLanjut: "-"
@@ -450,6 +486,55 @@ export const MOCK_NASKAH_TASKLIST_DETAIL = {
       date: "1 Apr 2026, 13:34",
       statusTitle: "Telah disetujui - completed",
       note: ""
+    }
+  ]
+};
+
+export const MOCK_NOTA_DINAS_DETAIL = {
+  id: "Temporary:ND-R.31/GSTI",
+  title: "perihal - test nota dinas biasa 1 11/06/2026",
+  jenisBadge: "Nota Dinas",
+  statusBadge: "Menunggu",
+  isRahasia: true,
+  metadata: {
+    pengajuan: "11 Juni 2026",
+    tindakLanjut: "-"
+  },
+  brief: {
+    ringkasan: "AI Atlas menterjemahkan: Nota Dinas Rahasia terkait pengujian sistem nota dinas biasa unit GSTI.",
+    sitasi: "Peraturan Rahasia LPS No. 01/2025 Bab III.",
+    flag: "normal"
+  },
+  detail: {
+    nomorDokumen: "Temporary:ND-R.31/GSTI",
+    tipeSurat: "Surat Rahasia",
+    jenisSurat: "Nota Dinas Biasa",
+    perihal: "perihal - test nota dinas biasa 1 11/06/2026",
+    deskripsi: "deskripsi - test nota dinas biasa 1 11/06/2026",
+    crossReference: "corss ref",
+    reviewer: "Training 3"
+  },
+  lampiran: [
+    { nama: "lampiran 1.pdf", ukuran: "180 KB" }
+  ],
+  riwayatPengajuan: [
+    {
+      action: "11 Jun 2026, 09:33",
+      date: "11 Jun 2026, 09:33",
+      statusTitle: "Telah disubmit",
+      note: "Konseptor (Training 4) - ini catatan"
+    },
+    {
+      action: "11 Jun 2026, 09:40",
+      date: "11 Jun 2026, 09:40",
+      statusTitle: "Telah direview",
+      note: "Reviewer (Training 3) - setuju"
+    },
+    {
+      action: "11 Jun 2026, 09:41",
+      date: "11 Jun 2026, 09:41",
+      statusTitle: "Telah disetujui",
+      note: "Approver (Training 3) - Auto Approved"
     }
   ]
 };

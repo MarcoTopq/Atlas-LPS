@@ -1,28 +1,45 @@
 "use client";
 
 import AppBar from "@/components/AppBar";
-import { MOCK_NASKAH_TASKLIST_DETAIL } from "@/lib/mock/bpm";
-import { Lock, FileText, CheckCircle2, Sparkles, ExternalLink, Paperclip, Check } from "lucide-react";
+import { MOCK_NASKAH_TASKLIST_DETAIL, MOCK_NOTA_DINAS_DETAIL } from "@/lib/mock/bpm";
+import { Lock, FileText, CheckCircle2, Sparkles, ExternalLink, Paperclip, Check, X } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, use } from "react";
 import { cn } from "@/lib/utils";
 
-export default function NaskahDinasTasklistDetailPage() {
-  const data = MOCK_NASKAH_TASKLIST_DETAIL;
+export default function NaskahDinasTasklistDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const resolvedParams = use(params);
+  const id = resolvedParams?.id ? decodeURIComponent(resolvedParams.id) : "";
+
+  // Select mock data based on ID
+  const isNotaDinasBiasa = id.includes("Temporary") || id.includes("31") || id.includes("ND-R");
+  const data = isNotaDinasBiasa ? MOCK_NOTA_DINAS_DETAIL : MOCK_NASKAH_TASKLIST_DETAIL;
+
   const [activeTab, setActiveTab] = useState("Detail");
+  const [modalType, setModalType] = useState<"Setuju" | "Revisi" | "Tolak" | null>(null);
+  const [catatan, setCatatan] = useState("");
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
 
   const tabs = ["Detail", "Lampiran", "Riwayat Pengajuan"];
 
-  const handleApprove = () => {
-    setToastMessage("Nota Dinas Berhasil Disetujui! Tercatat di Core System e-Correspondence.");
-    setShowToast(true);
-    setTimeout(() => setShowToast(false), 4000);
+  const handleOpenModal = (type: "Setuju" | "Revisi" | "Tolak") => {
+    setModalType(type);
+    setCatatan("");
   };
 
-  const handleReject = () => {
-    setToastMessage("Nota Dinas Dikembalikan untuk Revisi.");
+  const handleConfirmAction = () => {
+    if (!catatan.trim()) return;
+
+    if (modalType === "Setuju") {
+      setToastMessage("Pengajuan Berhasil Disetujui! Tercatat di Core System e-Correspondence.");
+    } else if (modalType === "Revisi") {
+      setToastMessage("Pengajuan Dikembalikan untuk Revisi.");
+    } else if (modalType === "Tolak") {
+      setToastMessage("Pengajuan Telah Ditolak.");
+    }
+
+    setModalType(null);
     setShowToast(true);
     setTimeout(() => setShowToast(false), 4000);
   };
@@ -42,6 +59,11 @@ export default function NaskahDinasTasklistDetailPage() {
             <span className="px-3 py-1 bg-[#FFD000] text-[#554000] text-[11px] font-bold rounded-full">
               {data.statusBadge}
             </span>
+            {data.isRahasia && (
+              <span className="px-3 py-1 bg-[#FF3B30] text-white text-[11px] font-bold rounded-full">
+                Rahasia
+              </span>
+            )}
           </div>
         </div>
 
@@ -208,23 +230,93 @@ export default function NaskahDinasTasklistDetailPage() {
         </Link>
       </div>
 
-      {/* Floating Action Bar (Responsive for Mobile & Web) */}
+      {/* Floating Action Bar (Tolak, Revisi, Setuju - 3 Buttons matching screenshot 2/3/4) */}
       <div className="fixed bottom-0 left-0 right-0 w-full bg-white/95 backdrop-blur-md border-t border-slate-100 p-4 pb-6 md:pb-4 flex justify-center z-30 shadow-[0_-8px_30px_rgba(0,0,0,0.08)]">
-        <div className="w-full max-w-[430px] flex gap-3 px-1">
+        <div className="w-full max-w-[430px] flex gap-2.5 px-1">
           <button 
-            onClick={handleReject}
-            className="flex-1 bg-danger hover:bg-danger-d text-white font-bold py-3.5 rounded-full transition-all active:scale-95 text-[15px] shadow-sm flex items-center justify-center gap-2"
+            onClick={() => handleOpenModal("Tolak")}
+            className="flex-1 bg-[#E53935] hover:bg-red-700 text-white font-bold py-3.5 rounded-full transition-all active:scale-95 text-[14px] shadow-sm flex items-center justify-center"
           >
             Tolak
           </button>
+
           <button 
-            onClick={handleApprove}
-            className="flex-1 bg-[#2C8548] hover:bg-emerald-700 text-white font-bold py-3.5 rounded-full transition-all active:scale-95 text-[15px] shadow-sm flex items-center justify-center gap-2"
+            onClick={() => handleOpenModal("Revisi")}
+            className="flex-1 bg-white border border-slate-300 hover:bg-slate-50 text-ink font-bold py-3.5 rounded-full transition-all active:scale-95 text-[14px] shadow-sm flex items-center justify-center"
+          >
+            Revisi
+          </button>
+
+          <button 
+            onClick={() => handleOpenModal("Setuju")}
+            className="flex-1 bg-[#2C8548] hover:bg-emerald-700 text-white font-bold py-3.5 rounded-full transition-all active:scale-95 text-[14px] shadow-sm flex items-center justify-center"
           >
             Setuju
           </button>
         </div>
       </div>
+
+      {/* Bottom Sheet Modal Konfirmasi (Screenshot 5) */}
+      {modalType && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-end justify-center animate-in fade-in duration-200">
+          <div className="w-full max-w-[430px] bg-white rounded-t-[32px] p-6 space-y-5 animate-in slide-in-from-bottom duration-300 shadow-2xl relative">
+            
+            {/* Grabber */}
+            <div className="w-12 h-1.5 bg-slate-200 rounded-full mx-auto mb-2" />
+
+            {/* Modal Title & Description */}
+            <div>
+              <h3 className="text-[17px] font-bold text-ink mb-1">
+                Konfirmasi {modalType}
+              </h3>
+              <p className="text-[13px] text-muted leading-relaxed">
+                Apakah Anda yakin ingin {modalType === "Setuju" ? "menyetujui" : modalType === "Revisi" ? "mengembalikan untuk direvisi" : "menolak"} pengajuan ini?
+              </p>
+            </div>
+
+            {/* Form Input Catatan* */}
+            <div className="space-y-1.5">
+              <label className="text-[13px] font-bold text-ink">
+                Catatan<span className="text-danger">*</span>
+              </label>
+              <textarea
+                rows={3}
+                value={catatan}
+                onChange={(e) => setCatatan(e.target.value)}
+                placeholder="Berikan catatan terkait persetujuan (wajib)"
+                className="w-full bg-slate-50 border border-slate-200 rounded-2xl p-3 text-[13px] font-medium focus:outline-none focus:ring-2 focus:ring-orange/30 focus:border-orange transition-all placeholder:text-muted/60 text-ink resize-none"
+              />
+            </div>
+
+            {/* Buttons Row */}
+            <div className="flex gap-3 pt-2">
+              <button
+                onClick={() => setModalType(null)}
+                className="flex-1 bg-white border border-slate-200 hover:bg-slate-50 text-ink font-bold py-3.5 rounded-full transition-all active:scale-95 text-[14px]"
+              >
+                Batal
+              </button>
+
+              <button
+                onClick={handleConfirmAction}
+                disabled={!catatan.trim()}
+                className={cn(
+                  "flex-1 font-bold py-3.5 rounded-full transition-all active:scale-95 text-[14px] text-white shadow-sm",
+                  !catatan.trim() 
+                    ? "bg-slate-300 cursor-not-allowed opacity-70" 
+                    : modalType === "Setuju"
+                      ? "bg-[#2C8548] hover:bg-emerald-700"
+                      : modalType === "Revisi"
+                        ? "bg-amber-600 hover:bg-amber-700"
+                        : "bg-[#E53935] hover:bg-red-700"
+                )}
+              >
+                {modalType}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Toast Notification */}
       {showToast && (

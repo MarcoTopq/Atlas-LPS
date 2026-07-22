@@ -9,15 +9,17 @@ import { cn } from "@/lib/utils";
 
 export default function NaskahDinasTasklistPage() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [activeTab, setActiveTab] = useState("Persetujuan Nota Dinas");
+  const [activeTab, setActiveTab] = useState("Nota Dinas");
 
   const tabs = ["Nota Dinas", "Persetujuan Nota Dinas", "Surat Eksternal"];
 
-  const filteredTasks = MOCK_NASKAH_TASKLIST.filter(t => 
-    t.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
-    t.noND.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    t.dikirimOleh.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredTasks = MOCK_NASKAH_TASKLIST.filter(t => {
+    const matchesTab = t.tabCategory === activeTab;
+    const matchesSearch = t.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                          t.noND.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                          t.dikirimOleh.toLowerCase().includes(searchTerm.toLowerCase());
+    return matchesTab && matchesSearch;
+  });
 
   return (
     <div className="flex flex-col min-h-dvh bg-[#F8FAFC] pb-24 relative">
@@ -47,7 +49,7 @@ export default function NaskahDinasTasklistPage() {
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-light group-focus-within:text-orange transition-colors w-5 h-5" />
           <input 
             type="text" 
-            placeholder="Cari Persetujuan" 
+            placeholder="Cari" 
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="w-full bg-white border border-line rounded-[16px] py-3 pl-12 pr-4 text-[14px] font-medium focus:outline-none focus:ring-2 focus:ring-orange/20 focus:border-orange transition-all placeholder:text-light text-ink shadow-sm" 
@@ -56,38 +58,51 @@ export default function NaskahDinasTasklistPage() {
 
         {/* List Items */}
         <div className="flex flex-col gap-4">
-          {filteredTasks.map((task, idx) => (
-            <Link 
-              key={idx} 
-              href={`/naskah-dinas/tasklist/${encodeURIComponent(task.id)}`}
-              className="bg-white rounded-[24px] p-5 shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.05)] border border-slate-50 transition-all flex flex-col relative"
-            >
-              {/* Blue Badge */}
-              <div className="mb-2">
-                <span className="px-3 py-1 bg-[#0055FF] text-white text-[11px] font-bold rounded-full inline-block">
-                  {task.jenisBadge}
-                </span>
-              </div>
-
-              {/* Title & Subcode */}
-              <div className="mb-4">
-                <h3 className="text-[15px] font-bold text-ink leading-tight mb-1">{task.title}</h3>
-                <p className="text-[13px] font-semibold text-muted">{task.noND}</p>
-              </div>
-
-              {/* Footer Row */}
-              <div className="grid grid-cols-2 gap-2 pt-3 border-t border-line text-[11px] md:text-[12px]">
-                <div className="flex items-center gap-1.5">
-                  <span className="text-muted">Tanggal Surat</span>
-                  <span className="font-semibold text-ink">{task.tgl}</span>
+          {filteredTasks.length === 0 ? (
+            <div className="bg-white rounded-[24px] p-8 text-center border border-slate-50 text-muted">
+              Tidak ada tasklist untuk kategori {activeTab}.
+            </div>
+          ) : (
+            filteredTasks.map((task, idx) => (
+              <Link 
+                key={idx} 
+                href={`/naskah-dinas/tasklist/${encodeURIComponent(task.id)}`}
+                className="bg-white rounded-[24px] p-5 shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.05)] border border-slate-50 transition-all flex flex-col relative"
+              >
+                {/* Badges Row */}
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="px-3 py-1 bg-[#0055FF] text-white text-[11px] font-bold rounded-full inline-block">
+                    {task.jenisBadge}
+                  </span>
+                  {task.isRahasia && (
+                    <span className="px-3 py-1 bg-[#FF3B30] text-white text-[11px] font-bold rounded-full inline-block">
+                      Rahasia
+                    </span>
+                  )}
                 </div>
-                <div className="flex items-center gap-1.5 justify-end">
-                  <span className="text-muted">Dikirim Oleh</span>
-                  <span className="font-semibold text-ink">{task.dikirimOleh}</span>
+
+                {/* Title & Subcode */}
+                <div className="mb-4">
+                  <h3 className="text-[15px] font-bold text-ink leading-tight mb-1">{task.title}</h3>
+                  <p className="text-[13px] font-semibold text-muted">{task.noND}</p>
                 </div>
-              </div>
-            </Link>
-          ))}
+
+                {/* Footer Row */}
+                <div className="flex items-center justify-between pt-3 border-t border-line text-[11px] md:text-[12px]">
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-muted">Tanggal Surat</span>
+                    <span className="font-semibold text-ink">{task.tgl}</span>
+                  </div>
+                  {task.dikirimOleh && (
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-muted">Dikirim Oleh</span>
+                      <span className="font-semibold text-ink">{task.dikirimOleh}</span>
+                    </div>
+                  )}
+                </div>
+              </Link>
+            ))
+          )}
         </div>
       </div>
 
