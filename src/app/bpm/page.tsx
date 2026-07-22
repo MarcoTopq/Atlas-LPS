@@ -8,9 +8,9 @@ export default function BpmMenuPage() {
   const menuItems = [
     { title: "Tasklist", icon: FileStack, href: "/bpm/tasklist" },
     { title: "Riwayat", icon: Database, href: "/bpm/riwayat" },
-    { title: "Delegasi", icon: CornerUpRight, href: "#" },
-    { title: "Reviewer", icon: ListChecks, href: "#" },
-    { title: "Pembayaran", icon: CreditCard, href: "#" },
+    { title: "Delegasi", icon: CornerUpRight, href: "/bpm/delegasi" },
+    { title: "Reviewer", icon: ListChecks, href: "/bpm/reviewer" },
+    { title: "Pembayaran", icon: CreditCard, href: "/bpm/pembayaran" },
   ];
 
   return (

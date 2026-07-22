@@ -7,8 +7,8 @@ import { ChevronRight, FileStack, Folder } from "lucide-react";
 export default function NaskahDinasMenuPage() {
   const menuItems = [
     { title: "Tasklist", icon: FileStack, href: "/persetujuan" },
-    { title: "Inbox", icon: Folder, href: "#" },
-    { title: "Outbox", icon: Folder, href: "#" },
+    { title: "Inbox", icon: Folder, href: "/naskah-dinas/inbox" },
+    { title: "Outbox", icon: Folder, href: "/naskah-dinas/outbox" },
   ];
 
   return (

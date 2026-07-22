@@ -183,3 +183,106 @@ export const MOCK_BPM_DETAIL = {
     }
   ]
 };
+
+export const MOCK_BPM_DELEGASI_LIST = [
+  {
+    id: "DEL-001",
+    title: "Delegasi Wewenang Approval BPM e-Procurement",
+    delegator: "Budi Santoso (Kadiv GRC)",
+    delegatee: "Andi Susanto (Kepala Subdivisi)",
+    period: "01 Jul 2026 - 15 Jul 2026",
+    status: "Aktif",
+    brief: "Delegasi kewenangan persetujuan e-Procurement dan Perjalanan Dinas selama penugasan luar kota."
+  },
+  {
+    id: "DEL-002",
+    title: "Delegasi Persetujuan Reimbursement & Uang Muka",
+    delegator: "Rina Wijaya (Plt. Direktur)",
+    delegatee: "Denny Setiawan (Senior Manager)",
+    period: "10 Jun 2026 - 20 Jun 2026",
+    status: "Selesai",
+    brief: "Delegasi otomatis karena Cuti Tahunan."
+  }
+];
+
+export const MOCK_BPM_REVIEWER_LIST = [
+  {
+    id: "REV-101",
+    title: "Reviewer Pengadaan Lisensi Software IT 2026",
+    subjek: "Telaah Aturan Pengadaan Barang & Jasa",
+    reviewer: "Iman Santoso (Tim Kepatuhan)",
+    status: "Menunggu Review",
+    sla: "⏱ 4 jam lagi",
+    brief: "Memerlukan penelaahan klausul SLA dan lisensi multi-user berdasarkan SE Logistik No. 04/2025."
+  },
+  {
+    id: "REV-102",
+    title: "Reviewer Evaluasi Risiko Perjalanan Dinas Luar Negeri",
+    subjek: "Risk Assessment Tim Manajemen",
+    reviewer: "Budi Santoso (GRC)",
+    status: "Selesai Review",
+    sla: "Selesai",
+    brief: "Telah ditelaah sesuai dengan ketentuan mitigasi risiko perjalanan dinas antar negara."
+  }
+];
+
+export const MOCK_BPM_PEMBAYARAN_LIST = [
+  {
+    id: "PEM-201",
+    title: "Pembayaran Vendor Pengadaan Server DRC",
+    noSAP: "3104920192",
+    vendor: "PT Sistem Data Nusantara",
+    amount: "Rp 145.000.000",
+    status: "Proses Transfer SAP",
+    brief: "Pembayaran termin ke-2 setelah BAST ditandatangani oleh Kadiv STI."
+  },
+  {
+    id: "PEM-202",
+    title: "Reimbursement Konsumsi Rapat Anggota Dewan",
+    noSAP: "3104920205",
+    vendor: "CV Rasa Nusantara",
+    amount: "Rp 4.250.000",
+    status: "Terbayar",
+    brief: "Sudah diverifikasi oleh Modul Keuangan SAP Core."
+  }
+];
+
+export const MOCK_NASKAH_INBOX_LIST = [
+  {
+    id: "ND-IN-101",
+    title: "ND-402/DSDA/2026 - Permohonan Pendampingan Audit Sistem Informasi",
+    pengirim: "Divisi Audit Internal",
+    tgl: "21 Juli 2026",
+    sifat: "Sangat Rahasia",
+    status: "Belum Dibaca",
+    brief: "Nota Dinas permohonan audit TI rutin untuk kuartal III tahun 2026."
+  },
+  {
+    id: "ND-IN-102",
+    title: "ND-389/SKL/2026 - Sosialisasi Peraturan Kepegawaian Terbaru",
+    pengirim: "Group SDM & Layanan",
+    tgl: "19 Juli 2026",
+    sifat: "Biasa",
+    status: "Sudah Dibaca",
+    brief: "Informasi penyesuaian hak cuti dan fasilitas kesehatan pegawai LPS."
+  }
+];
+
+export const MOCK_NASKAH_OUTBOX_LIST = [
+  {
+    id: "ND-OUT-201",
+    title: "ND-1610/STI/2026 - Laporan Hasil Pengetesan Sistem DRC LPS",
+    penerima: "Direktur Eksekutif STI",
+    tgl: "20 Juli 2026",
+    status: "Terkirim",
+    brief: "Laporan resmi penyelesaian pengujian simulasi DRC Semester I."
+  },
+  {
+    id: "ND-OUT-202",
+    title: "ND-1605/STI/2026 - Pengajuan Peremajaan Perangkat Laptop Kerja",
+    penerima: "Divisi Logistik & Aset",
+    tgl: "18 Juli 2026",
+    status: "Proses Verifikasi",
+    brief: "Permohonan pengadaan 15 unit laptop kerja pengganti unit tahun 2021."
+  }
+];
