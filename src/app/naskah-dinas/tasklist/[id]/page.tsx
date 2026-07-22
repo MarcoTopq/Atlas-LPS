@@ -1,17 +1,19 @@
 "use client";
 
 import AppBar from "@/components/AppBar";
-import { Lock, FileText, CheckCircle2, Sparkles, ExternalLink, Paperclip, Check, AlertCircle, User } from "lucide-react";
+import { MOCK_NASKAH_TASKLIST_DETAIL } from "@/lib/mock/bpm";
+import { Lock, FileText, CheckCircle2, Sparkles, ExternalLink, Paperclip, Check } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 
 export default function NaskahDinasTasklistDetailPage() {
+  const data = MOCK_NASKAH_TASKLIST_DETAIL;
   const [activeTab, setActiveTab] = useState("Detail");
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
 
-  const tabs = ["Detail", "Lampiran", "Posisi Surat"];
+  const tabs = ["Detail", "Lampiran", "Riwayat Pengajuan"];
 
   const handleApprove = () => {
     setToastMessage("Nota Dinas Berhasil Disetujui! Tercatat di Core System e-Correspondence.");
@@ -27,25 +29,20 @@ export default function NaskahDinasTasklistDetailPage() {
 
   return (
     <div className="flex flex-col min-h-dvh bg-[#F8FAFC] pb-28 relative">
-      <AppBar title="Detail Tasklist" showBack />
+      <AppBar title="Detail Persetujuan" showBack />
       
       <div className="px-5 mt-4 space-y-5">
-        {/* Header Title & Badge */}
+        {/* Header Title & Badges */}
         <div>
-          <div className="flex items-center justify-between mb-2">
+          <h1 className="text-[18px] md:text-[22px] font-bold text-ink tracking-tight mb-2.5">{data.title}</h1>
+          <div className="flex items-center gap-2 mb-3">
             <span className="px-3 py-1 bg-[#0055FF] text-white text-[11px] font-bold rounded-full">
-              Persetujuan Nota Dinas
+              {data.jenisBadge}
             </span>
-            <span className="text-[11px] font-bold text-danger flex items-center gap-1">
-              <AlertCircle size={13} /> SLA 2 jam lagi
+            <span className="px-3 py-1 bg-[#FFD000] text-[#554000] text-[11px] font-bold rounded-full">
+              {data.statusBadge}
             </span>
           </div>
-          <h1 className="text-[18px] md:text-[22px] font-bold text-ink tracking-tight mb-1">
-            ND-1610/STI/2026 - Nota Dinas Perjalanan Dinas Proyek X Surabaya
-          </h1>
-          <p className="text-[12px] text-muted">
-            Pemohon: <strong>Budi Santoso (Kadiv GRC)</strong>
-          </p>
         </div>
 
         {/* AI Decision Brief Card (Atlas AI Feature) */}
@@ -59,35 +56,20 @@ export default function NaskahDinasTasklistDetailPage() {
           
           <h3 className="text-[14px] font-bold text-ink mb-2">Decision Brief AI Atlas</h3>
           <p className="text-[13px] text-ink/80 mb-4 leading-relaxed">
-            AI Atlas menterjemahkan: Nota dinas ini mengajukan penugasan 3 anggota tim ke Surabaya selama 3 hari. Nominal anggaran yang diajukan sesuai dengan batas perdiun standar LPS.
+            {data.brief.ringkasan}
           </p>
-
-          <div className="bg-white rounded-[16px] p-4 mb-4 shadow-sm border border-[#4C46D9]/10">
-            <div className="grid grid-cols-2 gap-4 text-xs">
-              <div className="flex flex-col">
-                <span className="text-muted text-[11px] mb-1">Tujuan & Durasi</span>
-                <span className="font-bold text-ink text-[13px]">Surabaya (3 Hari)</span>
-              </div>
-              <div className="flex flex-col">
-                <span className="text-muted text-[11px] mb-1">Pola Pengajuan</span>
-                <span className="font-bold text-emerald-600 text-[13px]">Normal / Biasa ✓</span>
-              </div>
-            </div>
-          </div>
 
           <div className="bg-blue-50 border border-blue-100 rounded-[16px] p-3.5 flex gap-3">
             <FileText size={18} className="text-blue-600 flex-shrink-0 mt-0.5" />
             <div>
               <p className="text-[11px] font-bold text-blue-800 mb-0.5">Sumber Terverifikasi</p>
-              <p className="text-[12px] text-blue-900/80 leading-relaxed">
-                Peraturan Kepegawaian LPS Bab VI Pasal 32 (1): "Perjalanan dinas luar kota wajib diajukan maksimal H-2 sebelum keberangkatan."
-              </p>
+              <p className="text-[12px] text-blue-900/80 leading-relaxed">{data.brief.sitasi}</p>
             </div>
           </div>
           
           <div className="mt-3 flex items-center gap-2 text-[12px] font-bold p-2.5 rounded-xl border bg-[#E4F5EE] text-[#1E9E6A] border-[#1E9E6A]/20">
             <CheckCircle2 size={16}/>
-            Dokumen Lolos Verifikasi & Tidak Ada Anomali
+            Tervalidasi Otentikasi e-Correspondence LPS
           </div>
         </div>
 
@@ -95,11 +77,11 @@ export default function NaskahDinasTasklistDetailPage() {
         <div className="bg-white rounded-[24px] p-5 shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-slate-50 grid grid-cols-2 gap-4">
           <div className="flex flex-col">
             <span className="text-[11px] font-medium text-muted mb-1">Pengajuan</span>
-            <span className="text-[13px] font-bold text-ink">22 Juli 2026</span>
+            <span className="text-[13px] font-bold text-ink">{data.metadata.pengajuan}</span>
           </div>
           <div className="flex flex-col">
             <span className="text-[11px] font-medium text-muted mb-1">Tindak Lanjut</span>
-            <span className="text-[13px] font-bold text-orange">Menunggu Persetujuan Anda</span>
+            <span className="text-[13px] font-bold text-ink">{data.metadata.tindakLanjut}</span>
           </div>
         </div>
 
@@ -130,7 +112,7 @@ export default function NaskahDinasTasklistDetailPage() {
               <div className="flex items-center justify-between pb-3 border-b border-line">
                 <div className="flex flex-col">
                   <span className="text-[11px] text-muted mb-0.5">Nomor Dokumen</span>
-                  <span className="font-bold text-ink">ND-1610/STI/2026</span>
+                  <span className="font-bold text-ink">{data.detail.nomorDokumen}</span>
                 </div>
                 <button className="text-[12px] font-bold text-orange hover:underline flex items-center gap-1">
                   Lihat Dokumen
@@ -139,37 +121,32 @@ export default function NaskahDinasTasklistDetailPage() {
 
               <div className="pb-3 border-b border-line flex flex-col">
                 <span className="text-[11px] text-muted mb-0.5">Tipe Surat</span>
-                <span className="font-semibold text-ink">Surat Biasa</span>
+                <span className="font-semibold text-ink">{data.detail.tipeSurat}</span>
               </div>
 
               <div className="pb-3 border-b border-line flex flex-col">
                 <span className="text-[11px] text-muted mb-0.5">Jenis Surat</span>
-                <span className="font-semibold text-ink">Nota Dinas Persetujuan Perjalanan Dinas</span>
-              </div>
-
-              <div className="pb-3 border-b border-line flex flex-col">
-                <span className="text-[11px] text-muted mb-0.5">Tanggal</span>
-                <span className="font-semibold text-ink">22 Juli 2026</span>
+                <span className="font-semibold text-ink">{data.detail.jenisSurat}</span>
               </div>
 
               <div className="pb-3 border-b border-line flex flex-col">
                 <span className="text-[11px] text-muted mb-0.5">Perihal</span>
-                <span className="font-semibold text-ink">Nota Dinas Perjalanan Dinas Proyek X Surabaya</span>
+                <span className="font-semibold text-ink">{data.detail.perihal}</span>
               </div>
 
               <div className="pb-3 border-b border-line flex flex-col">
                 <span className="text-[11px] text-muted mb-0.5">Deskripsi</span>
-                <span className="font-semibold text-ink">Pengajuan perjalan dinas tim ke Surabaya selama 3 hari terkait koordinasi awal proyek X.</span>
+                <span className="font-semibold text-ink">{data.detail.deskripsi}</span>
               </div>
 
               <div className="pb-3 border-b border-line flex flex-col">
                 <span className="text-[11px] text-muted mb-0.5">Cross Reference</span>
-                <span className="font-semibold text-ink">ST-2207/STI/2026</span>
+                <span className="font-semibold text-ink">{data.detail.crossReference}</span>
               </div>
 
               <div className="flex flex-col">
-                <span className="text-[11px] text-muted mb-0.5">Dikirim Oleh</span>
-                <span className="font-semibold text-ink">Budi Santoso (Kadiv GRC)</span>
+                <span className="text-[11px] text-muted mb-0.5">Reviewer</span>
+                <span className="font-semibold text-ink">{data.detail.reviewer}</span>
               </div>
             </div>
           </div>
@@ -181,70 +158,45 @@ export default function NaskahDinasTasklistDetailPage() {
             <h2 className="text-[15px] font-bold text-ink pb-2 border-b border-line">Lampiran Persetujuan</h2>
             
             <div className="space-y-3">
-              <div className="flex items-center justify-between p-3.5 bg-slate-50 rounded-2xl border border-line">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-orange/10 text-orange rounded-xl flex items-center justify-center">
-                    <Paperclip size={18} />
+              {data.lampiran.map((lamp, idx) => (
+                <div key={idx} className="flex items-center justify-between p-3.5 bg-slate-50 rounded-2xl border border-line">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-orange/10 text-orange rounded-xl flex items-center justify-center">
+                      <Paperclip size={18} />
+                    </div>
+                    <div>
+                      <p className="text-[13px] font-bold text-ink">{lamp.nama}</p>
+                      <p className="text-[11px] text-muted">{lamp.ukuran}</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-[13px] font-bold text-ink">RAB_Perdin_Surabaya.pdf</p>
-                    <p className="text-[11px] text-muted">245 KB</p>
-                  </div>
+                  <button className="p-2 text-muted hover:text-orange transition-colors">
+                    <ExternalLink size={18} />
+                  </button>
                 </div>
-                <button className="p-2 text-muted hover:text-orange transition-colors">
-                  <ExternalLink size={18} />
-                </button>
-              </div>
-
-              <div className="flex items-center justify-between p-3.5 bg-slate-50 rounded-2xl border border-line">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-orange/10 text-orange rounded-xl flex items-center justify-center">
-                    <Paperclip size={18} />
-                  </div>
-                  <div>
-                    <p className="text-[13px] font-bold text-ink">Undangan_Rapat_KPW.pdf</p>
-                    <p className="text-[11px] text-muted">180 KB</p>
-                  </div>
-                </div>
-                <button className="p-2 text-muted hover:text-orange transition-colors">
-                  <ExternalLink size={18} />
-                </button>
-              </div>
+              ))}
             </div>
           </div>
         )}
 
-        {/* Tab 3: Posisi Surat */}
-        {activeTab === "Posisi Surat" && (
-          <div className="bg-white rounded-[24px] p-5 shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-slate-50 space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-300">
-            <h2 className="text-[15px] font-bold text-ink pb-2 border-b border-line">Posisi Surat</h2>
+        {/* Tab 3: Riwayat Pengajuan */}
+        {activeTab === "Riwayat Pengajuan" && (
+          <div className="bg-white rounded-[24px] p-5 shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-slate-50 space-y-5 animate-in fade-in slide-in-from-bottom-2 duration-300">
+            <h2 className="text-[15px] font-bold text-ink pb-2 border-b border-line">Riwayat Persetujuan</h2>
 
-            <div>
-              <h3 className="text-[13px] font-bold text-ink mb-3">Reviewer</h3>
-              <div className="space-y-4 pl-2 border-l-2 border-slate-100 ml-2">
-                <div className="relative pl-5">
-                  <div className="absolute -left-[17px] top-0.5 w-5 h-5 rounded-full bg-[#1E9E6A] text-white flex items-center justify-center border-2 border-white">
+            <div className="relative pl-6 border-l-2 border-slate-100 ml-2 space-y-6">
+              {data.riwayatPengajuan.map((item, idx) => (
+                <div key={idx} className="relative">
+                  {/* Status Circle Indicator */}
+                  <div className="absolute -left-[35px] top-0.5 w-6 h-6 rounded-full bg-[#1E9E6A] text-white flex items-center justify-center border-4 border-white">
                     <Check size={12} strokeWidth={3} />
                   </div>
-                  <p className="text-[11px] text-muted">ND-1610/STI/2026</p>
-                  <p className="text-[13px] font-bold text-ink">Budi Santoso (Kadiv GRC)</p>
-                  <p className="text-[12px] text-muted italic mt-0.5">Approve - OK, Silakan diproses</p>
+                  <p className="text-[11px] text-muted">{item.action} • {item.date}</p>
+                  <p className="text-[13.5px] font-bold text-ink">{item.statusTitle}</p>
+                  {item.note && (
+                    <p className="text-[12px] text-muted italic mt-0.5">{item.note}</p>
+                  )}
                 </div>
-              </div>
-            </div>
-
-            <div>
-              <h3 className="text-[13px] font-bold text-ink mb-3">Penyetuju</h3>
-              <div className="space-y-4 pl-2 border-l-2 border-slate-100 ml-2">
-                <div className="relative pl-5">
-                  <div className="absolute -left-[17px] top-0.5 w-5 h-5 rounded-full bg-amber-500 text-white flex items-center justify-center border-2 border-white">
-                    <Clock size={12} strokeWidth={3} />
-                  </div>
-                  <p className="text-[11px] text-muted">ND-1610/STI/2026</p>
-                  <p className="text-[13px] font-bold text-ink">Anda (Direktur Eksekutif)</p>
-                  <p className="text-[12px] text-orange font-semibold mt-0.5">Menunggu keputusan Anda</p>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         )}
@@ -252,11 +204,11 @@ export default function NaskahDinasTasklistDetailPage() {
         {/* Action Button to AI */}
         <Link href="/ai" className="w-full bg-[#ECEBFB] hover:bg-[#E0DEFA] border border-[#4C46D9]/30 text-[#4C46D9] font-bold py-3.5 rounded-2xl flex items-center justify-center gap-2 transition-all shadow-sm">
           <Sparkles size={18} />
-          Tanya AI Atlas Tentang Naskah Dinas Ini
+          Tanya AI Atlas Tentang Persetujuan Ini
         </Link>
       </div>
 
-      {/* Floating Action Bar (Tolak & Setuju like BPM) */}
+      {/* Floating Action Bar (Tolak & Setuju like reference image 2/3/4) */}
       <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] bg-white border-t border-slate-100 p-4 pb-6 md:pb-4 flex gap-3 z-30 shadow-[0_-8px_30px_rgba(0,0,0,0.06)]">
         <button 
           onClick={handleReject}

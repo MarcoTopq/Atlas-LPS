@@ -353,39 +353,103 @@ export const MOCK_NASKAH_OUTBOX_DETAIL = {
 
 export const MOCK_NASKAH_TASKLIST = [
   {
-    id: "ND-1610-2026",
-    noND: "ND-1610/STI/2026",
-    title: "Nota Dinas Perjalanan Dinas Proyek X Surabaya",
-    pemohon: "Budi Santoso (Kadiv GRC)",
-    tgl: "22 Juli 2026",
-    prioritas: "hi",
-    sla: "⏱ 2 jam lagi",
-    sistem: "e-Correspondence",
-    brief: "Pengajuan perjalanan dinas untuk tim proyek X ke Surabaya selama 3 hari terkait koordinasi awal.",
-    peraturan: "Peraturan Kepegawaian LPS Bab VI Pasal 32 (1) terkait Perjalanan Dinas Biasa."
+    id: "ND-13/GSTI",
+    title: "Keterangan nota dinas berjenjang-02-02",
+    noND: "ND-13/GSTI",
+    jenisBadge: "Persetujuan Nota Dinas",
+    tgl: "1 April 2026",
+    dikirimOleh: "Training 2",
+    status: "Menunggu"
   },
   {
-    id: "ND-1590-2026",
-    noND: "ND-1590/SKL/2026",
-    title: "Nota Dinas Permohonan Persetujuan Anggaran Kegiatan Workshop TI",
-    pemohon: "Siti Aminah (Analisa Sistem)",
-    tgl: "21 Juli 2026",
-    prioritas: "mid",
-    sla: "Hari ini",
-    sistem: "e-Correspondence",
-    brief: "Nota Dinas pengajuan alokasi anggaran workshop arsitektur microservices.",
-    peraturan: "SE Logistik No. 07/2024 Poin 3 tentang Pengembangan Kompetensi Pegawai."
+    id: "ND-11/GSTI",
+    title: "Perihal nota dinas berjenjang-01-01",
+    noND: "ND-11/GSTI",
+    jenisBadge: "Persetujuan Nota Dinas",
+    tgl: "1 April 2026",
+    dikirimOleh: "Training 2",
+    status: "Menunggu"
   },
   {
-    id: "ND-1582-2026",
-    noND: "ND-1582/LOG/2026",
-    title: "Nota Dinas Pengadaan Pemeliharaan Rutin AC Server Room",
-    pemohon: "Dian Wahyuni (Logistik)",
-    tgl: "20 Juli 2026",
-    prioritas: "lo",
-    sla: "Besok",
-    sistem: "e-Correspondence",
-    brief: "Nota Dinas persetujuan penunjukan langsung kontraktor pemeliharaan AC server.",
-    peraturan: "Pedoman Pengadaan Barang & Jasa LPS Bab II Pasal 15."
+    id: "ND-9/GSTI",
+    title: "Perihal nota dinas berjenjang-03-02",
+    noND: "ND-9/GSTI",
+    jenisBadge: "Persetujuan Nota Dinas",
+    tgl: "1 April 2026",
+    dikirimOleh: "Training 2",
+    status: "Menunggu"
+  },
+  {
+    id: "ND-7/GSTI",
+    title: "Perihal nota dinas berjenjang-04-02",
+    noND: "ND-7/GSTI",
+    jenisBadge: "Persetujuan Nota Dinas",
+    tgl: "1 April 2026",
+    dikirimOleh: "Training 2",
+    status: "Menunggu"
+  },
+  {
+    id: "ND-5/GSTI",
+    title: "Perihal nota dinas berjenjang-05-02",
+    noND: "ND-5/GSTI",
+    jenisBadge: "Persetujuan Nota Dinas",
+    tgl: "1 April 2026",
+    dikirimOleh: "Training 2",
+    status: "Menunggu"
   }
 ];
+
+export const MOCK_NASKAH_TASKLIST_DETAIL = {
+  id: "ND-13/GSTI",
+  title: "Keterangan nota dinas berjenjang-02-02",
+  jenisBadge: "Persetujuan Nota Dinas",
+  statusBadge: "Menunggu",
+  metadata: {
+    pengajuan: "1 April 2026",
+    tindakLanjut: "-"
+  },
+  brief: {
+    ringkasan: "AI Atlas menterjemahkan: Pengajuan persetujuan nota dinas berjenjang unit GSTI terkait penetapan akses Coretax LPS OP.",
+    sitasi: "Peraturan Tata Kelola Surat Dinas LPS No. 03/2024 Bab V.",
+    flag: "normal"
+  },
+  detail: {
+    nomorDokumen: "ND-13/GSTI",
+    tipeSurat: "Surat Biasa",
+    jenisSurat: "Persetujuan Nota Dinas",
+    perihal: "Keterangan nota dinas berjenjang-02-02",
+    deskripsi: "Deskripsi nota dinas berjenjang-02-02",
+    crossReference: "-",
+    reviewer: "Training 3"
+  },
+  lampiran: [
+    { nama: "30064_Akses Coretax_LPS OP.pdf", ukuran: "340 KB" },
+    { nama: "30065_Akses Coretax_LPS OP.pdf", ukuran: "512 KB" }
+  ],
+  riwayatPengajuan: [
+    {
+      action: "Telah direview",
+      date: "30 Mar 2026, 15:02",
+      statusTitle: "Telah direview - completed",
+      note: "Reviewer (Training 3) - sudah direview"
+    },
+    {
+      action: "Telah disetujui",
+      date: "30 Mar 2026, 15:02",
+      statusTitle: "Telah disetujui - completed",
+      note: "Approver (Training 3) - sudah direview"
+    },
+    {
+      action: "Telah disetujui",
+      date: "1 Apr 2026, 13:34",
+      statusTitle: "Telah disetujui - completed",
+      note: "PejabatPenandatangan (Training 2) - okee"
+    },
+    {
+      action: "Telah disetujui",
+      date: "1 Apr 2026, 13:34",
+      statusTitle: "Telah disetujui - completed",
+      note: ""
+    }
+  ]
+};
