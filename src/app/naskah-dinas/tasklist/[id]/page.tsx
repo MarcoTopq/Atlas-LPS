@@ -208,20 +208,22 @@ export default function NaskahDinasTasklistDetailPage() {
         </Link>
       </div>
 
-      {/* Floating Action Bar (Tolak & Setuju like reference image 2/3/4) */}
-      <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] bg-white border-t border-slate-100 p-4 pb-6 md:pb-4 flex gap-3 z-30 shadow-[0_-8px_30px_rgba(0,0,0,0.06)]">
-        <button 
-          onClick={handleReject}
-          className="flex-1 bg-danger hover:bg-danger-d text-white font-bold py-3.5 rounded-full transition-all active:scale-95 text-[15px] shadow-sm"
-        >
-          Tolak
-        </button>
-        <button 
-          onClick={handleApprove}
-          className="flex-1 bg-[#2C8548] hover:bg-emerald-700 text-white font-bold py-3.5 rounded-full transition-all active:scale-95 text-[15px] shadow-sm"
-        >
-          Setuju
-        </button>
+      {/* Floating Action Bar (Responsive for Mobile & Web) */}
+      <div className="fixed bottom-0 left-0 right-0 w-full bg-white/95 backdrop-blur-md border-t border-slate-100 p-4 pb-6 md:pb-4 flex justify-center z-30 shadow-[0_-8px_30px_rgba(0,0,0,0.08)]">
+        <div className="w-full max-w-[430px] flex gap-3 px-1">
+          <button 
+            onClick={handleReject}
+            className="flex-1 bg-danger hover:bg-danger-d text-white font-bold py-3.5 rounded-full transition-all active:scale-95 text-[15px] shadow-sm flex items-center justify-center gap-2"
+          >
+            Tolak
+          </button>
+          <button 
+            onClick={handleApprove}
+            className="flex-1 bg-[#2C8548] hover:bg-emerald-700 text-white font-bold py-3.5 rounded-full transition-all active:scale-95 text-[15px] shadow-sm flex items-center justify-center gap-2"
+          >
+            Setuju
+          </button>
+        </div>
       </div>
 
       {/* Toast Notification */}

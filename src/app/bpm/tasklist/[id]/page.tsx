@@ -265,14 +265,16 @@ export default function BpmTasklistDetailPage({ params }: { params: Promise<{ id
         )}
       </div>
 
-      {/* Floating Action Bar */}
-      <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] bg-white border-t border-slate-100 p-4 pb-6 md:pb-4 flex gap-3 z-30 shadow-[0_-8px_30px_rgba(0,0,0,0.04)]">
-        <button className="flex-1 bg-danger hover:bg-danger-d text-white font-bold py-3.5 rounded-full transition-colors active:scale-95 text-[15px]">
-          Tolak
-        </button>
-        <button className="flex-1 bg-[#2C8548] hover:bg-emerald-700 text-white font-bold py-3.5 rounded-full transition-colors active:scale-95 text-[15px]">
-          Setuju
-        </button>
+      {/* Floating Action Bar (Responsive for Mobile & Web) */}
+      <div className="fixed bottom-0 left-0 right-0 w-full bg-white/95 backdrop-blur-md border-t border-slate-100 p-4 pb-6 md:pb-4 flex justify-center z-30 shadow-[0_-8px_30px_rgba(0,0,0,0.08)]">
+        <div className="w-full max-w-[430px] flex gap-3 px-1">
+          <button className="flex-1 bg-danger hover:bg-danger-d text-white font-bold py-3.5 rounded-full transition-colors active:scale-95 text-[15px] shadow-sm flex items-center justify-center">
+            Tolak
+          </button>
+          <button className="flex-1 bg-[#2C8548] hover:bg-emerald-700 text-white font-bold py-3.5 rounded-full transition-colors active:scale-95 text-[15px] shadow-sm flex items-center justify-center">
+            Setuju
+          </button>
+        </div>
       </div>
     </div>
   );
