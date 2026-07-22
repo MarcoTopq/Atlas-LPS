@@ -166,10 +166,10 @@ export default function HomePage() {
                 { name: "Naskah Dinas", icon: FileText, color: "text-blue-500", bg: "bg-blue-50" },
                 { name: "BPM", icon: CheckSquare, color: "text-emerald-500", bg: "bg-emerald-50" },
                 { name: "Dokumen", icon: Folder, color: "text-purple-500", bg: "bg-purple-50" },
-                { name: "Anggota", icon: CalendarIcon, color: "text-orange", bg: "bg-orange/10" },
+                { name: "Agenda", icon: CalendarIcon, color: "text-orange", bg: "bg-orange/10" },
               ].map((item, idx) => {
                 const Icon = item.icon;
-                const href = item.name === "BPM" ? "/bpm" : "#";
+                const href = item.name === "BPM" ? "/bpm" : item.name === "Agenda" ? "/agenda" : "#";
                 return (
                   <Link key={idx} href={href} className="bg-white rounded-[24px] md:rounded-[36px] p-5 md:p-8 shadow-[0_8px_24px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_30px_rgba(0,0,0,0.06)] transition-all duration-300 group flex flex-col h-[130px] md:h-[200px] relative">
                     <div className="absolute top-4 md:top-6 right-4 md:right-6 w-7 md:w-12 h-7 md:h-12 bg-slate-50 rounded-full flex items-center justify-center text-light group-hover:bg-orange group-hover:text-white transition-colors">
