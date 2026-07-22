@@ -270,22 +270,86 @@ export const MOCK_NASKAH_INBOX_LIST = [
 
 export const MOCK_NASKAH_OUTBOX_LIST = [
   {
-    id: "ND-OUT-201",
-    title: "ND-1610/STI/2026 - Laporan Hasil Pengetesan Sistem DRC LPS",
-    penerima: "Direktur Eksekutif STI",
-    tgl: "20 Juli 2026",
+    id: "ND-R.22/GSTI",
+    title: "Nota Dinas - Rahasia",
+    noND: "ND-R.22/GSTI",
+    jenisBadge: "Persetujuan Nota Dinas",
+    tgl: "27 April 2026",
+    dikirimOleh: "Training 3",
     status: "Terkirim",
-    brief: "Laporan resmi penyelesaian pengujian simulasi DRC Semester I."
+    brief: "Nota Dinas Rahasia mengenai arahan pengamanan data sensitif dan infrastruktur IT LPS."
   },
   {
-    id: "ND-OUT-202",
-    title: "ND-1605/STI/2026 - Pengajuan Peremajaan Perangkat Laptop Kerja",
-    penerima: "Divisi Logistik & Aset",
-    tgl: "18 Juli 2026",
-    status: "Proses Verifikasi",
-    brief: "Permohonan pengadaan 15 unit laptop kerja pengganti unit tahun 2021."
+    id: "ND-R.21/GSTI",
+    title: "Testing Nota Dinas Rahasia",
+    noND: "ND-R.21/GSTI",
+    jenisBadge: "Persetujuan Nota Dinas",
+    tgl: "27 April 2026",
+    dikirimOleh: "Training 3",
+    status: "Proses Review",
+    brief: "Pengujian alur persetujuan dokumen rahasia."
+  },
+  {
+    id: "ND-20/GSTI",
+    title: "Test ND Persetujuan Surat Biasa",
+    noND: "ND-20/GSTI",
+    jenisBadge: "Persetujuan Nota Dinas",
+    tgl: "27 April 2026",
+    dikirimOleh: "Training 4",
+    status: "Terkirim",
+    brief: "Nota dinas biasa persetujuan kegiatan sosialisasi internal."
+  },
+  {
+    id: "ND-R.19/GSTI",
+    title: "Pengujian One LPS Mobile 1",
+    noND: "ND-R.19/GSTI",
+    jenisBadge: "Persetujuan Nota Dinas",
+    tgl: "17 April 2026",
+    dikirimOleh: "Training 3",
+    status: "Terkirim",
+    brief: "Pengujian fungsionalitas aplikasi mobile One LPS."
   }
 ];
+
+export const MOCK_NASKAH_OUTBOX_DETAIL = {
+  id: "ND-R.22/GSTI",
+  title: "Nota Dinas - Rahasia",
+  jenisBadge: "Persetujuan Nota Dinas",
+  metadata: {
+    pengajuan: "27 April 2026",
+    tindakLanjut: "-"
+  },
+  brief: {
+    ringkasan: "Nota Dinas Rahasia mengenai arahan pengamanan data sensitif dan infrastruktur IT LPS.",
+    sitasi: "Peraturan Keamanan Informasi LPS No. 05/2024 Pasal 11 ayat (1).",
+    flag: "normal"
+  },
+  detail: {
+    nomorDokumen: "ND-R.22/GSTI",
+    tipeSurat: "Surat Rahasia",
+    jenisSurat: "Nota Dinas Persetujuan",
+    tanggal: "27 April 2026",
+    perihal: "Nota Dinas - Rahasia",
+    deskripsi: "Nota Dinas - Rahasia",
+    crossReference: "Nota Dinas - Rahasia",
+    dikirimOleh: "Training 3"
+  },
+  lampiran: [
+    { nama: "6487fc3a3c5ef.jpg", ukuran: "1.2 MB" }
+  ],
+  posisiSurat: {
+    reviewer: [
+      { docNo: "Temporary:ND-R.29/GSTI", name: "Training 3", status: "Approve - OK, Segera direvisi" }
+    ],
+    penyetuju: [
+      { docNo: "Temporary:ND-R.29/GSTI", name: "Training 2", status: "Revise - Please revise it immediately" },
+      { docNo: "Temporary:ND-R.29/GSTI", name: "Training 2", status: "Approve - Oke Setuju" }
+    ],
+    penandaTangan: [
+      { docNo: "Temporary:ND-R.29/GSTI", name: "Training 2", status: "Approve - Auto Approved" }
+    ]
+  }
+};
 
 export const MOCK_NASKAH_TASKLIST = [
   {
