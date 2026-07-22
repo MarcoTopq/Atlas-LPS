@@ -69,12 +69,9 @@ export default function HomePage() {
               Anda belum melakukan absensi. Lakukan sekarang dari Equity Tower, SCBD.
             </p>
 
-            <div className="flex gap-3 md:gap-6 relative z-10 mt-1 md:mt-4">
-              <button className="flex-1 bg-gradient-to-r from-orange to-[#D95E15] text-white font-bold py-3.5 md:py-5 rounded-full md:rounded-3xl text-[13.5px] md:text-[16px] shadow-[0_8px_20px_rgba(242,110,34,0.3)] hover:shadow-[0_10px_25px_rgba(242,110,34,0.4)] hover:-translate-y-0.5 active:scale-95 transition-all">
+            <div className="relative z-10 mt-1 md:mt-4">
+              <button className="w-full bg-gradient-to-r from-orange to-[#D95E15] text-white font-bold py-3.5 md:py-5 rounded-full md:rounded-3xl text-[13.5px] md:text-[16px] shadow-[0_8px_20px_rgba(242,110,34,0.3)] hover:shadow-[0_10px_25px_rgba(242,110,34,0.4)] hover:-translate-y-0.5 active:scale-95 transition-all">
                 Absen Masuk
-              </button>
-              <button className="flex-1 bg-white border-2 border-slate-100 hover:border-orange/30 hover:bg-orange/5 text-ink font-bold py-3.5 md:py-5 rounded-full md:rounded-3xl text-[13.5px] md:text-[16px] shadow-sm active:scale-95 transition-all">
-                Izin / Cuti
               </button>
             </div>
           </div>
@@ -169,7 +166,7 @@ export default function HomePage() {
                 { name: "Naskah Dinas", icon: FileText, color: "text-blue-500", bg: "bg-blue-50" },
                 { name: "BPM", icon: CheckSquare, color: "text-emerald-500", bg: "bg-emerald-50" },
                 { name: "Dokumen", icon: Folder, color: "text-purple-500", bg: "bg-purple-50" },
-                { name: "Rapat Pimpinan", icon: CalendarIcon, color: "text-orange", bg: "bg-orange/10" },
+                { name: "Anggota", icon: CalendarIcon, color: "text-orange", bg: "bg-orange/10" },
               ].map((item, idx) => {
                 const Icon = item.icon;
                 const href = item.name === "BPM" ? "/bpm" : "#";

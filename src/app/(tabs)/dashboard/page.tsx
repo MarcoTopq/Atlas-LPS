@@ -20,7 +20,18 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 export default function DashboardPage() {
-  const categories = [
+  const categories: {
+    title: string;
+    items: {
+      id: string;
+      name: string;
+      icon: any;
+      color: string;
+      bg: string;
+      alert?: boolean;
+      suffix?: string;
+    }[];
+  }[] = [
     {
       title: "HR & Personalia",
       items: [
