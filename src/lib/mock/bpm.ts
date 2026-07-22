@@ -286,3 +286,42 @@ export const MOCK_NASKAH_OUTBOX_LIST = [
     brief: "Permohonan pengadaan 15 unit laptop kerja pengganti unit tahun 2021."
   }
 ];
+
+export const MOCK_NASKAH_TASKLIST = [
+  {
+    id: "ND-1610-2026",
+    noND: "ND-1610/STI/2026",
+    title: "Nota Dinas Perjalanan Dinas Proyek X Surabaya",
+    pemohon: "Budi Santoso (Kadiv GRC)",
+    tgl: "22 Juli 2026",
+    prioritas: "hi",
+    sla: "⏱ 2 jam lagi",
+    sistem: "e-Correspondence",
+    brief: "Pengajuan perjalanan dinas untuk tim proyek X ke Surabaya selama 3 hari terkait koordinasi awal.",
+    peraturan: "Peraturan Kepegawaian LPS Bab VI Pasal 32 (1) terkait Perjalanan Dinas Biasa."
+  },
+  {
+    id: "ND-1590-2026",
+    noND: "ND-1590/SKL/2026",
+    title: "Nota Dinas Permohonan Persetujuan Anggaran Kegiatan Workshop TI",
+    pemohon: "Siti Aminah (Analisa Sistem)",
+    tgl: "21 Juli 2026",
+    prioritas: "mid",
+    sla: "Hari ini",
+    sistem: "e-Correspondence",
+    brief: "Nota Dinas pengajuan alokasi anggaran workshop arsitektur microservices.",
+    peraturan: "SE Logistik No. 07/2024 Poin 3 tentang Pengembangan Kompetensi Pegawai."
+  },
+  {
+    id: "ND-1582-2026",
+    noND: "ND-1582/LOG/2026",
+    title: "Nota Dinas Pengadaan Pemeliharaan Rutin AC Server Room",
+    pemohon: "Dian Wahyuni (Logistik)",
+    tgl: "20 Juli 2026",
+    prioritas: "lo",
+    sla: "Besok",
+    sistem: "e-Correspondence",
+    brief: "Nota Dinas persetujuan penunjukan langsung kontraktor pemeliharaan AC server.",
+    peraturan: "Pedoman Pengadaan Barang & Jasa LPS Bab II Pasal 15."
+  }
+];
