@@ -250,7 +250,7 @@ export default function BpmRiwayatDetailPage({ params }: { params: Promise<{ id:
                     
                     {hist.notes && (
                       <div className="bg-slate-50 border border-slate-100 rounded-lg p-2.5 my-1.5 w-full">
-                        <p className="text-[12px] md:text-[13px] text-ink/80 italic">"{hist.notes}"</p>
+                        <p className="text-[12px] md:text-[13px] text-ink/80 italic">&quot;{hist.notes}&quot;</p>
                       </div>
                     )}
                     

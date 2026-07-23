@@ -3,6 +3,7 @@
 import { Sparkles, Lock, FileText, Send, Paperclip } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { useResearch } from "@/lib/research";
 
 type Message = {
   id: number;
@@ -21,6 +22,7 @@ export default function AIPage() {
     }
   ]);
   const [input, setInput] = useState('');
+  const log = useResearch((s) => s.log);
 
   const suggestions = [
     "Apakah saya eligible cuti besar?",
@@ -31,7 +33,10 @@ export default function AIPage() {
 
   const handleSend = (text: string) => {
     if (!text.trim()) return;
-    
+
+    // Riset: catat penggunaan AI Knowledge Hub
+    log("ai_question", { q: text.slice(0, 120) });
+
     // Add user message
     setMessages(prev => [...prev, { id: Date.now(), sender: 'user', text, sources: [] }]);
     setInput('');

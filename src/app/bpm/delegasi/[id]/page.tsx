@@ -53,7 +53,7 @@ export default function BpmDelegasiDetailPage() {
             <div>
               <p className="text-[11px] font-bold text-blue-800 mb-1">Dasar Peraturan</p>
               <p className="text-[12px] text-blue-900/80 leading-relaxed">
-                Peraturan Tata Kelola LPS Bab III Pasal 9: "Delegasi wewenang maksimal 30 hari kalender dengan persetujuan atasan langsung."
+                Peraturan Tata Kelola LPS Bab III Pasal 9: &quot;Delegasi wewenang maksimal 30 hari kalender dengan persetujuan atasan langsung.&quot;
               </p>
             </div>
           </div>

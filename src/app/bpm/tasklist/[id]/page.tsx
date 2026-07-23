@@ -1,18 +1,49 @@
 "use client";
 
 import AppBar from "@/components/AppBar";
-import { MOCK_BPM_DETAIL } from "@/lib/mock/bpm";
+import { MOCK_BPM_DETAIL, MOCK_BPM_DETAILS } from "@/lib/mock/bpm";
+import ApprovalAuth from "@/components/research/ApprovalAuth";
 import { Receipt, Lock, FileText, CheckCircle2, AlertTriangle } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { use } from "react";
 import { cn } from "@/lib/utils";
+import { useResearch } from "@/lib/research";
 
 export default function BpmTasklistDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = use(params);
-  const data = MOCK_BPM_DETAIL; // In real app, fetch based on resolvedParams.id
-  
+  const id = decodeURIComponent(resolvedParams.id);
+  const data = MOCK_BPM_DETAILS[id] ?? { ...MOCK_BPM_DETAIL, jenisKanon: "bpm" };
+
   const [activeTab, setActiveTab] = useState("Jurnal Detail");
-  
+  const [showAuth, setShowAuth] = useState(false);
+  const [toast, setToast] = useState<string | null>(null);
+  const log = useResearch((s) => s.log);
+  const openedAt = useRef<number>(0);
+
+  // Riset: catat pembukaan dokumen (untuk mengukur TAT)
+  useEffect(() => {
+    openedAt.current = Date.now();
+    log("approval_open", { id: data.id, jenis: data.jenisKanon });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
+
+  const handleAuthSuccess = () => {
+    setShowAuth(false);
+    log("approval_done", {
+      id: data.id,
+      jenis: data.jenisKanon,
+      durasiMs: Date.now() - openedAt.current,
+    });
+    setToast("Disetujui — tercatat di Core System BPM. Audit trail tersimpan real-time.");
+    setTimeout(() => setToast(null), 4000);
+  };
+
+  const handleReject = () => {
+    log("approval_return", { id: data.id, jenis: data.jenisKanon });
+    setToast("Pengajuan ditolak & dikembalikan ke pemohon.");
+    setTimeout(() => setToast(null), 4000);
+  };
+
   const tabs = ["Jurnal Detail", "Catatan", "Dokumen", "Riwayat"];
 
   return (
@@ -250,7 +281,7 @@ export default function BpmTasklistDetailPage({ params }: { params: Promise<{ id
                     
                     {hist.notes && (
                       <div className="bg-slate-50 border border-slate-100 rounded-lg p-2.5 my-1.5 w-full">
-                        <p className="text-[12px] md:text-[13px] text-ink/80 italic">"{hist.notes}"</p>
+                        <p className="text-[12px] md:text-[13px] text-ink/80 italic">&quot;{hist.notes}&quot;</p>
                       </div>
                     )}
                     
@@ -268,14 +299,36 @@ export default function BpmTasklistDetailPage({ params }: { params: Promise<{ id
       {/* Floating Action Bar (Responsive for Mobile & Web) */}
       <div className="fixed bottom-0 left-0 right-0 w-full bg-white/95 backdrop-blur-md border-t border-slate-100 p-4 pb-6 md:pb-4 flex justify-center z-30 shadow-[0_-8px_30px_rgba(0,0,0,0.08)]">
         <div className="w-full max-w-[430px] flex gap-3 px-1">
-          <button className="flex-1 bg-danger hover:bg-danger-d text-white font-bold py-3.5 rounded-full transition-colors active:scale-95 text-[15px] shadow-sm flex items-center justify-center">
+          <button
+            onClick={handleReject}
+            className="flex-1 bg-danger hover:bg-danger-d text-white font-bold py-3.5 rounded-full transition-colors active:scale-95 text-[15px] shadow-sm flex items-center justify-center"
+          >
             Tolak
           </button>
-          <button className="flex-1 bg-[#2C8548] hover:bg-emerald-700 text-white font-bold py-3.5 rounded-full transition-colors active:scale-95 text-[15px] shadow-sm flex items-center justify-center">
+          <button
+            onClick={() => setShowAuth(true)}
+            className="flex-1 bg-[#2C8548] hover:bg-emerald-700 text-white font-bold py-3.5 rounded-full transition-colors active:scale-95 text-[15px] shadow-sm flex items-center justify-center"
+          >
             Setuju
           </button>
         </div>
       </div>
+
+      {/* Verifikasi PIN/Biometrik sebelum eksekusi (Secure Borderless Approval) */}
+      {showAuth && (
+        <ApprovalAuth onSuccess={handleAuthSuccess} onCancel={() => setShowAuth(false)} />
+      )}
+
+      {/* Toast */}
+      {toast && (
+        <div className="fixed top-20 left-4 right-4 bg-navy text-white p-4 rounded-2xl shadow-xl flex gap-3 animate-in fade-in slide-in-from-top-4 z-50 max-w-[430px] mx-auto">
+          <CheckCircle2 className="text-ok shrink-0" />
+          <div>
+            <h4 className="text-sm font-bold">Status Diperbarui</h4>
+            <p className="text-[10px] text-white/70">{toast}</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

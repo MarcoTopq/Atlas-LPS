@@ -58,7 +58,7 @@ export default function BpmReviewerDetailPage() {
             <div>
               <p className="text-[11px] font-bold text-blue-800 mb-1">Kutipan Aturan Terkait</p>
               <p className="text-[12px] text-blue-900/80 leading-relaxed">
-                SE Logistik No. 04/2025 Lampiran B: "Pengadaan perangkat lunak cloud/SaaS wajib melewati pemeriksaan kompatibilitas keamanan TI."
+                SE Logistik No. 04/2025 Lampiran B: &quot;Pengadaan perangkat lunak cloud/SaaS wajib melewati pemeriksaan kompatibilitas keamanan TI.&quot;
               </p>
             </div>
           </div>

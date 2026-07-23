@@ -1,31 +1,35 @@
 "use client";
 
 import AppBar from "@/components/AppBar";
-import { MOCK_DASHBOARD } from "@/lib/mock/data";
 import { 
   Users, 
-  GraduationCap, 
   CalendarClock, 
-  Wallet, 
-  LineChart, 
   Plane, 
   CreditCard, 
   Receipt, 
   Laptop, 
   HeadphonesIcon,
-  ArrowRight,
-  Activity
+  ArrowRight
 } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import React, { useEffect } from "react";
+import { useResearch } from "@/lib/research";
 
 export default function DashboardPage() {
+  const log = useResearch((s) => s.log);
+
+  // Riset: catat kunjungan dashboard (Unified Smart Worklist / visibilitas)
+  useEffect(() => {
+    log("dashboard_view");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const categories: {
     title: string;
     items: {
       id: string;
       name: string;
-      icon: any;
+      icon: React.ElementType;
       color: string;
       bg: string;
       alert?: boolean;

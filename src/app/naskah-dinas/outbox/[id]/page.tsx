@@ -2,7 +2,7 @@
 
 import AppBar from "@/components/AppBar";
 import { MOCK_NASKAH_OUTBOX_DETAIL } from "@/lib/mock/bpm";
-import { Lock, FileText, CheckCircle2, Sparkles, ExternalLink, Paperclip, Clock, ShieldCheck, Check } from "lucide-react";
+import { Lock, FileText, CheckCircle2, Sparkles, ExternalLink, Paperclip, Check } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { cn } from "@/lib/utils";

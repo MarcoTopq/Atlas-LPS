@@ -2,7 +2,7 @@
 
 import AppBar from "@/components/AppBar";
 import { MOCK_NASKAH_OUTBOX_LIST } from "@/lib/mock/bpm";
-import { Search, SlidersHorizontal, Sparkles, Filter } from "lucide-react";
+import { Search, Sparkles, Filter } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { cn } from "@/lib/utils";

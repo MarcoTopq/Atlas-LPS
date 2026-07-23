@@ -1,8 +1,8 @@
 "use client";
 
-import { motion, useAnimation, useMotionValue, useTransform } from "framer-motion";
+import { motion, useAnimation, useMotionValue, useTransform, PanInfo } from "framer-motion";
 import { ChevronRight, Check } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 interface SwipeToApproveProps {
   onApprove: () => void;
@@ -24,7 +24,7 @@ export default function SwipeToApprove({ onApprove }: SwipeToApproveProps) {
     ["#F26E22", "#1E9E6A"] // Orange to OK Green
   );
 
-  const handleDragEnd = (event: any, info: any) => {
+  const handleDragEnd = (_event: unknown, info: PanInfo) => {
     if (info.offset.x > maxDrag * 0.7) {
       // Approve threshold reached
       setIsApproved(true);

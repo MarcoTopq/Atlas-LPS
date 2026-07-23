@@ -78,74 +78,104 @@ export default function HomePage() {
 
           {/* Agenda Section */}
           <section>
-            <div className="flex items-center justify-between mb-4 md:mb-6 px-1">
-              <h2 className="text-[17px] md:text-[22px] font-bold text-ink tracking-tight">Agenda Kerja</h2>
-              <Link href="/agenda" className="text-[13px] md:text-[15px] font-bold text-blue-500 hover:text-blue-600 transition-colors">
-                Lihat Semua
+            <div className="flex items-center justify-between mb-3 md:mb-5 px-1">
+              <div>
+                <h2 className="text-[17px] md:text-[22px] font-bold text-ink tracking-tight">Agenda Hari Ini</h2>
+                <p className="text-[12px] md:text-[14px] text-muted font-medium">2 rapat terjadwal</p>
+              </div>
+              <Link href="/agenda" className="text-[13px] md:text-[15px] font-bold text-orange hover:text-orange-d transition-colors flex items-center gap-1">
+                <span>Lihat Semua</span>
+                <ChevronRight className="w-4 h-4" />
               </Link>
             </div>
 
-            <div className="flex gap-4 md:gap-6 overflow-x-auto pb-4 scrollbar-hide -mx-5 px-5 md:-mx-8 md:px-8">
+            <div className="flex gap-3 md:gap-5 overflow-x-auto pb-2 scrollbar-hide -mx-5 px-5 md:-mx-8 md:px-8">
               {mockMeetings.map((mtg, idx) => (
-                <div key={idx} className="min-w-[260px] md:min-w-[320px] bg-white rounded-[28px] md:rounded-[32px] p-5 md:p-6 shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-slate-50 flex flex-col gap-3 group hover:shadow-[0_8px_24px_rgba(0,0,0,0.06)] transition-all">
+                <Link href="/agenda" key={idx} className="min-w-[260px] md:min-w-[320px] bg-white rounded-2xl md:rounded-3xl p-4 md:p-6 shadow-[0_2px_12px_rgba(0,0,0,0.03)] border border-slate-100 flex flex-col gap-2.5 group hover:border-orange/30 hover:shadow-md transition-all">
                   <div className="flex items-center justify-between">
-                    <div className="w-10 md:w-14 h-10 md:h-14 rounded-full bg-blue-50 flex items-center justify-center text-blue-500">
-                      <CalendarIcon className="w-[18px] h-[18px] md:w-6 md:h-6" />
-                    </div>
-                    <span className="text-[11px] md:text-[13px] font-bold text-blue-600 bg-blue-50 px-2 md:px-3 py-1 md:py-1.5 rounded-lg">
-                      {mtg.time.split(' - ')[0]}
+                    <span className="text-[11px] md:text-[13px] font-bold text-orange bg-orange/10 px-2.5 py-1 rounded-full">
+                      {mtg.time.split(' - ')[0]} WIB
                     </span>
+                    {idx === 0 && (
+                      <span className="text-[10px] md:text-[11px] font-bold text-slate-500 bg-slate-100 px-2 py-0.5 rounded-md">
+                        Terdekat
+                      </span>
+                    )}
                   </div>
                   <div>
-                    <h3 className="font-bold text-[14.5px] md:text-[18px] text-ink mb-1 md:mb-2 truncate group-hover:text-orange transition-colors">{mtg.title}</h3>
-                    <div className="flex items-center gap-1.5 md:gap-2 text-[11px] md:text-[14px] font-medium text-muted">
-                      <MapPin className="text-light w-3 h-3 md:w-4 md:h-4" />
+                    <h3 className="font-bold text-[14.5px] md:text-[17px] text-ink mb-1 truncate group-hover:text-orange transition-colors">{mtg.title}</h3>
+                    <div className="flex items-center gap-1.5 text-[12px] md:text-[14px] font-medium text-muted">
+                      <MapPin className="text-light w-3.5 h-3.5 flex-shrink-0" />
                       <span className="truncate">{mtg.room}</span>
                     </div>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </section>
 
-          {/* Persetujuan Terbaru */}
+          {/* Persetujuan & Tugas Utama - CLEAN PRIORITY WORKLIST */}
           <section>
-            <div className="flex items-center justify-between mb-4 md:mb-6 px-1">
-              <h2 className="text-[17px] md:text-[22px] font-bold text-ink tracking-tight">Persetujuan Terbaru</h2>
-              <Link href="/persetujuan" className="text-[13px] md:text-[15px] font-bold text-blue-500 hover:text-blue-600 transition-colors">
-                Lihat Semua
+            <div className="flex items-center justify-between mb-3 md:mb-5 px-1">
+              <div>
+                <div className="flex items-center gap-2">
+                  <h2 className="text-[17px] md:text-[22px] font-bold text-ink tracking-tight">Tugas & Persetujuan</h2>
+                  <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                </div>
+                <p className="text-[12px] md:text-[14px] text-muted font-medium">Utamakan tindakan segera</p>
+              </div>
+              <Link href="/persetujuan" className="text-[13px] md:text-[15px] font-bold text-orange hover:text-orange-d transition-colors flex items-center gap-1">
+                <span>Lihat Semua</span>
+                <ChevronRight className="w-4 h-4" />
               </Link>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {MOCK_TASKS.slice(0, 2).map(task => (
-                <Link key={task.id} href={`/persetujuan/${task.id}`} className="flex items-center bg-white rounded-[28px] md:rounded-[32px] p-3 md:p-5 pr-4 md:pr-6 shadow-[0_8px_24px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_30px_rgba(0,0,0,0.06)] transition-all duration-300 group">
-                  {/* Left Icon (Avatar/Circle style) */}
-                  <div className="w-[52px] md:w-[64px] h-[52px] md:h-[64px] rounded-full bg-slate-100 flex items-center justify-center relative overflow-hidden flex-shrink-0 mr-4 md:mr-6">
-                    {/* Subtle bg based on priority */}
+            <div className="space-y-3">
+              {MOCK_TASKS.slice(0, 3).map((task) => (
+                <Link
+                  key={task.id}
+                  href={`/persetujuan/${encodeURIComponent(task.id)}`}
+                  className="flex items-center justify-between bg-white rounded-2xl md:rounded-3xl p-4 md:p-5 shadow-[0_2px_12px_rgba(0,0,0,0.03)] border border-slate-100 hover:border-orange/30 hover:shadow-md transition-all group gap-3"
+                >
+                  <div className="flex items-center gap-3.5 min-w-0 flex-1">
+                    {/* Minimal Left Icon */}
                     <div className={cn(
-                      "absolute inset-0 opacity-20",
-                      task.prioritas === 'hi' ? 'bg-danger' :
-                        task.prioritas === 'mid' ? 'bg-warn' : 'bg-slate-400'
-                    )}></div>
-                    <FileText className={cn(
-                      "relative z-10 w-[22px] h-[22px] md:w-7 md:h-7",
-                      task.prioritas === 'hi' ? 'text-danger' :
-                        task.prioritas === 'mid' ? 'text-warn' : 'text-slate-500'
-                    )} />
+                      "w-11 h-11 md:w-13 md:h-13 rounded-2xl flex items-center justify-center flex-shrink-0",
+                      task.jenis === 'nota_dinas' ? 'bg-blue-50 text-blue-600' :
+                      task.jenis === 'bpm' ? 'bg-emerald-50 text-emerald-600' : 'bg-orange/10 text-orange'
+                    )}>
+                      <FileText className="w-5 h-5 md:w-6 md:h-6" />
+                    </div>
+
+                    {/* Task Title & Single Meta Line */}
+                    <div className="min-w-0 flex-1">
+                      <h3 className="font-bold text-[14px] md:text-[16px] text-ink truncate group-hover:text-orange transition-colors">
+                        {task.judul}
+                      </h3>
+                      <div className="flex items-center gap-2 mt-1 text-[12px] font-medium text-muted truncate">
+                        <span className="font-semibold text-ink/80">{task.sistem}</span>
+                        <span>•</span>
+                        <span>{task.pemohon}</span>
+                        {task.total ? (
+                          <>
+                            <span>•</span>
+                            <span className="font-bold text-navy">Rp {task.total.toLocaleString("id-ID")}</span>
+                          </>
+                        ) : null}
+                      </div>
+                    </div>
                   </div>
 
-                  {/* Center Content */}
-                  <div className="flex-1 min-w-0 py-1">
-                    <h3 className="font-bold text-[14px] md:text-[17px] text-ink truncate mb-1 md:mb-1.5 pr-2">{task.judul}</h3>
-                    <p className="text-[12px] md:text-[14px] font-medium text-muted truncate">
-                      {task.sistem} • {task.pemohon}
-                    </p>
-                  </div>
-
-                  {/* Right Action Button */}
-                  <div className="w-10 md:w-14 h-10 md:h-14 rounded-full bg-slate-50 flex items-center justify-center text-light group-hover:bg-[#E8F0FE] group-hover:text-blue-600 transition-colors flex-shrink-0 ml-2">
-                    <ArrowRight className="w-[18px] h-[18px] md:w-6 md:h-6" />
+                  {/* Clean SLA / Urgency Tag & Chevron */}
+                  <div className="flex items-center gap-3 flex-shrink-0">
+                    <span className={cn(
+                      "text-[11px] md:text-[12px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1",
+                      task.prioritas === 'hi' ? 'bg-red-50 text-red-600 border border-red-100' : 'bg-slate-100 text-slate-700'
+                    )}>
+                      <Clock className="w-3 h-3" />
+                      <span>{task.sla.replace('⏱ ', '')}</span>
+                    </span>
+                    <ArrowRight className="w-4 h-4 text-light group-hover:text-orange group-hover:translate-x-0.5 transition-all" />
                   </div>
                 </Link>
               ))}
@@ -155,34 +185,42 @@ export default function HomePage() {
           {/* Menu Utama */}
           <section>
             <div className="flex items-center justify-between mb-4 md:mb-6 px-1">
-              <h2 className="text-[17px] md:text-[22px] font-bold text-ink tracking-tight">Menu Utama</h2>
-              <Link href="#" className="text-[13px] md:text-[15px] font-bold text-blue-500 hover:text-blue-600 transition-colors">
-                Lihat Semua
+              <div>
+                <h2 className="text-[17px] md:text-[22px] font-bold text-ink tracking-tight">Modul Utama & Akses Cepat</h2>
+                <p className="text-[11.5px] md:text-[13.5px] text-muted font-medium">Navigasi langsung ke sistem internal LPS</p>
+              </div>
+              <Link href="/menu" className="text-[13px] md:text-[15px] font-bold text-blue-500 hover:text-blue-600 transition-colors">
+                Semua Menu
               </Link>
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
               {[
-                { name: "Naskah Dinas", icon: FileText, color: "text-blue-500", bg: "bg-blue-50" },
-                { name: "BPM", icon: CheckSquare, color: "text-emerald-500", bg: "bg-emerald-50" },
-                { name: "Dokumen", icon: Folder, color: "text-purple-500", bg: "bg-purple-50" },
-                { name: "Agenda", icon: CalendarIcon, color: "text-orange", bg: "bg-orange/10" },
+                { name: "Naskah Dinas", desc: "e-Correspondence", icon: FileText, color: "text-blue-600", bg: "bg-blue-50", href: "/naskah-dinas" },
+                { name: "BPM", desc: "Perdin & Reimbursement", icon: CheckSquare, color: "text-emerald-600", bg: "bg-emerald-50", href: "/bpm" },
+                { name: "Agenda Kerja", desc: "Jadwal & Meetings", icon: CalendarIcon, color: "text-orange", bg: "bg-orange/10", href: "/agenda" },
+                { name: "Dashboard", desc: "Anggaran & Keuangan", icon: Folder, color: "text-purple-600", bg: "bg-purple-50", href: "/dashboard" },
               ].map((item, idx) => {
                 const Icon = item.icon;
-                const href = item.name === "BPM" ? "/bpm" : item.name === "Naskah Dinas" ? "/naskah-dinas" : item.name === "Agenda" ? "/agenda" : "#";
                 return (
-                  <Link key={idx} href={href} className="bg-white rounded-[24px] md:rounded-[36px] p-5 md:p-8 shadow-[0_8px_24px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_30px_rgba(0,0,0,0.06)] transition-all duration-300 group flex flex-col h-[130px] md:h-[200px] relative">
-                    <div className="absolute top-4 md:top-6 right-4 md:right-6 w-7 md:w-12 h-7 md:h-12 bg-slate-50 rounded-full flex items-center justify-center text-light group-hover:bg-orange group-hover:text-white transition-colors">
-                      <ArrowRight className="w-[14px] h-[14px] md:w-6 md:h-6 -rotate-45" />
+                  <Link key={idx} href={item.href} className="bg-white rounded-[24px] md:rounded-[32px] p-5 md:p-7 shadow-[0_8px_24px_rgba(0,0,0,0.03)] border border-slate-100 hover:shadow-[0_12px_30px_rgba(0,0,0,0.07)] hover:border-orange/30 transition-all duration-300 group flex flex-col justify-between h-[145px] md:h-[200px] relative">
+                    <div className="flex items-center justify-between">
+                      <div className={cn("w-12 md:w-16 h-12 md:h-16 rounded-2xl md:rounded-3xl flex items-center justify-center", item.bg, item.color)}>
+                        <Icon className="w-6 h-6 md:w-8 md:h-8" strokeWidth={2} />
+                      </div>
+                      <div className="w-7 md:w-10 h-7 md:h-10 bg-slate-50 rounded-full flex items-center justify-center text-light group-hover:bg-orange group-hover:text-white transition-colors">
+                        <ArrowRight className="w-[14px] h-[14px] md:w-5 md:h-5 -rotate-45" />
+                      </div>
                     </div>
 
-                    <div className={cn("w-12 md:w-20 h-12 md:h-20 rounded-2xl md:rounded-3xl flex items-center justify-center mb-auto", item.bg, item.color)}>
-                      <Icon className="w-6 h-6 md:w-10 md:h-10" strokeWidth={2} />
+                    <div>
+                      <h3 className="text-[14.5px] md:text-[18px] font-bold text-ink tracking-tight leading-tight group-hover:text-orange transition-colors">
+                        {item.name}
+                      </h3>
+                      <p className="text-[11px] md:text-[13px] font-medium text-muted mt-0.5">
+                        {item.desc}
+                      </p>
                     </div>
-
-                    <span className="text-[14px] md:text-[18px] font-bold text-ink tracking-tight leading-tight mt-3 md:mt-4 w-[80%]">
-                      {item.name}
-                    </span>
                   </Link>
                 )
               })}

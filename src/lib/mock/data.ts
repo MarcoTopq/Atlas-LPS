@@ -77,9 +77,9 @@ export type Berita = {
 export type DashboardData = {
   keuangan: { penyerapanPct: number };
   anggaranRealisasi: { pagu: number; realisasi: number; series: number[] };
-  perjalananDinas: { belumDitutup: number; list: any[] };
-  pjUangMuka: { outstanding: number; list: any[] };
-  pembayaran: { antrian: any[] };
+  perjalananDinas: { belumDitutup: number; list: Record<string, unknown>[] };
+  pjUangMuka: { outstanding: number; list: Record<string, unknown>[] };
+  pembayaran: { antrian: Record<string, unknown>[] };
   asetIT: { list: Aset[] };
   helpdesk: { list: Tiket[] };
 };
@@ -116,6 +116,15 @@ export const MOCK_TASKS: Task[] = [
     prioritas: "mid",
     sla: "Hari ini",
     total: 4250000,
+    brief: {
+      ringkasan: "Reimbursement konsumsi rapat koordinasi mingguan Divisi GRC (12 peserta). Nilai per orang Rp 354rb — di bawah batas standar biaya konsumsi rapat.",
+      kv: [
+        { k: "Peserta", v: "12 orang" },
+        { k: "Kesesuaian Nilai", v: "Sesuai standar ✓" }
+      ],
+      sitasi: "SE Logistik No. 07/2024 poin 5: batas biaya konsumsi rapat internal maksimal Rp 400.000/orang.",
+      flag: "normal"
+    },
     budget: {
       mataAnggaran: "Biaya Rapat & Konsumsi",
       kode: "5.1.2.03",
@@ -124,7 +133,11 @@ export const MOCK_TASKS: Task[] = [
       tersedia: 1240000000,
       pengajuan: 4250000,
       status: "cukup"
-    }
+    },
+    lampiran: [
+      { nama: "Kwitansi_Konsumsi.pdf", tipe: "pdf" },
+      { nama: "Daftar_Hadir_Rapat.pdf", tipe: "pdf" }
+    ]
   },
   {
     id: "VT-0912",
@@ -133,7 +146,43 @@ export const MOCK_TASKS: Task[] = [
     pemohon: "Andi Saputra",
     sistem: "One LPS",
     prioritas: "lo",
-    sla: "Besok"
+    sla: "Besok",
+    total: 185000,
+    brief: {
+      ringkasan: "Klaim voucher taksi lembur, pulang pukul 21.40 WIB. Lembur telah disetujui sebelumnya (pre-approved) oleh Kadiv GRC. Rute Equity Tower → Bekasi sesuai alamat domisili terdaftar.",
+      kv: [
+        { k: "Jam Pulang", v: "21.40 WIB ✓ (> 20.00)" },
+        { k: "Status Lembur", v: "Pre-approved ✓" }
+      ],
+      sitasi: "SE Logistik No. 07/2024 poin 3: voucher taksi berlaku untuk lembur pulang di atas pukul 20.00 WIB dengan lembur yang telah disetujui.",
+      flag: "normal"
+    },
+    lampiran: [
+      { nama: "e-Receipt_Taksi.pdf", tipe: "pdf" },
+      { nama: "Persetujuan_Lembur.pdf", tipe: "pdf" }
+    ]
+  },
+  {
+    id: "VT-0915",
+    jenis: "voucher",
+    judul: "Voucher Taksi Lembur Divisi Keuangan",
+    pemohon: "Ratna Dewi",
+    sistem: "One LPS",
+    prioritas: "mid",
+    sla: "Hari ini",
+    total: 210000,
+    brief: {
+      ringkasan: "Klaim voucher taksi dengan jam pulang tercatat 19.35 WIB — di bawah ambang 20.00 WIB yang dipersyaratkan. Perlu klarifikasi ke pemohon sebelum disetujui.",
+      kv: [
+        { k: "Jam Pulang", v: "19.35 WIB ⚠ (< 20.00)" },
+        { k: "Status Lembur", v: "Pre-approved ✓" }
+      ],
+      sitasi: "SE Logistik No. 07/2024 poin 3: syarat jam pulang minimal pukul 20.00 WIB tidak terpenuhi.",
+      flag: "anomali"
+    },
+    lampiran: [
+      { nama: "e-Receipt_Taksi.pdf", tipe: "pdf" }
+    ]
   },
   {
     id: "ST-2207",
@@ -142,7 +191,19 @@ export const MOCK_TASKS: Task[] = [
     pemohon: "Dian Wahyuni",
     sistem: "BPM",
     prioritas: "mid",
-    sla: "Besok"
+    sla: "Besok",
+    brief: {
+      ringkasan: "Penugasan 2 pegawai untuk sosialisasi program penjaminan di KPW Surabaya, 3 hari. Tidak bentrok dengan agenda penugasan lain pada rentang tanggal tersebut.",
+      kv: [
+        { k: "Personel", v: "2 pegawai" },
+        { k: "Konflik Jadwal", v: "Tidak ada ✓" }
+      ],
+      sitasi: "Peraturan Kepegawaian LPS Bab VI Pasal 30 terkait Penugasan Dinas.",
+      flag: "normal"
+    },
+    lampiran: [
+      { nama: "Draft_Surat_Tugas.pdf", tipe: "pdf" }
+    ]
   }
 ];
 

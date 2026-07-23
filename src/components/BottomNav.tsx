@@ -8,6 +8,10 @@ import { cn } from "@/lib/utils";
 export default function BottomNav() {
   const pathname = usePathname();
 
+  // Tombol menu floating hanya tampil di halaman Home
+  const isHomePage = pathname === "/home" || pathname === "/";
+  if (!isHomePage) return null;
+
   const mainTabs = [
     { name: "Beranda", href: "/home", icon: Home },
     { name: "Persetujuan", href: "/persetujuan", icon: CheckSquare },

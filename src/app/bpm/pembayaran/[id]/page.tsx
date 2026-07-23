@@ -55,7 +55,7 @@ export default function BpmPembayaranDetailPage() {
             <div>
               <p className="text-[11px] font-bold text-blue-800 mb-1">Dasar Peraturan Keuangan</p>
               <p className="text-[12px] text-blue-900/80 leading-relaxed">
-                PDK LPS No. 08/2024: "Pembayaran termin fisik wajib disertai BAST dan Berita Acara Pembayaran dari Pejabat Pembuat Komitmen."
+                PDK LPS No. 08/2024: &quot;Pembayaran termin fisik wajib disertai BAST dan Berita Acara Pembayaran dari Pejabat Pembuat Komitmen.&quot;
               </p>
             </div>
           </div>

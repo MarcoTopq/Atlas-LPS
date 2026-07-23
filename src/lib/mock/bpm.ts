@@ -28,6 +28,26 @@ export const MOCK_BPM_TASKS = [
     pemohon: "Budi Santoso, 30 Jan 2025",
     direview: "-",
     approver: "Approver Level 1 - Andi Susanto",
+  },
+  {
+    id: "VT-2026-0918",
+    jenis: "Voucher Taksi Lembur",
+    title: "VT - Lembur Proyek Coretax 18/07",
+    noSAP: "1113000021",
+    idBPM: "2607180002",
+    pemohon: "Andi Saputra, 18 Jul 2026",
+    direview: "Reviewer GRC - OK",
+    approver: "Approver Level 1 - Wening Cahyaningtyas",
+  },
+  {
+    id: "PD-2026-0114",
+    jenis: "Perjalanan Dinas Luar Kota",
+    title: "PD - Koordinasi KPW Surabaya",
+    noSAP: "2607150006",
+    idBPM: "2607150001",
+    pemohon: "Dian Wahyuni, 15 Jul 2026",
+    direview: "-",
+    approver: "Approver Level 2 - Monang Siringoringo",
   }
 ];
 
@@ -182,6 +202,136 @@ export const MOCK_BPM_DETAIL = {
       notes: "Approve"
     }
   ]
+};
+
+/**
+ * Detail BPM per-ID. `jenisKanon` dipakai instrumentasi riset
+ * (Key Metric: sentralisasi >= 3 jenis approval).
+ */
+export const MOCK_BPM_DETAILS: Record<string, typeof MOCK_BPM_DETAIL & { jenisKanon: string }> = {
+  "S-475-DSDA-2025": { ...MOCK_BPM_DETAIL, jenisKanon: "bpm" },
+  "REV-2026-04-02": {
+    ...MOCK_BPM_DETAIL,
+    id: "REV-2026-04-02",
+    title: "REV - 2026-04-02 15:29:53",
+    jenis: "Revolving Uang Persediaan",
+    jenisKanon: "bpm",
+    metadata: { postingDate: "4 April 2026", noDocSAP: "1113000008", period: "4", currency: "IDR" },
+    brief: {
+      ringkasan: "Pengisian kembali (revolving) uang persediaan operasional divisi. Saldo kas kecil di bawah ambang minimum 20%, pengisian sesuai siklus bulanan.",
+      kv: [
+        { k: "Saldo Kas Kecil", v: "18% (di bawah ambang)" },
+        { k: "Siklus", v: "Sesuai jadwal ✓" }
+      ],
+      sitasi: "Peraturan Keuangan LPS Bab III Pasal 8: pengisian uang persediaan dilakukan saat saldo mencapai 20% atau sesuai siklus bulanan.",
+      flag: "normal"
+    },
+    catatan: "Revolving rutin uang persediaan April 2026",
+    jurnal: {
+      totalDebit: "25,000,000",
+      totalCredit: "25,000,000",
+      items: [MOCK_BPM_DETAIL.jurnal.items[0]]
+    }
+  },
+  "REV-2026-04-03": {
+    ...MOCK_BPM_DETAIL,
+    id: "REV-2026-04-03",
+    title: "REV - 2026-04-02 15:29:53",
+    jenis: "Revolving Uang Persediaan",
+    jenisKanon: "bpm",
+    metadata: { postingDate: "6 April 2026", noDocSAP: "1113000010", period: "4", currency: "IDR" },
+    brief: {
+      ringkasan: "Revolving uang persediaan lanjutan. AI mendeteksi dua pengajuan revolving dalam rentang 2 hari dari pemohon yang sama — verifikasi apakah bukan duplikasi.",
+      kv: [
+        { k: "Interval Pengajuan", v: "2 hari ⚠" },
+        { k: "Pemohon", v: "Sama dengan REV-04-02" }
+      ],
+      sitasi: "Peraturan Keuangan LPS Bab III Pasal 8 ayat (3): pengisian uang persediaan maksimal satu kali per siklus.",
+      flag: "anomali"
+    },
+    catatan: "Perlu klarifikasi duplikasi dengan pengajuan 4 April 2026",
+    jurnal: {
+      totalDebit: "25,000,000",
+      totalCredit: "25,000,000",
+      items: [MOCK_BPM_DETAIL.jurnal.items[0]]
+    }
+  },
+  "VT-2026-0918": {
+    ...MOCK_BPM_DETAIL,
+    id: "VT-2026-0918",
+    title: "VT - Lembur Proyek Coretax 18/07",
+    jenis: "Voucher Taksi Lembur",
+    jenisKanon: "voucher",
+    metadata: { postingDate: "18 Juli 2026", noDocSAP: "1113000021", period: "7", currency: "IDR" },
+    brief: {
+      ringkasan: "Klaim voucher taksi lembur pengerjaan proyek Coretax. Jam pulang 22.15 WIB, lembur pre-approved, rute sesuai domisili terdaftar pegawai.",
+      kv: [
+        { k: "Jam Pulang", v: "22.15 WIB ✓ (> 20.00)" },
+        { k: "Status Lembur", v: "Pre-approved ✓" },
+        { k: "Nilai Klaim", v: "Sesuai tarif zona ✓" }
+      ],
+      sitasi: "SE Logistik No. 07/2024 poin 3: voucher taksi lembur berlaku untuk kepulangan di atas pukul 20.00 WIB dengan lembur yang telah disetujui.",
+      flag: "normal"
+    },
+    catatan: "Lembur deployment Coretax fase 2",
+    jurnal: {
+      totalDebit: "195,000",
+      totalCredit: "195,000",
+      items: [{
+        ...MOCK_BPM_DETAIL.jurnal.items[0],
+        accountNo: "52430000",
+        accountName: "Transportasi",
+        glAccName: "Beban transportasi pegawai",
+        glAccDesc: "Beban transportasi lembur pegawai sesuai SE Logistik",
+        description: "Voucher taksi lembur proyek Coretax 18 Juli 2026",
+        nilai: "195,000",
+        ppn: "-",
+        total: "195,000"
+      }]
+    },
+    dokumen: [
+      { title: "e-Receipt Taksi", status: "1 dokumen terlampir" },
+      { title: "Persetujuan Lembur (Pre-approval)", status: "1 dokumen terlampir" }
+    ]
+  },
+  "PD-2026-0114": {
+    ...MOCK_BPM_DETAIL,
+    id: "PD-2026-0114",
+    title: "PD - Koordinasi KPW Surabaya",
+    jenis: "Perjalanan Dinas Luar Kota",
+    jenisKanon: "bpm",
+    metadata: { postingDate: "15 Juli 2026", noDocSAP: "2607150006", period: "7", currency: "IDR" },
+    brief: {
+      ringkasan: "Perjalanan dinas 2 pegawai ke KPW Surabaya selama 3 hari untuk koordinasi program penjaminan. RAB sesuai standar biaya perjalanan dinas golongan terkait.",
+      kv: [
+        { k: "Durasi", v: "3 hari" },
+        { k: "RAB vs Standar", v: "Sesuai ✓" },
+        { k: "Anggaran", v: "Tersedia (Cukup)" }
+      ],
+      sitasi: "Peraturan Kepegawaian LPS Bab VI Pasal 32 (1) terkait Perjalanan Dinas Biasa.",
+      flag: "normal"
+    },
+    catatan: "Koordinasi program penjaminan KPW Surabaya",
+    jurnal: {
+      totalDebit: "18,400,000",
+      totalCredit: "18,400,000",
+      items: [{
+        ...MOCK_BPM_DETAIL.jurnal.items[0],
+        accountNo: "52410000",
+        accountName: "Perjalanan Dinas",
+        glAccName: "Beban perjalanan dinas dalam negeri",
+        glAccDesc: "Beban tiket, akomodasi, dan uang harian perjalanan dinas",
+        description: "Perdin koordinasi KPW Surabaya 2 pegawai x 3 hari",
+        nilai: "18,400,000",
+        ppn: "-",
+        total: "18,400,000"
+      }]
+    },
+    dokumen: [
+      { title: "RAB Perjalanan Dinas", status: "1 dokumen terlampir" },
+      { title: "Undangan/Dasar Kegiatan", status: "1 dokumen terlampir" }
+    ]
+  }
 };
 
 export const MOCK_BPM_DELEGASI_LIST = [
@@ -489,6 +639,76 @@ export const MOCK_NASKAH_TASKLIST_DETAIL = {
     }
   ]
 };
+
+/** Detail Naskah Dinas per-ID (fallback: MOCK_NASKAH_TASKLIST_DETAIL). */
+export function getNaskahDetail(id: string) {
+  const overrides: Record<string, Partial<typeof MOCK_NASKAH_TASKLIST_DETAIL>> = {
+    "Temporary:ND-R.30/GSTI": {
+      id: "Temporary:ND-R.30/GSTI",
+      title: "Permohonan Fasilitas Server Proyek Audit TI",
+      jenisBadge: "Nota Dinas",
+      isRahasia: false,
+      metadata: { pengajuan: "10 Juni 2026", tindakLanjut: "-" },
+      brief: {
+        ringkasan: "AI Atlas menterjemahkan: Permohonan alokasi 2 VM server untuk kebutuhan proyek audit TI Kuartal III. Spesifikasi sesuai standar katalog layanan STI.",
+        sitasi: "Kebijakan Layanan TI LPS No. 02/2025 Bab IV: permintaan fasilitas server melalui persetujuan Kepala Divisi terkait.",
+        flag: "normal"
+      },
+      detail: {
+        ...MOCK_NASKAH_TASKLIST_DETAIL.detail,
+        nomorDokumen: "Temporary:ND-R.30/GSTI",
+        tipeSurat: "Surat Biasa",
+        jenisSurat: "Nota Dinas Biasa",
+        perihal: "Permohonan Fasilitas Server Proyek Audit TI",
+        deskripsi: "Permohonan alokasi VM untuk audit TI Q3 2026",
+      },
+      lampiran: [{ nama: "Spesifikasi_Server.pdf", ukuran: "220 KB" }]
+    },
+    "ND-11/GSTI": {
+      id: "ND-11/GSTI",
+      title: "Perihal nota dinas berjenjang-01-01",
+      brief: {
+        ringkasan: "AI Atlas menterjemahkan: Persetujuan berjenjang tahap pertama untuk penetapan pedoman klasifikasi data internal unit GSTI.",
+        sitasi: "Peraturan Keamanan Informasi LPS No. 05/2024 Pasal 7.",
+        flag: "normal"
+      },
+      detail: { ...MOCK_NASKAH_TASKLIST_DETAIL.detail, nomorDokumen: "ND-11/GSTI", perihal: "Perihal nota dinas berjenjang-01-01" }
+    },
+    "ND-9/GSTI": {
+      id: "ND-9/GSTI",
+      title: "Perihal nota dinas berjenjang-03-02",
+      brief: {
+        ringkasan: "AI Atlas menterjemahkan: Persetujuan pengadaan lisensi software monitoring jaringan. AI mendeteksi nilai pengadaan mendekati ambang batas kewenangan approval level ini — pastikan jenjang persetujuan sesuai.",
+        sitasi: "SE Pengadaan No. 04/2025: pengadaan di atas Rp 200jt memerlukan persetujuan Direktur Grup.",
+        flag: "anomali"
+      },
+      detail: { ...MOCK_NASKAH_TASKLIST_DETAIL.detail, nomorDokumen: "ND-9/GSTI", perihal: "Perihal nota dinas berjenjang-03-02" }
+    },
+    "ND-7/GSTI": {
+      id: "ND-7/GSTI",
+      title: "Perihal nota dinas berjenjang-04-02",
+      brief: {
+        ringkasan: "AI Atlas menterjemahkan: Usulan jadwal pemeliharaan sistem inti (maintenance window) di luar jam operasional. Tidak ada konflik dengan rilis sistem lain.",
+        sitasi: "Kebijakan Operasional TI LPS Bab II: maintenance window wajib disetujui pimpinan unit.",
+        flag: "normal"
+      },
+      detail: { ...MOCK_NASKAH_TASKLIST_DETAIL.detail, nomorDokumen: "ND-7/GSTI", perihal: "Perihal nota dinas berjenjang-04-02" }
+    },
+    "ND-5/GSTI": {
+      id: "ND-5/GSTI",
+      title: "Perihal nota dinas berjenjang-05-02",
+      brief: {
+        ringkasan: "AI Atlas menterjemahkan: Laporan hasil uji pemulihan bencana (DRC) semester 1 beserta permohonan penetapan tindak lanjut temuan minor.",
+        sitasi: "Kebijakan Keberlangsungan Bisnis LPS Pasal 9: hasil uji DRC dilaporkan ke pimpinan unit maksimal 14 hari kerja.",
+        flag: "normal"
+      },
+      detail: { ...MOCK_NASKAH_TASKLIST_DETAIL.detail, nomorDokumen: "ND-5/GSTI", perihal: "Perihal nota dinas berjenjang-05-02" }
+    }
+  };
+  const base =
+    id.includes("Temporary:ND-R.31") ? MOCK_NOTA_DINAS_DETAIL : MOCK_NASKAH_TASKLIST_DETAIL;
+  return { ...base, ...(overrides[id] ?? {}) };
+}
 
 export const MOCK_NOTA_DINAS_DETAIL = {
   id: "Temporary:ND-R.31/GSTI",

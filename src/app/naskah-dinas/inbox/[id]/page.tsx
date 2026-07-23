@@ -42,7 +42,7 @@ export default function NaskahDinasInboxDetailPage() {
             <div>
               <p className="text-[11px] font-bold text-blue-800 mb-0.5">Sumber Terverifikasi</p>
               <p className="text-[12px] text-blue-900/80 leading-relaxed">
-                Pedoman Audit Internal LPS No. 02/2023 Bab IV: "Divisi TI wajib memfasilitasi pendampingan data log dan arsitektur teknis."
+                Pedoman Audit Internal LPS No. 02/2023 Bab IV: &quot;Divisi TI wajib memfasilitasi pendampingan data log dan arsitektur teknis.&quot;
               </p>
             </div>
           </div>

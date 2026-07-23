@@ -1,25 +1,36 @@
 "use client";
 
 import AppBar from "@/components/AppBar";
-import { MOCK_NASKAH_TASKLIST_DETAIL, MOCK_NOTA_DINAS_DETAIL } from "@/lib/mock/bpm";
-import { Lock, FileText, CheckCircle2, Sparkles, ExternalLink, Paperclip, Check, X } from "lucide-react";
+import { getNaskahDetail } from "@/lib/mock/bpm";
+import ApprovalAuth from "@/components/research/ApprovalAuth";
+import { Lock, FileText, CheckCircle2, Sparkles, ExternalLink, Paperclip, Check } from "lucide-react";
 import Link from "next/link";
-import { useState, use } from "react";
+import { useState, useEffect, useRef, use } from "react";
 import { cn } from "@/lib/utils";
+import { useResearch } from "@/lib/research";
 
 export default function NaskahDinasTasklistDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = use(params);
   const id = resolvedParams?.id ? decodeURIComponent(resolvedParams.id) : "";
 
-  // Select mock data based on ID
-  const isNotaDinasBiasa = id.includes("Temporary") || id.includes("31") || id.includes("ND-R");
-  const data = isNotaDinasBiasa ? MOCK_NOTA_DINAS_DETAIL : MOCK_NASKAH_TASKLIST_DETAIL;
+  // Detail per-ID (masing-masing item punya Decision Brief AI sendiri)
+  const data = getNaskahDetail(id);
 
   const [activeTab, setActiveTab] = useState("Detail");
   const [modalType, setModalType] = useState<"Setuju" | "Revisi" | "Tolak" | null>(null);
   const [catatan, setCatatan] = useState("");
+  const [showAuth, setShowAuth] = useState(false);
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
+  const log = useResearch((s) => s.log);
+  const openedAt = useRef<number>(0);
+
+  // Riset: catat pembukaan dokumen (untuk mengukur TAT)
+  useEffect(() => {
+    openedAt.current = Date.now();
+    log("approval_open", { id, jenis: "nota_dinas" });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
 
   const tabs = ["Detail", "Lampiran", "Riwayat Pengajuan"];
 
@@ -32,14 +43,31 @@ export default function NaskahDinasTasklistDetailPage({ params }: { params: Prom
     if (!catatan.trim()) return;
 
     if (modalType === "Setuju") {
-      setToastMessage("Pengajuan Berhasil Disetujui! Tercatat di Core System e-Correspondence.");
-    } else if (modalType === "Revisi") {
-      setToastMessage("Pengajuan Dikembalikan untuk Revisi.");
-    } else if (modalType === "Tolak") {
-      setToastMessage("Pengajuan Telah Ditolak.");
+      // Verifikasi identitas dulu (PIN/Biometrik) sebelum eksekusi
+      setModalType(null);
+      setShowAuth(true);
+      return;
     }
 
+    log("approval_return", { id, jenis: "nota_dinas", aksi: modalType ?? "" });
+    setToastMessage(
+      modalType === "Revisi"
+        ? "Pengajuan Dikembalikan untuk Revisi."
+        : "Pengajuan Telah Ditolak."
+    );
     setModalType(null);
+    setShowToast(true);
+    setTimeout(() => setShowToast(false), 4000);
+  };
+
+  const handleAuthSuccess = () => {
+    setShowAuth(false);
+    log("approval_done", {
+      id,
+      jenis: "nota_dinas",
+      durasiMs: Date.now() - openedAt.current,
+    });
+    setToastMessage("Pengajuan Berhasil Disetujui! Tercatat di Core System e-Correspondence.");
     setShowToast(true);
     setTimeout(() => setShowToast(false), 4000);
   };
@@ -316,6 +344,11 @@ export default function NaskahDinasTasklistDetailPage({ params }: { params: Prom
             </div>
           </div>
         </div>
+      )}
+
+      {/* Verifikasi PIN/Biometrik sebelum eksekusi (Secure Borderless Approval) */}
+      {showAuth && (
+        <ApprovalAuth onSuccess={handleAuthSuccess} onCancel={() => setShowAuth(false)} />
       )}
 
       {/* Toast Notification */}
