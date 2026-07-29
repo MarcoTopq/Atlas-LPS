@@ -2099,7 +2099,7 @@ function IcsKeberatanTab() {
                     <Cell key={`cell-${index}`} fill={entry.fill} />
                   ))}
                 </Pie>
-                <Tooltip formatter={(value: any, name: any) => [`${value} Rekening`, name]} />
+                <Tooltip formatter={(value: unknown, name: unknown) => [`${String(value)} Rekening`, String(name)]} />
               </PieChart>
             </ResponsiveContainer>
           </div>
@@ -2185,7 +2185,7 @@ function IcsKeberatanTab() {
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
                 <XAxis dataKey="year" label={{ value: 'Year', position: 'insideBottom', offset: -10, fontSize: 10, fill: '#64748b' }} axisLine={false} tickLine={false} tick={{ fontSize: 11, fill: '#64748b' }} />
                 <YAxis label={{ value: 'Jumlah Nasabah', angle: -90, position: 'insideLeft', fontSize: 10, fill: '#64748b' }} unit="%" domain={[0, 100]} ticks={[0, 50, 100]} axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: '#64748b' }} />
-                <Tooltip formatter={(val: any) => [`${val}%`, 'Penelitian']} />
+                <Tooltip formatter={(val: unknown) => [`${String(val)}%`, 'Penelitian']} />
                 <Bar dataKey="penelitian" fill="#0088FE" radius={[4, 4, 0, 0]} maxBarSize={60} />
               </BarChart>
             </ResponsiveContainer>
@@ -2205,7 +2205,7 @@ function IcsKeberatanTab() {
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
                 <XAxis dataKey="year" label={{ value: 'Year', position: 'insideBottom', offset: -10, fontSize: 10, fill: '#64748b' }} axisLine={false} tickLine={false} tick={{ fontSize: 11, fill: '#64748b' }} />
                 <YAxis label={{ value: 'Jumlah Rekening', angle: -90, position: 'insideLeft', fontSize: 10, fill: '#64748b' }} unit="%" domain={[0, 100]} ticks={[0, 50, 100]} axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: '#64748b' }} />
-                <Tooltip formatter={(val: any) => [`${val}%`, 'Penelitian']} />
+                <Tooltip formatter={(val: unknown) => [`${String(val)}%`, 'Penelitian']} />
                 <Bar dataKey="penelitian" fill="#0088FE" radius={[4, 4, 0, 0]} maxBarSize={60} />
               </BarChart>
             </ResponsiveContainer>
@@ -2334,7 +2334,7 @@ function IcsBankDalamProsesTab() {
                     <Cell key={`cell-${index}`} fill={entry.fill} />
                   ))}
                 </Pie>
-                <Tooltip formatter={(value: any, name: any) => [`${value} Bank`, name]} />
+                <Tooltip formatter={(value: unknown, name: unknown) => [`${String(value)} Bank`, String(name)]} />
               </PieChart>
             </ResponsiveContainer>
           </div>
@@ -2486,7 +2486,7 @@ function IcsBankPembayarTab() {
                     <Cell key={`cell-${index}`} fill={entry.fill} />
                   ))}
                 </Pie>
-                <Tooltip formatter={(value: any, name: any) => [`${value} Bank CIU`, name]} />
+                <Tooltip formatter={(value: unknown, name: unknown) => [`${String(value)} Bank CIU`, String(name)]} />
               </PieChart>
             </ResponsiveContainer>
           </div>
@@ -2564,7 +2564,7 @@ function IcsMonitoringDashboard() {
               <ShieldCheck size={22} />
             </div>
             <div>
-              <h2 className="text-[17px] font-bold text-ink">Dashboard Monitoring ICS</h2>
+              <h2 className="text-[17px] font-bold text-ink">Klaim & Pembayaran</h2>
               <p className="text-[12px] font-medium text-muted">Sistem Monitoring Pelaksanaan Pembayaran Klaim Penjaminan Bank CIU</p>
             </div>
           </div>
@@ -3325,7 +3325,7 @@ function ScvBprMonitoringDashboard() {
               <Database size={22} />
             </div>
             <div>
-              <h2 className="text-[17px] font-bold text-ink">SCV BPR_S Monitoring</h2>
+              <h2 className="text-[17px] font-bold text-ink">SCV BPR</h2>
               <p className="text-[12px] font-medium text-muted">Sistem Monitoring Single Customer View (SCV) BPR & BPRS — LPS</p>
             </div>
           </div>
@@ -3386,8 +3386,8 @@ export default function DashboardDetailPage({ params }: { params: Promise<{ id: 
                 isKeuangan ? "Keuangan & Anggaran" :
                 isAset ? "Dashboard Aset IT" :
                 isHelpdesk ? "Dashboard Helpdesk" :
-                isIcs ? "Dashboard Monitoring ICS" :
-                isScvBpr ? "SCV BPR_S Monitoring" :
+                isIcs ? "Klaim & Pembayaran" :
+                isScvBpr ? "SCV BPR" :
                 "Dashboard Detail";
 
   return (

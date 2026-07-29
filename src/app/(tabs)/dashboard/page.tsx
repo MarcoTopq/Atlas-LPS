@@ -53,10 +53,10 @@ export default function DashboardPage() {
       ]
     },
     {
-      title: "Monitoring & Operasional",
+      title: "Monitoring ICS",
       items: [
-        { id: "ics", name: "Monitoring ICS", icon: ShieldCheck, color: "text-emerald-600", bg: "bg-emerald-50" },
-        { id: "scv-bpr", name: "SCV BPR_S Monitoring", icon: Database, color: "text-blue-600", bg: "bg-blue-50" },
+        { id: "ics", name: "Klaim & Pembayaran", icon: ShieldCheck, color: "text-emerald-600", bg: "bg-emerald-50" },
+        { id: "scv-bpr", name: "SCV BPR", icon: Database, color: "text-blue-600", bg: "bg-blue-50" },
       ]
     }
   ];
