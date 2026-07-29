@@ -1,7 +1,7 @@
 export type Prioritas = 'hi' | 'mid' | 'lo';
 export type StatusTiket = 'baru' | 'proses' | 'selesai';
 export type StatusAnggaran = 'cukup' | 'lebih' | 'terverifikasi';
-export type JenisTask = 'nota_dinas' | 'bpm' | 'voucher' | 'surat_tugas';
+export type JenisTask = 'nota_dinas' | 'bpm' | 'ics' | 'euis' | 'onelps';
 
 export type BudgetBreakdown = {
   mataAnggaran: string;
@@ -140,21 +140,115 @@ export const MOCK_TASKS: Task[] = [
     ]
   },
   {
-    id: "VT-0912",
-    jenis: "voucher",
-    judul: "Voucher Taksi Lembur Tim GRC",
-    pemohon: "Andi Saputra",
-    sistem: "One LPS",
-    prioritas: "lo",
+    id: "ICS-8821",
+    jenis: "ics",
+    judul: "Matriks Mitigasi Risiko Kepatuhan KPW Surabaya",
+    pemohon: "Reza Rahardian",
+    sistem: "ICS",
+    prioritas: "hi",
+    sla: "⏱ 4 jam lagi",
+    brief: {
+      ringkasan: "Evaluasi penilaian kepatuhan & mitigasi risiko transaksi KPW Surabaya. Seluruh indikator risiko kepatuhan operasional dalam tingkat Wajar Tanpa Pengecualian.",
+      kv: [
+        { k: "Unit Kerja", v: "KPW I Surabaya" },
+        { k: "Tingkat Risiko", v: "Rendah (Low Risk) ✓" }
+      ],
+      sitasi: "Peraturan LPS No. 04/2025 Bab II Pasal 8 tentang Pengawasan Kepatuhan Kantor Perwakilan.",
+      flag: "normal"
+    },
+    lampiran: [
+      { nama: "Matriks_Mitigasi_ICS.pdf", tipe: "pdf" },
+      { nama: "Laporan_Kepatuhan_Surabaya.pdf", tipe: "pdf" }
+    ]
+  },
+  // EUIS Approval Items
+  {
+    id: "EUIS-PDP-1021",
+    jenis: "euis",
+    judul: "Pengajuan Perubahan Data Pokok Bank Peserta (PT BPR Artha Sejahtera)",
+    pemohon: "Hendra Wijaya",
+    sistem: "EUIS",
+    prioritas: "hi",
+    sla: "⏱ 2 jam lagi",
+    brief: {
+      ringkasan: "Verifikasi pembaruan data pokok alamat kantor pusat & akta perubahan anggaran dasar PT BPR Artha Sejahtera pada portal EUIS LPS.",
+      kv: [
+        { k: "Kategori", v: "Perubahan Data Pokok" },
+        { k: "Entitas Bank", v: "PT BPR Artha Sejahtera" },
+        { k: "Dokumen Akta", v: "Lengkap & Valid ✓" }
+      ],
+      sitasi: "Ketentuan EUIS LPS Bab II Pasal 5 tentang Pembaruan Data Pokok Bank Peserta.",
+      flag: "normal"
+    },
+    lampiran: [
+      { nama: "Akta_Perubahan_Data_Pokok.pdf", tipe: "pdf" },
+      { nama: "Surat_Permohonan_EUIS.pdf", tipe: "pdf" }
+    ]
+  },
+  {
+    id: "EUIS-PNH-2045",
+    jenis: "euis",
+    judul: "Pengajuan Perubahan Narahubung Resmi (Bank Syariah KPW)",
+    pemohon: "Maya Indah Puspita",
+    sistem: "EUIS",
+    prioritas: "mid",
+    sla: "Hari ini",
+    brief: {
+      ringkasan: "Pembaruan data narahubung / Contact Person (CP) resmi Direktur Kepatuhan & PIC Pelaporan untuk koordinasi data klaim penjaminan.",
+      kv: [
+        { k: "Kategori", v: "Perubahan Narahubung" },
+        { k: "Narahubung Baru", v: "Budi Santoso (Dirut Kepatuhan)" },
+        { k: "Verifikasi Nomor HP", v: "Terverifikasi OTP ✓" }
+      ],
+      sitasi: "Ketentuan EUIS LPS Bab III Pasal 9 tentang Pengelolaan Narahubung Entitas Terjamin.",
+      flag: "normal"
+    },
+    lampiran: [
+      { nama: "Form_Perubahan_Narahubung.pdf", tipe: "pdf" },
+      { nama: "SK_Pengangkatan_PIC.pdf", tipe: "pdf" }
+    ]
+  },
+  {
+    id: "EUIS-AR-4019",
+    jenis: "euis",
+    judul: "Permohonan Akses Elevated Role Modul Likuidasi Core System",
+    pemohon: "Dewi Sartika",
+    sistem: "EUIS",
+    prioritas: "mid",
     sla: "Besok",
+    brief: {
+      ringkasan: "Permohonan otorisasi hak akses elevated role untuk tim verifikasi likuidasi BPR Candra. Otorisasi berlaku selama 30 hari kalender.",
+      kv: [
+        { k: "Kategori", v: "Otorisasi Hak Akses Role" },
+        { k: "Sistem Target", v: "Core System Likuidasi" },
+        { k: "Masa Berlaku", v: "30 Hari Kalender" }
+      ],
+      sitasi: "Pedoman Keamanan Informasi LPS Bab IV Pasal 15 tentang Otorisasi Akses Khusus.",
+      flag: "normal"
+    },
+    lampiran: [
+      { nama: "Form_Akses_EUIS.pdf", tipe: "pdf" },
+      { nama: "Surat_Rekomendasi_Kadiv.pdf", tipe: "pdf" }
+    ]
+  },
+  // OneLPS Approval Items
+  {
+    id: "OL-VT-1092",
+    jenis: "onelps",
+    judul: "Klaim Voucher Taksi Lembur Tim GRC",
+    pemohon: "Andi Saputra",
+    sistem: "OneLPS",
+    prioritas: "mid",
+    sla: "⏱ 3 jam lagi",
     total: 185000,
     brief: {
-      ringkasan: "Klaim voucher taksi lembur, pulang pukul 21.40 WIB. Lembur telah disetujui sebelumnya (pre-approved) oleh Kadiv GRC. Rute Equity Tower → Bekasi sesuai alamat domisili terdaftar.",
+      ringkasan: "Klaim voucher taksi lembur, pulang pukul 21.40 WIB (> 20.00 WIB). Lembur telah disetujui sebelumnya (pre-approved) oleh Kadiv GRC. Rute Equity Tower → domisili terdaftar.",
       kv: [
-        { k: "Jam Pulang", v: "21.40 WIB ✓ (> 20.00)" },
+        { k: "Kategori", v: "Voucher Taksi" },
+        { k: "Jam Pulang", v: "21.40 WIB ✓" },
         { k: "Status Lembur", v: "Pre-approved ✓" }
       ],
-      sitasi: "SE Logistik No. 07/2024 poin 3: voucher taksi berlaku untuk lembur pulang di atas pukul 20.00 WIB dengan lembur yang telah disetujui.",
+      sitasi: "SE Logistik No. 07/2024 poin 3: voucher taksi berlaku untuk lembur pulang di atas pukul 20.00 WIB.",
       flag: "normal"
     },
     lampiran: [
@@ -163,46 +257,94 @@ export const MOCK_TASKS: Task[] = [
     ]
   },
   {
-    id: "VT-0915",
-    jenis: "voucher",
-    judul: "Voucher Taksi Lembur Divisi Keuangan",
-    pemohon: "Ratna Dewi",
-    sistem: "One LPS",
+    id: "OL-CT-2041",
+    jenis: "onelps",
+    judul: "Pengajuan Cuti Tahunan oleh Bawahan (Faris Maulana)",
+    pemohon: "Faris Maulana",
+    sistem: "OneLPS",
     prioritas: "mid",
     sla: "Hari ini",
-    total: 210000,
     brief: {
-      ringkasan: "Klaim voucher taksi dengan jam pulang tercatat 19.35 WIB — di bawah ambang 20.00 WIB yang dipersyaratkan. Perlu klarifikasi ke pemohon sebelum disetujui.",
+      ringkasan: "Pengajuan cuti tahunan selama 3 hari kerja (18 — 20 Agustus 2026). Sisa saldo cuti pegawai: 8 hari. Tugas operasional telah didelegasikan kepada Maya Indah.",
       kv: [
-        { k: "Jam Pulang", v: "19.35 WIB ⚠ (< 20.00)" },
-        { k: "Status Lembur", v: "Pre-approved ✓" }
+        { k: "Kategori", v: "Pengajuan Cuti Bawahan" },
+        { k: "Durasi Cuti", v: "3 Hari Kerja" },
+        { k: "Delegasi Tugas", v: "Maya Indah P. ✓" }
       ],
-      sitasi: "SE Logistik No. 07/2024 poin 3: syarat jam pulang minimal pukul 20.00 WIB tidak terpenuhi.",
-      flag: "anomali"
-    },
-    lampiran: [
-      { nama: "e-Receipt_Taksi.pdf", tipe: "pdf" }
-    ]
-  },
-  {
-    id: "ST-2207",
-    jenis: "surat_tugas",
-    judul: "Surat Tugas Sosialisasi KPW Surabaya",
-    pemohon: "Dian Wahyuni",
-    sistem: "BPM",
-    prioritas: "mid",
-    sla: "Besok",
-    brief: {
-      ringkasan: "Penugasan 2 pegawai untuk sosialisasi program penjaminan di KPW Surabaya, 3 hari. Tidak bentrok dengan agenda penugasan lain pada rentang tanggal tersebut.",
-      kv: [
-        { k: "Personel", v: "2 pegawai" },
-        { k: "Konflik Jadwal", v: "Tidak ada ✓" }
-      ],
-      sitasi: "Peraturan Kepegawaian LPS Bab VI Pasal 30 terkait Penugasan Dinas.",
+      sitasi: "Peraturan Kepegawaian LPS Bab V Pasal 21: Hak Cuti Tahunan Pegawai.",
       flag: "normal"
     },
     lampiran: [
-      { nama: "Draft_Surat_Tugas.pdf", tipe: "pdf" }
+      { nama: "Form_Pengajuan_Cuti.pdf", tipe: "pdf" }
+    ]
+  },
+  {
+    id: "OL-DS-3302",
+    jenis: "onelps",
+    judul: "Pengajuan Diseminasi & Workshop Keuangan Eksternal",
+    pemohon: "Ratna Dewi",
+    sistem: "OneLPS",
+    prioritas: "hi",
+    sla: "⏱ 5 jam lagi",
+    brief: {
+      ringkasan: "Permohonan keikutsertaan diseminasi & workshop regulasi jasa keuangan terbaru yang diselenggarakan oleh OJK untuk 2 staf Divisi Keuangan.",
+      kv: [
+        { k: "Kategori", v: "Pengajuan Diseminasi" },
+        { k: "Penyelenggara", v: "OJK Institute" },
+        { k: "Jumlah Peserta", v: "2 Staf" }
+      ],
+      sitasi: "Pedoman Pengembangan Kompetensi Pegawai LPS Pasal 14 tentang Pelatihan & Diseminasi Eksternal.",
+      flag: "normal"
+    },
+    lampiran: [
+      { nama: "Brosur_Diseminasi_OJK.pdf", tipe: "pdf" },
+      { nama: "Usulan_Peserta.pdf", tipe: "pdf" }
+    ]
+  },
+  {
+    id: "OL-EC-4018",
+    jenis: "onelps",
+    judul: "Pengesahan Exit Clearance Pegawai (Budi Hendrawan)",
+    pemohon: "Budi Hendrawan",
+    sistem: "OneLPS",
+    prioritas: "hi",
+    sla: "⏱ 2 jam lagi",
+    brief: {
+      ringkasan: "Persetujuan serah terima exit clearance pegawai resign. Seluruh peminjaman aset IT, dokumen dinas, dan kewajiban keuangan telah diverifikasi bersih (100% Clear).",
+      kv: [
+        { k: "Kategori", v: "Exit Clearance" },
+        { k: "Status Aset IT", v: "Sudah Dikembalikan ✓" },
+        { k: "Kewajiban Keuangan", v: "Lunas (Clear) ✓" }
+      ],
+      sitasi: "SE SDM No. 12/2024 tentang Prosedur Termination & Exit Clearance Pegawai.",
+      flag: "normal"
+    },
+    lampiran: [
+      { nama: "Checklist_Exit_Clearance.pdf", tipe: "pdf" },
+      { nama: "Berita_Acara_Serah_Terima.pdf", tipe: "pdf" }
+    ]
+  },
+  {
+    id: "OL-OS-5510",
+    jenis: "onelps",
+    judul: "Persetujuan Perpanjangan Kontrak OSContract Tenaga Alih Daya TI",
+    pemohon: "Rendra Pratama",
+    sistem: "OneLPS",
+    prioritas: "mid",
+    sla: "Besok",
+    brief: {
+      ringkasan: "Evaluasi kinerja & persetujuan perpanjangan kontrak 4 tenaga alih daya (OSContract) posisi Fullstack Developer Divisi IT untuk periode Q3-Q4 2026.",
+      kv: [
+        { k: "Kategori", v: "OSContract" },
+        { k: "Jumlah Tenaga Kerja", v: "4 Orang" },
+        { k: "Evaluasi Kinerja", v: "Sangat Baik (SLA >95%) ✓" }
+      ],
+      sitasi: "Peraturan Pengadaan Jasa Alih Daya LPS Bab III Pasal 9 tentang Perpanjangan Kontrak OS.",
+      flag: "normal"
+    },
+    lampiran: [
+      { nama: "Evaluasi_Kinerja_OS.pdf", tipe: "pdf" },
+      { nama: "Draft_Kontrak_OSContract.pdf", tipe: "pdf" }
     ]
   }
 ];

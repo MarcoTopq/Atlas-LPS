@@ -44,7 +44,7 @@ export default function PersetujuanDetailPage({ params }: { params: Promise<{ id
   // Combine unified detail properties
   const title = taskFromList?.judul ?? naskahDetail.title;
   const sistem = taskFromList?.sistem ?? "e-Correspondence";
-  const jenisBadge = taskFromList ? (taskFromList.sistem === "BPM" ? "BPM" : "e-Correspondence") : naskahDetail.jenisBadge;
+  const jenisBadge = taskFromList ? taskFromList.sistem : naskahDetail.jenisBadge;
   const statusBadge = taskFromList ? (taskFromList.prioritas === "hi" ? "Prioritas Tinggi" : "Menunggu Persetujuan") : naskahDetail.statusBadge;
   const isRahasia = naskahDetail.isRahasia ?? false;
   const pemohon = taskFromList?.pemohon ?? naskahDetail.metadata.pengajuan;
@@ -57,7 +57,7 @@ export default function PersetujuanDetailPage({ params }: { params: Promise<{ id
 
   const detailInfo = {
     nomorDokumen: id,
-    tipeSurat: taskFromList ? (taskFromList.jenis === 'nota_dinas' ? 'Nota Dinas Internal' : 'Pengajuan BPM') : naskahDetail.detail.tipeSurat,
+    tipeSurat: taskFromList ? `${taskFromList.sistem} - ${taskFromList.jenis.toUpperCase()}` : naskahDetail.detail.tipeSurat,
     jenisSurat: taskFromList?.judul ?? naskahDetail.detail.jenisSurat,
     perihal: title,
     deskripsi: briefSummary,

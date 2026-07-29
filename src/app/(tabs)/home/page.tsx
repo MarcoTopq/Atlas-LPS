@@ -2,7 +2,7 @@
 
 import AppBar from "@/components/AppBar";
 import { MOCK_TASKS } from "@/lib/mock/data";
-import { ChevronRight, Search, FileText, CheckSquare, MessageSquare, Calendar as CalendarIcon, MapPin, Clock, ArrowRight, Folder } from "lucide-react";
+import { ChevronRight, Search, FileText, MessageSquare, MapPin, Clock, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
@@ -179,51 +179,6 @@ export default function HomePage() {
                   </div>
                 </Link>
               ))}
-            </div>
-          </section>
-
-          {/* Menu Utama */}
-          <section>
-            <div className="flex items-center justify-between mb-4 md:mb-6 px-1">
-              <div>
-                <h2 className="text-[17px] md:text-[22px] font-bold text-ink tracking-tight">Modul Utama & Akses Cepat</h2>
-                <p className="text-[11.5px] md:text-[13.5px] text-muted font-medium">Navigasi langsung ke sistem internal LPS</p>
-              </div>
-              <Link href="/menu" className="text-[13px] md:text-[15px] font-bold text-blue-500 hover:text-blue-600 transition-colors">
-                Semua Menu
-              </Link>
-            </div>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-              {[
-                { name: "Naskah Dinas", desc: "e-Correspondence", icon: FileText, color: "text-blue-600", bg: "bg-blue-50", href: "/naskah-dinas" },
-                { name: "BPM", desc: "Perdin & Reimbursement", icon: CheckSquare, color: "text-emerald-600", bg: "bg-emerald-50", href: "/bpm" },
-                { name: "Agenda Kerja", desc: "Jadwal & Meetings", icon: CalendarIcon, color: "text-orange", bg: "bg-orange/10", href: "/agenda" },
-                { name: "Dashboard", desc: "Anggaran & Keuangan", icon: Folder, color: "text-purple-600", bg: "bg-purple-50", href: "/dashboard" },
-              ].map((item, idx) => {
-                const Icon = item.icon;
-                return (
-                  <Link key={idx} href={item.href} className="bg-white rounded-[24px] md:rounded-[32px] p-5 md:p-7 shadow-[0_8px_24px_rgba(0,0,0,0.03)] border border-slate-100 hover:shadow-[0_12px_30px_rgba(0,0,0,0.07)] hover:border-orange/30 transition-all duration-300 group flex flex-col justify-between h-[145px] md:h-[200px] relative">
-                    <div className="flex items-center justify-between">
-                      <div className={cn("w-12 md:w-16 h-12 md:h-16 rounded-2xl md:rounded-3xl flex items-center justify-center", item.bg, item.color)}>
-                        <Icon className="w-6 h-6 md:w-8 md:h-8" strokeWidth={2} />
-                      </div>
-                      <div className="w-7 md:w-10 h-7 md:h-10 bg-slate-50 rounded-full flex items-center justify-center text-light group-hover:bg-orange group-hover:text-white transition-colors">
-                        <ArrowRight className="w-[14px] h-[14px] md:w-5 md:h-5 -rotate-45" />
-                      </div>
-                    </div>
-
-                    <div>
-                      <h3 className="text-[14.5px] md:text-[18px] font-bold text-ink tracking-tight leading-tight group-hover:text-orange transition-colors">
-                        {item.name}
-                      </h3>
-                      <p className="text-[11px] md:text-[13px] font-medium text-muted mt-0.5">
-                        {item.desc}
-                      </p>
-                    </div>
-                  </Link>
-                )
-              })}
             </div>
           </section>
 

@@ -3,13 +3,11 @@
 import AppBar from "@/components/AppBar";
 import { 
   Users, 
-  CalendarClock, 
-  Plane, 
-  CreditCard, 
   Receipt, 
-  Laptop, 
-  HeadphonesIcon,
-  ArrowRight
+  ArrowRight,
+  Scale,
+  ShieldCheck,
+  Database
 } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
@@ -37,25 +35,28 @@ export default function DashboardPage() {
     }[];
   }[] = [
     {
-      title: "HR & Personalia",
+      title: "SDM (Sumber Daya Manusia)",
       items: [
-        { id: "kepegawaian", name: "Kepegawaian", icon: Users, color: "text-blue-500", bg: "bg-blue-50" },
-        { id: "absensi", name: "Absensi", icon: CalendarClock, color: "text-emerald-500", bg: "bg-emerald-50" },
+        { id: "sdm", name: "SDM", icon: Users, color: "text-blue-600", bg: "bg-blue-50" },
+      ]
+    },
+    {
+      title: "Hukum & Advokasi",
+      items: [
+        { id: "hukum", name: "Hukum & Litigasi", icon: Scale, color: "text-amber-600", bg: "bg-amber-50" },
       ]
     },
     {
       title: "Keuangan & Anggaran",
       items: [
-        { id: "pembayaran", name: "Pembayaran", icon: Receipt, color: "text-teal-500", bg: "bg-teal-50" },
-        { id: "perjalanan-dinas", name: "Perjalanan Dinas", icon: Plane, color: "text-sky-500", bg: "bg-sky-50", alert: true },
-        { id: "uang-muka", name: "Uang Muka & Pengadaan", icon: CreditCard, color: "text-indigo-500", bg: "bg-indigo-50" },
+        { id: "keuangan", name: "Keuangan & Anggaran", icon: Receipt, color: "text-teal-600", bg: "bg-teal-50" },
       ]
     },
     {
-      title: "IT & Operasional",
+      title: "Monitoring & Operasional",
       items: [
-        { id: "aset", name: "Aset IT", icon: Laptop, color: "text-slate-600", bg: "bg-slate-100" },
-        { id: "helpdesk", name: "Ticket Helpdesk", icon: HeadphonesIcon, color: "text-amber-500", bg: "bg-amber-50" },
+        { id: "ics", name: "Monitoring ICS", icon: ShieldCheck, color: "text-emerald-600", bg: "bg-emerald-50" },
+        { id: "scv-bpr", name: "SCV BPR_S Monitoring", icon: Database, color: "text-blue-600", bg: "bg-blue-50" },
       ]
     }
   ];
@@ -98,11 +99,6 @@ export default function DashboardPage() {
                         
                         {/* Extras */}
                         <div className="flex items-center gap-2 ml-2 relative z-10">
-                          {item.suffix && (
-                            <span className="text-[11px] font-bold text-orange bg-orange/10 px-2.5 py-1 rounded-full whitespace-nowrap">
-                              {item.suffix}
-                            </span>
-                          )}
                           {item.alert && (
                             <span className="w-2.5 h-2.5 bg-danger rounded-full animate-pulse shadow-[0_0_8px_rgba(214,69,69,0.4)]"></span>
                           )}

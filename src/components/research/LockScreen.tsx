@@ -7,12 +7,14 @@ import { useResearch } from "@/lib/research";
 
 export default function LockScreen() {
   const unlock = useResearch((s) => s.unlock);
+  const skip = useResearch((s) => s.skip);
   const [pin, setPin] = useState("");
   const [mode, setMode] = useState<"pilih" | "pin" | "scanning">("pilih");
   const [success, setSuccess] = useState(false);
 
   const finish = (method: "biometric" | "pin") => {
     setSuccess(true);
+    skip();
     setTimeout(() => unlock(method), 600);
   };
 

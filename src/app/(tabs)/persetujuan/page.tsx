@@ -9,14 +9,15 @@ import { cn } from "@/lib/utils";
 
 export default function PersetujuanPage() {
   const [activeTab, setActiveTab] = useState("Semua");
-  const tabs = ["Semua", "e-Correspondence", "BPM", "Voucher", "Surat Tugas"];
+  const tabs = ["Semua", "e-Correspondence", "BPM", "ICS", "EUIS", "OneLPS"];
 
   const filteredTasks = MOCK_TASKS.filter(task => {
     if (activeTab === "Semua") return true;
     if (activeTab === "e-Correspondence") return task.sistem === "e-Correspondence";
     if (activeTab === "BPM") return task.sistem === "BPM";
-    if (activeTab === "Voucher") return task.jenis === "voucher";
-    if (activeTab === "Surat Tugas") return task.jenis === "surat_tugas";
+    if (activeTab === "ICS") return task.sistem === "ICS" || task.jenis === "ics";
+    if (activeTab === "EUIS") return task.sistem === "EUIS" || task.jenis === "euis";
+    if (activeTab === "OneLPS") return task.sistem === "OneLPS" || task.jenis === "onelps";
     return true;
   });
 
@@ -72,11 +73,11 @@ export default function PersetujuanPage() {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {filteredTasks.map(task => (
-              <Link key={task.id} href={`/persetujuan/${encodeURIComponent(task.id)}`} className="flex flex-col bg-white rounded-[32px] md:rounded-[40px] p-4 md:p-6 shadow-[0_8px_24px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_30px_rgba(0,0,0,0.06)] transition-all duration-300 group relative">
+              <Link key={task.id} href={`/persetujuan/${encodeURIComponent(task.id)}`} className="flex flex-col bg-white rounded-[32px] md:rounded-[40px] p-4 md:p-6 shadow-[0_8px_24px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_30px_rgba(0,0,0,0.06)] transition-all duration-300 group relative overflow-hidden w-full">
                 
                 {/* Top Row: Icon, Title, Arrow */}
                 <div className="flex items-start justify-between mb-4 md:mb-6">
-                  <div className="flex items-center gap-3 md:gap-4">
+                  <div className="flex items-center gap-3 md:gap-4 min-w-0">
                     <div className="w-[46px] md:w-[60px] h-[46px] md:h-[60px] rounded-[16px] md:rounded-[20px] bg-slate-100 flex items-center justify-center relative overflow-hidden flex-shrink-0">
                       <div className={cn(
                         "absolute inset-0 opacity-20",
@@ -89,7 +90,7 @@ export default function PersetujuanPage() {
                         task.prioritas === 'mid' ? 'text-warn' : 'text-slate-500'
                       )} />
                     </div>
-                    <div>
+                    <div className="min-w-0">
                       <h3 className="font-bold text-[15px] md:text-[18px] text-ink leading-tight mb-1 md:mb-1.5 group-hover:text-orange transition-colors line-clamp-2">{task.judul}</h3>
                       <p className="text-[12px] md:text-[14px] font-medium text-muted">
                         {task.sistem}
@@ -102,9 +103,9 @@ export default function PersetujuanPage() {
                 </div>
 
                 {/* Bottom Row: Status/Info Chips */}
-                <div className="flex items-center gap-2 mt-auto">
+                <div className="flex flex-wrap items-center gap-2 mt-auto pt-2 min-w-0">
                   <div className={cn(
-                    "px-3 md:px-4 py-1.5 md:py-2 rounded-xl text-[11px] md:text-[13px] font-bold border flex items-center gap-1.5 md:gap-2",
+                    "px-3 md:px-4 py-1.5 md:py-2 rounded-xl text-[11px] md:text-[13px] font-bold border flex items-center gap-1.5 md:gap-2 whitespace-nowrap flex-shrink-0",
                     task.prioritas === 'hi' ? 'bg-danger/5 border-danger/10 text-danger' :
                     task.prioritas === 'mid' ? 'bg-warn/5 border-warn/10 text-warn' :
                     'bg-slate-50 border-slate-100 text-slate-500'
@@ -112,18 +113,18 @@ export default function PersetujuanPage() {
                     {task.prioritas === 'hi' && <AlertCircle className="w-3 h-3 md:w-4 md:h-4" />}
                     {task.prioritas === 'mid' && <Clock className="w-3 h-3 md:w-4 md:h-4" />}
                     {task.prioritas === 'lo' && <CheckCircle2 className="w-3 h-3 md:w-4 md:h-4" />}
-                    {task.prioritas === 'hi' ? 'Prioritas Tinggi' : task.prioritas === 'mid' ? 'Prioritas Sedang' : 'Prioritas Rendah'}
+                    <span>{task.prioritas === 'hi' ? 'Prioritas Tinggi' : task.prioritas === 'mid' ? 'Prioritas Sedang' : 'Prioritas Rendah'}</span>
                   </div>
 
                   {/* SLA chip — visibilitas prioritas sesuai UVP canvas */}
-                  <div className="px-3 md:px-4 py-1.5 md:py-2 rounded-xl bg-navy/5 border border-navy/10 text-[11px] md:text-[13px] font-bold text-navy flex items-center gap-1.5 md:gap-2">
+                  <div className="px-3 md:px-4 py-1.5 md:py-2 rounded-xl bg-navy/5 border border-navy/10 text-[11px] md:text-[13px] font-bold text-navy flex items-center gap-1.5 md:gap-2 whitespace-nowrap flex-shrink-0">
                     <Clock className="w-3 h-3 md:w-4 md:h-4" />
                     <span className="whitespace-nowrap">{task.sla.replace('⏱ ', '')}</span>
                   </div>
 
-                  <div className="hidden sm:flex px-3 md:px-4 py-1.5 md:py-2 rounded-xl bg-slate-50 border border-slate-100 text-[11px] md:text-[13px] font-bold text-muted items-center gap-1.5 md:gap-2 ml-auto">
-                    <User className="w-3 h-3 md:w-4 md:h-4" />
-                    <span className="truncate max-w-[100px] md:max-w-[150px]">{task.pemohon}</span>
+                  <div className="px-3 md:px-4 py-1.5 md:py-2 rounded-xl bg-slate-50 border border-slate-100 text-[11px] md:text-[13px] font-bold text-muted flex items-center gap-1.5 md:gap-2 whitespace-nowrap min-w-0 max-w-full">
+                    <User className="w-3 h-3 md:w-4 md:h-4 flex-shrink-0" />
+                    <span className="truncate max-w-[120px] md:max-w-[150px]">{task.pemohon}</span>
                   </div>
                 </div>
 

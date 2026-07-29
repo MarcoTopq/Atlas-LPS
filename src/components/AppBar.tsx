@@ -34,9 +34,9 @@ export default function AppBar({
         )}
         
         {showAvatar && (
-          <Link href="/menu" className="w-[46px] h-[46px] rounded-full bg-slate-200 overflow-hidden flex-shrink-0 active:scale-95 transition-transform block shadow-sm border-2 border-white">
-            <div className="w-full h-full flex items-center justify-center text-slate-500 font-bold text-sm bg-gradient-to-tr from-slate-200 to-slate-100">
-              A
+          <Link href="/profil" className="w-[46px] h-[46px] rounded-full bg-slate-200 overflow-hidden flex-shrink-0 active:scale-95 transition-transform block shadow-sm border-2 border-white">
+            <div className="w-full h-full flex items-center justify-center text-slate-700 font-bold text-sm bg-gradient-to-tr from-amber-200 to-orange/30">
+              D
             </div>
           </Link>
         )}
