@@ -2,7 +2,7 @@
 
 import AppBar from "@/components/AppBar";
 import { MOCK_TASKS } from "@/lib/mock/data";
-import { ChevronRight, Search, FileText, MessageSquare, MapPin, Clock, ArrowRight } from "lucide-react";
+import { ChevronRight, Search, FileText, MessageSquare, MapPin, Clock, ArrowRight, Calendar } from "lucide-react";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
@@ -131,54 +131,66 @@ export default function HomePage() {
             </div>
 
             <div className="space-y-3">
-              {MOCK_TASKS.slice(0, 3).map((task) => (
-                <Link
-                  key={task.id}
-                  href={`/persetujuan/${encodeURIComponent(task.id)}`}
-                  className="flex items-center justify-between bg-white rounded-2xl md:rounded-3xl p-4 md:p-5 shadow-[0_2px_12px_rgba(0,0,0,0.03)] border border-slate-100 hover:border-orange/30 hover:shadow-md transition-all group gap-3"
-                >
-                  <div className="flex items-center gap-3.5 min-w-0 flex-1">
-                    {/* Minimal Left Icon */}
-                    <div className={cn(
-                      "w-11 h-11 md:w-13 md:h-13 rounded-2xl flex items-center justify-center flex-shrink-0",
-                      task.jenis === 'nota_dinas' ? 'bg-blue-50 text-blue-600' :
-                      task.jenis === 'bpm' ? 'bg-emerald-50 text-emerald-600' : 'bg-orange/10 text-orange'
-                    )}>
-                      <FileText className="w-5 h-5 md:w-6 md:h-6" />
-                    </div>
+              {(() => {
+                const mixedTasks = [
+                  MOCK_TASKS.find(t => t.sistem === "ICS" || t.jenis === "ics"),
+                  MOCK_TASKS.find(t => t.sistem === "e-Correspondence" || t.jenis === "nota_dinas"),
+                  MOCK_TASKS.find(t => t.sistem === "BPM" || t.jenis === "bpm"),
+                  MOCK_TASKS.find(t => t.sistem === "EUIS" || t.jenis === "euis"),
+                  MOCK_TASKS.find(t => t.sistem === "OneLPS" || t.jenis === "onelps"),
+                ].filter(Boolean) as typeof MOCK_TASKS;
 
-                    {/* Task Title & Single Meta Line */}
-                    <div className="min-w-0 flex-1">
-                      <h3 className="font-bold text-[14px] md:text-[16px] text-ink truncate group-hover:text-orange transition-colors">
-                        {task.judul}
-                      </h3>
-                      <div className="flex items-center gap-2 mt-1 text-[12px] font-medium text-muted truncate">
-                        <span className="font-semibold text-ink/80">{task.sistem}</span>
-                        <span>•</span>
-                        <span>{task.pemohon}</span>
-                        {task.total ? (
-                          <>
-                            <span>•</span>
-                            <span className="font-bold text-navy">Rp {task.total.toLocaleString("id-ID")}</span>
-                          </>
-                        ) : null}
+                return mixedTasks.map((task) => (
+                  <Link
+                    key={task.id}
+                    href={`/persetujuan/${encodeURIComponent(task.id)}`}
+                    className="flex items-center justify-between bg-white rounded-2xl md:rounded-3xl p-4 md:p-5 shadow-[0_2px_12px_rgba(0,0,0,0.03)] border border-slate-100 hover:border-orange/30 hover:shadow-md transition-all group gap-3"
+                  >
+                    <div className="flex items-center gap-3.5 min-w-0 flex-1">
+                      {/* Minimal Left Icon */}
+                      <div className={cn(
+                        "w-11 h-11 md:w-13 md:h-13 rounded-2xl flex items-center justify-center flex-shrink-0",
+                        task.sistem === 'ICS' || task.jenis === 'ics' ? 'bg-emerald-50 text-emerald-600' :
+                        task.sistem === 'EUIS' || task.jenis === 'euis' ? 'bg-purple-50 text-purple-600' :
+                        task.jenis === 'nota_dinas' || task.sistem === 'e-Correspondence' ? 'bg-blue-50 text-blue-600' :
+                        task.jenis === 'bpm' || task.sistem === 'BPM' ? 'bg-teal-50 text-teal-600' : 'bg-orange/10 text-orange'
+                      )}>
+                        <FileText className="w-5 h-5 md:w-6 md:h-6" />
+                      </div>
+
+                      {/* Task Title & Single Meta Line */}
+                      <div className="min-w-0 flex-1">
+                        <h3 className="font-bold text-[14px] md:text-[16px] text-ink truncate group-hover:text-orange transition-colors">
+                          {task.judul}
+                        </h3>
+                        <div className="flex items-center gap-2 mt-1 text-[12px] font-medium text-muted truncate">
+                          <span className="font-semibold text-ink/80">{task.sistem}</span>
+                          <span>•</span>
+                          <span>{task.pemohon}</span>
+                          {task.total ? (
+                            <>
+                              <span>•</span>
+                              <span className="font-bold text-navy">Rp {task.total.toLocaleString("id-ID")}</span>
+                            </>
+                          ) : null}
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  {/* Clean SLA / Urgency Tag & Chevron */}
-                  <div className="flex items-center gap-3 flex-shrink-0">
-                    <span className={cn(
-                      "text-[11px] md:text-[12px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1",
-                      task.prioritas === 'hi' ? 'bg-red-50 text-red-600 border border-red-100' : 'bg-slate-100 text-slate-700'
-                    )}>
-                      <Clock className="w-3 h-3" />
-                      <span>{task.sla.replace('⏱ ', '')}</span>
-                    </span>
-                    <ArrowRight className="w-4 h-4 text-light group-hover:text-orange group-hover:translate-x-0.5 transition-all" />
-                  </div>
-                </Link>
-              ))}
+                    {/* Clean SLA / Urgency Tag & Chevron */}
+                    <div className="flex items-center gap-3 flex-shrink-0">
+                      <span className={cn(
+                        "text-[11px] md:text-[12px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1",
+                        task.prioritas === 'hi' ? 'bg-red-50 text-red-600 border border-red-100' : 'bg-slate-100 text-slate-700'
+                      )}>
+                        <Calendar className="w-3 h-3" />
+                        <span>{task.sla.replace('⏱ ', '')}</span>
+                      </span>
+                      <ArrowRight className="w-4 h-4 text-light group-hover:text-orange group-hover:translate-x-0.5 transition-all" />
+                    </div>
+                  </Link>
+                ));
+              })()}
             </div>
           </section>
 

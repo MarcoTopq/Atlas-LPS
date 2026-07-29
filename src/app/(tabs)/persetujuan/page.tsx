@@ -3,20 +3,20 @@
 import AppBar from "@/components/AppBar";
 import { MOCK_TASKS } from "@/lib/mock/data";
 import Link from "next/link";
-import { Filter, Search, Clock, ArrowRight, CheckCircle2, FileText, AlertCircle, User } from "lucide-react";
+import { Filter, Search, Clock, ArrowRight, CheckCircle2, FileText, AlertCircle, User, Calendar } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 
 export default function PersetujuanPage() {
   const [activeTab, setActiveTab] = useState("Semua");
-  const tabs = ["Semua", "e-Correspondence", "BPM", "ICS", "EUIS", "OneLPS"];
+  const tabs = ["Semua", "ICS", "EUIS", "Nota Dinas", "BPM", "OneLPS"];
 
   const filteredTasks = MOCK_TASKS.filter(task => {
     if (activeTab === "Semua") return true;
-    if (activeTab === "e-Correspondence") return task.sistem === "e-Correspondence";
-    if (activeTab === "BPM") return task.sistem === "BPM";
     if (activeTab === "ICS") return task.sistem === "ICS" || task.jenis === "ics";
     if (activeTab === "EUIS") return task.sistem === "EUIS" || task.jenis === "euis";
+    if (activeTab === "Nota Dinas") return task.sistem === "e-Correspondence" || task.sistem === "Nota Dinas" || task.jenis === "nota_dinas";
+    if (activeTab === "BPM") return task.sistem === "BPM" || task.jenis === "bpm";
     if (activeTab === "OneLPS") return task.sistem === "OneLPS" || task.jenis === "onelps";
     return true;
   });
@@ -35,13 +35,13 @@ export default function PersetujuanPage() {
               key={tab} 
               onClick={() => setActiveTab(tab)}
               className={cn(
-                "whitespace-nowrap px-6 py-3.5 rounded-2xl text-[13px] font-bold transition-all duration-300",
+                "whitespace-nowrap px-6 py-3.5 rounded-2xl text-[13px] font-bold transition-all duration-300 cursor-pointer",
                 activeTab === tab 
                   ? "bg-orange text-white shadow-[0_4px_12px_rgba(242,110,34,0.3)]" 
                   : "bg-transparent text-muted hover:text-ink"
               )}
             >
-              {tab === 'e-Correspondence' ? 'Nota Dinas' : tab}
+              {tab}
             </button>
           ))}
         </div>
@@ -116,9 +116,9 @@ export default function PersetujuanPage() {
                     <span>{task.prioritas === 'hi' ? 'Prioritas Tinggi' : task.prioritas === 'mid' ? 'Prioritas Sedang' : 'Prioritas Rendah'}</span>
                   </div>
 
-                  {/* SLA chip — visibilitas prioritas sesuai UVP canvas */}
-                  <div className="px-3 md:px-4 py-1.5 md:py-2 rounded-xl bg-navy/5 border border-navy/10 text-[11px] md:text-[13px] font-bold text-navy flex items-center gap-1.5 md:gap-2 whitespace-nowrap flex-shrink-0">
-                    <Clock className="w-3 h-3 md:w-4 md:h-4" />
+                  {/* Tanggal chip */}
+                  <div className="px-3 md:px-4 py-1.5 md:py-2 rounded-xl bg-slate-100 border border-slate-200 text-[11px] md:text-[13px] font-bold text-slate-700 flex items-center gap-1.5 md:gap-2 whitespace-nowrap flex-shrink-0">
+                    <Calendar className="w-3 h-3 md:w-4 md:h-4 text-slate-500" />
                     <span className="whitespace-nowrap">{task.sla.replace('⏱ ', '')}</span>
                   </div>
 

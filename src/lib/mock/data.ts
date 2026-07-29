@@ -92,7 +92,7 @@ export const MOCK_TASKS: Task[] = [
     pemohon: "Budi Santoso",
     sistem: "e-Correspondence",
     prioritas: "hi",
-    sla: "⏱ 2 jam lagi",
+    sla: "16 Jul 2026",
     brief: {
       ringkasan: "Pengajuan perjalanan dinas untuk tim proyek X ke Surabaya selama 3 hari terkait koordinasi awal.",
       kv: [
@@ -146,7 +146,7 @@ export const MOCK_TASKS: Task[] = [
     pemohon: "Reza Rahardian",
     sistem: "ICS",
     prioritas: "hi",
-    sla: "⏱ 4 jam lagi",
+    sla: "Hari ini",
     brief: {
       ringkasan: "Evaluasi penilaian kepatuhan & mitigasi risiko transaksi KPW Surabaya. Seluruh indikator risiko kepatuhan operasional dalam tingkat Wajar Tanpa Pengecualian.",
       kv: [
@@ -169,7 +169,7 @@ export const MOCK_TASKS: Task[] = [
     pemohon: "Hendra Wijaya",
     sistem: "EUIS",
     prioritas: "hi",
-    sla: "⏱ 2 jam lagi",
+    sla: "16 Jul 2026",
     brief: {
       ringkasan: "Verifikasi pembaruan data pokok alamat kantor pusat & akta perubahan anggaran dasar PT BPR Artha Sejahtera pada portal EUIS LPS.",
       kv: [
@@ -239,7 +239,7 @@ export const MOCK_TASKS: Task[] = [
     pemohon: "Andi Saputra",
     sistem: "OneLPS",
     prioritas: "mid",
-    sla: "⏱ 3 jam lagi",
+    sla: "Hari ini",
     total: 185000,
     brief: {
       ringkasan: "Klaim voucher taksi lembur, pulang pukul 21.40 WIB (> 20.00 WIB). Lembur telah disetujui sebelumnya (pre-approved) oleh Kadiv GRC. Rute Equity Tower → domisili terdaftar.",
@@ -285,7 +285,7 @@ export const MOCK_TASKS: Task[] = [
     pemohon: "Ratna Dewi",
     sistem: "OneLPS",
     prioritas: "hi",
-    sla: "⏱ 5 jam lagi",
+    sla: "17 Jul 2026",
     brief: {
       ringkasan: "Permohonan keikutsertaan diseminasi & workshop regulasi jasa keuangan terbaru yang diselenggarakan oleh OJK untuk 2 staf Divisi Keuangan.",
       kv: [
@@ -308,7 +308,7 @@ export const MOCK_TASKS: Task[] = [
     pemohon: "Budi Hendrawan",
     sistem: "OneLPS",
     prioritas: "hi",
-    sla: "⏱ 2 jam lagi",
+    sla: "16 Jul 2026",
     brief: {
       ringkasan: "Persetujuan serah terima exit clearance pegawai resign. Seluruh peminjaman aset IT, dokumen dinas, dan kewajiban keuangan telah diverifikasi bersih (100% Clear).",
       kv: [
