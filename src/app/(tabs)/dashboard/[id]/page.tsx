@@ -2099,7 +2099,7 @@ function IcsKeberatanTab() {
                     <Cell key={`cell-${index}`} fill={entry.fill} />
                   ))}
                 </Pie>
-                <Tooltip formatter={(value: number | string, name: string) => [`${value} Rekening`, name]} />
+                <Tooltip formatter={(value: any, name: any) => [`${value} Rekening`, name]} />
               </PieChart>
             </ResponsiveContainer>
           </div>
@@ -2185,7 +2185,7 @@ function IcsKeberatanTab() {
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
                 <XAxis dataKey="year" label={{ value: 'Year', position: 'insideBottom', offset: -10, fontSize: 10, fill: '#64748b' }} axisLine={false} tickLine={false} tick={{ fontSize: 11, fill: '#64748b' }} />
                 <YAxis label={{ value: 'Jumlah Nasabah', angle: -90, position: 'insideLeft', fontSize: 10, fill: '#64748b' }} unit="%" domain={[0, 100]} ticks={[0, 50, 100]} axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: '#64748b' }} />
-                <Tooltip formatter={(val: number | string) => [`${val}%`, 'Penelitian']} />
+                <Tooltip formatter={(val: any) => [`${val}%`, 'Penelitian']} />
                 <Bar dataKey="penelitian" fill="#0088FE" radius={[4, 4, 0, 0]} maxBarSize={60} />
               </BarChart>
             </ResponsiveContainer>
@@ -2205,7 +2205,7 @@ function IcsKeberatanTab() {
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
                 <XAxis dataKey="year" label={{ value: 'Year', position: 'insideBottom', offset: -10, fontSize: 10, fill: '#64748b' }} axisLine={false} tickLine={false} tick={{ fontSize: 11, fill: '#64748b' }} />
                 <YAxis label={{ value: 'Jumlah Rekening', angle: -90, position: 'insideLeft', fontSize: 10, fill: '#64748b' }} unit="%" domain={[0, 100]} ticks={[0, 50, 100]} axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: '#64748b' }} />
-                <Tooltip formatter={(val: number | string) => [`${val}%`, 'Penelitian']} />
+                <Tooltip formatter={(val: any) => [`${val}%`, 'Penelitian']} />
                 <Bar dataKey="penelitian" fill="#0088FE" radius={[4, 4, 0, 0]} maxBarSize={60} />
               </BarChart>
             </ResponsiveContainer>
@@ -2334,7 +2334,7 @@ function IcsBankDalamProsesTab() {
                     <Cell key={`cell-${index}`} fill={entry.fill} />
                   ))}
                 </Pie>
-                <Tooltip formatter={(value: number | string, name: string) => [`${value} Bank`, name]} />
+                <Tooltip formatter={(value: any, name: any) => [`${value} Bank`, name]} />
               </PieChart>
             </ResponsiveContainer>
           </div>
@@ -2486,7 +2486,7 @@ function IcsBankPembayarTab() {
                     <Cell key={`cell-${index}`} fill={entry.fill} />
                   ))}
                 </Pie>
-                <Tooltip formatter={(value: number | string, name: string) => [`${value} Bank CIU`, name]} />
+                <Tooltip formatter={(value: any, name: any) => [`${value} Bank CIU`, name]} />
               </PieChart>
             </ResponsiveContainer>
           </div>
