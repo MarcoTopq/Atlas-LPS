@@ -2,7 +2,6 @@
 
 import AppBar from "@/components/AppBar";
 import { Calendar as CalendarIcon, MapPin, Clock, CheckCircle2, ChevronLeft, ChevronRight, User } from "lucide-react";
-import Link from "next/link";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 

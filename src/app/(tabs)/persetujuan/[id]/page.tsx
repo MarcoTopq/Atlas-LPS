@@ -75,7 +75,11 @@ export default function PersetujuanDetailPage({ params }: { params: Promise<{ id
     { action: "Menunggu Persetujuan Anda", date: "Saat Ini", statusTitle: "Dalam Antrean Approver", note: `SLA: ${slaText}` }
   ];
 
-  const tabs = budget 
+  const tbp = taskFromList?.tbpData;
+
+  const tabs = tbp
+    ? ["Detail", "Data Approval TBP", "Lampiran", "Riwayat Pengajuan"]
+    : budget 
     ? ["Detail", "Rincian Anggaran", "Lampiran", "Riwayat Pengajuan"]
     : ["Detail", "Lampiran", "Riwayat Pengajuan"];
 
@@ -117,11 +121,12 @@ export default function PersetujuanDetailPage({ params }: { params: Promise<{ id
   };
 
   return (
-    <div className="flex flex-col min-h-dvh bg-[#F8FAFC] pb-28 relative">
-      {/* Header Bar */}
-      <AppBar title="Detail Persetujuan" showBack />
-      
-      <div className="px-5 mt-4 space-y-5">
+    <div className="flex flex-col min-h-dvh bg-[#F8FAFC] pb-28 relative w-full items-center">
+      <div className="w-full">
+        {/* Header Bar */}
+        <AppBar title="Detail Persetujuan" showBack />
+        
+        <div className="px-5 md:px-8 mt-4 space-y-5 w-full">
         {/* Header Title & Badges */}
         <div>
           <h1 className="text-[18px] md:text-[22px] font-bold text-ink tracking-tight mb-2.5">{title}</h1>
@@ -248,6 +253,182 @@ export default function PersetujuanDetailPage({ params }: { params: Promise<{ id
           </div>
         )}
 
+        {/* Tab: Data Approval TBP (CoreLPS UI) */}
+        {activeTab === "Data Approval TBP" && tbp && (
+          <div className="bg-white rounded-[24px] p-5 shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-slate-100 space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-300">
+            {/* Header & Meta Card */}
+            <div className="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 space-y-3">
+              <div className="flex items-center justify-between border-b border-slate-200 pb-2">
+                <span className="text-[12px] font-extrabold text-navy uppercase tracking-wider">CORELPS — Surveilans (TBP)</span>
+                <span className="bg-emerald-100 text-emerald-700 text-[11px] font-extrabold px-2.5 py-0.5 rounded-md">
+                  {tbp.status}
+                </span>
+              </div>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3 text-[12px]">
+                <div>
+                  <span className="text-muted block text-[10.5px]">Workflow ID</span>
+                  <span className="font-bold text-ink">{tbp.workflowId}</span>
+                </div>
+                <div>
+                  <span className="text-muted block text-[10.5px]">Modul</span>
+                  <span className="font-bold text-ink">{tbp.modul}</span>
+                </div>
+                <div>
+                  <span className="text-muted block text-[10.5px]">Created Date</span>
+                  <span className="font-bold text-ink">{tbp.createdDate}</span>
+                </div>
+                <div>
+                  <span className="text-muted block text-[10.5px]">Approval Date</span>
+                  <span className="font-bold text-ink">{tbp.approvalDate}</span>
+                </div>
+                <div className="col-span-2">
+                  <span className="text-muted block text-[10.5px]">Workflow Approver</span>
+                  <div className="flex items-center gap-1.5 mt-1">
+                    {tbp.workflowApprover.map((app, idx) => (
+                      <span key={idx} className="bg-orange/20 text-orange-d text-[10.5px] font-bold px-2 py-0.5 rounded-md">
+                        {app}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Metrics Grid */}
+            <div className="space-y-2">
+              <h3 className="text-[14px] font-bold text-ink">Data Observasi & Suku Bunga</h3>
+              <div className="grid grid-cols-2 gap-3 text-[12px] bg-slate-50/70 p-4 rounded-2xl border border-slate-100">
+                <div>
+                  <span className="text-muted text-[10.5px] block">Tanggal Observasi</span>
+                  <span className="font-bold text-ink">{tbp.tanggalObservasi}</span>
+                </div>
+                <div>
+                  <span className="text-muted text-[10.5px] block">SBP IDR (%)</span>
+                  <span className="font-bold text-navy">{tbp.sbpIdr}</span>
+                </div>
+                <div>
+                  <span className="text-muted text-[10.5px] block">SBP Valas (%)</span>
+                  <span className="font-bold text-navy">{tbp.sbpValas}</span>
+                </div>
+                <div>
+                  <span className="text-muted text-[10.5px] block">DM IDR (%)</span>
+                  <span className="font-bold text-navy">{tbp.dmIdr}</span>
+                </div>
+                <div>
+                  <span className="text-muted text-[10.5px] block">DM Valas (%)</span>
+                  <span className="font-bold text-navy">{tbp.dmValas}</span>
+                </div>
+                <div>
+                  <span className="text-muted text-[10.5px] block">TBP (%) IDR</span>
+                  <span className="font-bold text-navy">{tbp.tbpIdr}</span>
+                </div>
+                <div>
+                  <span className="text-muted text-[10.5px] block">TBP (%) Valas</span>
+                  <span className="font-bold text-navy">{tbp.tbpValas}</span>
+                </div>
+                <div>
+                  <span className="text-muted text-[10.5px] block">LPS Rate Rounded IDR (%)</span>
+                  <span className="font-bold text-navy">{tbp.lpsRateRoundedIdr}</span>
+                </div>
+                <div>
+                  <span className="text-muted text-[10.5px] block">LPS Rate Rounded Valas (%)</span>
+                  <span className="font-bold text-navy">{tbp.lpsRateRoundedValas}</span>
+                </div>
+                <div>
+                  <span className="text-muted text-[10.5px] block">LPS IDR Keputusan RDK (%)</span>
+                  <span className="font-extrabold text-orange">{tbp.lpsIdrKeputusanRdk}</span>
+                </div>
+                <div>
+                  <span className="text-muted text-[10.5px] block">LPS Valas Keputusan RDK (%)</span>
+                  <span className="font-extrabold text-orange">{tbp.lpsValasKeputusanRdk}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Kesimpulan dan Usulan Hasil Evaluasi Matrix Table */}
+            <div className="space-y-3">
+              <div className="bg-[#FFC000] text-ink py-2 px-3 text-center rounded-t-xl font-extrabold text-[13px]">
+                Kesimpulan dan Usulan Hasil Evaluasi
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                <div className="border border-amber-200 rounded-xl overflow-hidden bg-amber-50/20">
+                  <div className="bg-[#FFC000]/30 p-2 text-center font-bold text-[12px] text-ink border-b border-amber-200">
+                    TBP Rupiah Bank Umum
+                  </div>
+                  <div className="p-3 text-[11.5px] space-y-2 text-slate-700">
+                    {tbp.kesimpulanUsulan.tbpRupiahBankUmum.map((pt, idx) => (
+                      <p key={idx} className="leading-relaxed">
+                        <strong className="text-ink">{idx + 1}.</strong> {pt}
+                      </p>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="border border-amber-200 rounded-xl overflow-hidden bg-amber-50/20">
+                  <div className="bg-[#FFC000]/30 p-2 text-center font-bold text-[12px] text-ink border-b border-amber-200">
+                    TBP Valuta Asing Bank Umum
+                  </div>
+                  <div className="p-3 text-[11.5px] space-y-2 text-slate-700">
+                    {tbp.kesimpulanUsulan.tbpValasBankUmum.map((pt, idx) => (
+                      <p key={idx} className="leading-relaxed">
+                        <strong className="text-ink">{idx + 1}.</strong> {pt}
+                      </p>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="border border-amber-200 rounded-xl overflow-hidden bg-amber-50/20">
+                  <div className="bg-[#FFC000]/30 p-2 text-center font-bold text-[12px] text-ink border-b border-amber-200">
+                    TBP Rupiah BPR
+                  </div>
+                  <div className="p-3 text-[11.5px] space-y-2 text-slate-700">
+                    {tbp.kesimpulanUsulan.tbpRupiahBpr.map((pt, idx) => (
+                      <p key={idx} className="leading-relaxed">
+                        <strong className="text-ink">{idx + 1}.</strong> {pt}
+                      </p>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Usulan Rekomendasi Table & Masa Berlaku */}
+            <div className="space-y-3 pt-2">
+              <div className="bg-[#FFE699] p-3 rounded-xl text-[12px] text-ink font-medium leading-relaxed border border-amber-200">
+                Berdasarkan pertimbangan di atas, maka kami mengusulkan untuk <strong className="font-extrabold text-ink">menaikkan Tingkat Bunga Penjaminan Simpanan Rupiah di Bank Umum dan BPR masing-masing 50bps</strong>, serta <strong className="font-extrabold text-ink">mempertahankan Tingkat Bunga Penjaminan Simpanan Valas di Bank Umum</strong>, sebagai berikut:
+              </div>
+
+              <div className="overflow-x-auto rounded-xl border border-amber-300">
+                <table className="w-full text-[12px] text-center">
+                  <thead>
+                    <tr className="bg-[#FFC000] text-ink font-bold border-b border-amber-300">
+                      <th colSpan={2} className="p-2 border-r border-amber-300">Bank Umum</th>
+                      <th className="p-2">BPR</th>
+                    </tr>
+                    <tr className="bg-[#FFE699] text-ink font-bold border-b border-amber-300">
+                      <th className="p-1.5 border-r border-amber-300">Rupiah</th>
+                      <th className="p-1.5 border-r border-amber-300">Valuta Asing</th>
+                      <th className="p-1.5">Rupiah</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="bg-white font-extrabold text-[14px] text-navy">
+                      <td className="p-2.5 border-r border-amber-200">{tbp.usulanBunga.bankUmumRupiah}</td>
+                      <td className="p-2.5 border-r border-amber-200">{tbp.usulanBunga.bankUmumValas}</td>
+                      <td className="p-2.5">{tbp.usulanBunga.bprRupiah}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div className="bg-[#D9D9D9]/50 p-3 rounded-xl text-[11.5px] text-slate-700 leading-relaxed border border-slate-300 text-center font-medium">
+                Tingkat Bunga Penjaminan tersebut diusulkan <strong className="text-ink">mulai berlaku sejak 1 Juli sampai dengan 30 September 2026</strong>, dan selanjutnya akan dievaluasi secara berkala dan dapat diubah sewaktu-waktu dengan memperhatikan kondisi perekonomian, perbankan, dan pasar keuangan ke depan.
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Tab 2: Rincian Anggaran (if available) */}
         {activeTab === "Rincian Anggaran" && budget && (
           <div className="bg-white rounded-[24px] p-5 shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-slate-50 space-y-4 animate-in fade-in slide-in-from-bottom-2 duration-300">
@@ -340,37 +521,38 @@ export default function PersetujuanDetailPage({ params }: { params: Promise<{ id
           Tanya AI Atlas Tentang Persetujuan Ini
         </Link>
       </div>
+      </div>
 
-      {/* Floating Action Bar (Tolak, Revisi, Setuju - 3 Buttons matching exact UI) */}
-      <div className="fixed bottom-0 left-0 right-0 w-full bg-white/95 backdrop-blur-md border-t border-slate-100 p-4 pb-6 md:pb-4 flex justify-center z-30 shadow-[0_-8px_30px_rgba(0,0,0,0.08)]">
-        <div className="w-full max-w-[430px] flex gap-2.5 px-1">
+      {/* Floating Action Bar (Tolak, Revisi, Setuju) */}
+      <div className="fixed bottom-0 left-0 right-0 w-full bg-white/95 backdrop-blur-md border-t border-slate-100 p-4 pb-6 md:pb-4 flex justify-center md:justify-end md:pr-8 z-30 shadow-[0_-8px_30px_rgba(0,0,0,0.08)]">
+        <div className="w-full max-w-[430px] md:max-w-none md:w-auto flex gap-2.5 px-1 md:px-0">
           <button 
             onClick={() => handleOpenModal("Tolak")}
-            className="flex-1 bg-[#E53935] hover:bg-red-700 text-white font-bold py-3.5 rounded-full transition-all active:scale-95 text-[14px] shadow-sm flex items-center justify-center"
+            className="flex-1 md:flex-initial md:px-8 bg-[#E53935] hover:bg-red-700 text-white font-bold py-3.5 md:py-3 rounded-full transition-all active:scale-95 text-[14px] shadow-sm flex items-center justify-center cursor-pointer"
           >
             Tolak
           </button>
 
           <button 
             onClick={() => handleOpenModal("Revisi")}
-            className="flex-1 bg-white border border-slate-300 hover:bg-slate-50 text-ink font-bold py-3.5 rounded-full transition-all active:scale-95 text-[14px] shadow-sm flex items-center justify-center"
+            className="flex-1 md:flex-initial md:px-8 bg-white border border-slate-300 hover:bg-slate-50 text-ink font-bold py-3.5 md:py-3 rounded-full transition-all active:scale-95 text-[14px] shadow-sm flex items-center justify-center cursor-pointer"
           >
             Revisi
           </button>
 
           <button 
             onClick={() => handleOpenModal("Setuju")}
-            className="flex-1 bg-[#2C8548] hover:bg-emerald-700 text-white font-bold py-3.5 rounded-full transition-all active:scale-95 text-[14px] shadow-sm flex items-center justify-center"
+            className="flex-1 md:flex-initial md:px-10 bg-[#2C8548] hover:bg-emerald-700 text-white font-bold py-3.5 md:py-3 rounded-full transition-all active:scale-95 text-[14px] shadow-sm flex items-center justify-center cursor-pointer"
           >
             Setuju
           </button>
         </div>
       </div>
 
-      {/* Bottom Sheet Modal Konfirmasi */}
+      {/* Bottom Sheet / Desktop Centered Modal Konfirmasi */}
       {modalType && (
-        <div className="fixed inset-0 bg-black/50 z-50 flex items-end justify-center animate-in fade-in duration-200">
-          <div className="w-full max-w-[430px] bg-white rounded-t-[32px] p-6 space-y-5 animate-in slide-in-from-bottom duration-300 shadow-2xl relative">
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-end md:items-center justify-center animate-in fade-in duration-200 p-0 md:p-4">
+          <div className="w-full max-w-[430px] bg-white rounded-t-[32px] md:rounded-[32px] p-6 space-y-5 animate-in slide-in-from-bottom duration-300 shadow-2xl relative">
             
             {/* Grabber */}
             <div className="w-12 h-1.5 bg-slate-200 rounded-full mx-auto mb-2" />

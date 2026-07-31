@@ -20,6 +20,37 @@ export type DecisionBrief = {
   flag: 'normal' | 'anomali';
 };
 
+export type TbpData = {
+  workflowId: string;
+  modul: string;
+  createdDate: string;
+  approvalDate: string;
+  status: string;
+  workflowApprover: string[];
+  tanggalObservasi: string;
+  sbpIdr: string;
+  sbpValas: string;
+  dmIdr: string;
+  dmValas: string;
+  tbpIdr: string;
+  tbpValas: string;
+  lpsRateRoundedIdr: string;
+  lpsRateRoundedValas: string;
+  lpsIdrKeputusanRdk: string;
+  lpsValasKeputusanRdk: string;
+  usulanBunga: {
+    bankUmumRupiah: string;
+    bankUmumValas: string;
+    bprRupiah: string;
+    masaBerlaku: string;
+  };
+  kesimpulanUsulan: {
+    tbpRupiahBankUmum: string[];
+    tbpValasBankUmum: string[];
+    tbpRupiahBpr: string[];
+  };
+};
+
 export type Task = {
   id: string;
   jenis: JenisTask;
@@ -32,6 +63,7 @@ export type Task = {
   meta?: Record<string, string>;
   brief?: DecisionBrief;
   budget?: BudgetBreakdown;
+  tbpData?: TbpData;
   lampiran?: { nama: string; tipe: string }[];
 };
 
@@ -159,6 +191,72 @@ export const MOCK_TASKS: Task[] = [
     lampiran: [
       { nama: "Matriks_Mitigasi_ICS.pdf", tipe: "pdf" },
       { nama: "Laporan_Kepatuhan_Surabaya.pdf", tipe: "pdf" }
+    ]
+  },
+  {
+    id: "ICS-TBP-272248",
+    jenis: "ics",
+    judul: "Ringkasan Pengajuan TBP (Persetujuan Repository Kertas Kerja Periode 19 Jun 2026)",
+    pemohon: "AHMAD AZIZ",
+    sistem: "ICS",
+    prioritas: "hi",
+    sla: "19 Jun 2026",
+    brief: {
+      ringkasan: "Usulan penyesuaian Tingkat Bunga Penjaminan (TBP) Simpanan Rupiah di Bank Umum dan BPR dinaikkan 50bps (menjadi 3,75% dan 6,25%), sementara TBP Simpanan Valas di Bank Umum dipertahankan pada 2,00% untuk periode 1 Juli - 30 September 2026.",
+      kv: [
+        { k: "TBP IDR Bank Umum", v: "3,75% (+50 bps)" },
+        { k: "TBP IDR BPR", v: "6,25% (+50 bps)" },
+        { k: "TBP Valas Bank Umum", v: "2,00% (Tetap)" },
+        { k: "Masa Berlaku", v: "1 Jul - 30 Sep 2026" }
+      ],
+      sitasi: "Hasil RDK LPS Juni 2026 & Peraturan LPS No. 2/2024 tentang Penetapan Tingkat Bunga Penjaminan.",
+      flag: "normal"
+    },
+    tbpData: {
+      workflowId: "272248",
+      modul: "Tingkat Bunga Penjaminan",
+      createdDate: "22/06/2026",
+      approvalDate: "22/06/2026",
+      status: "Approved",
+      workflowApprover: ["AHMAD AZIZ", "Ahmad Subhan Irani"],
+      tanggalObservasi: "19 May 2026 - 19 Jun 2026",
+      sbpIdr: "3.28%",
+      sbpValas: "2.72%",
+      dmIdr: "0.75%",
+      dmValas: "0.10%",
+      tbpIdr: "4.03%",
+      tbpValas: "2.82%",
+      lpsRateRoundedIdr: "4.00%",
+      lpsRateRoundedValas: "2.75%",
+      lpsIdrKeputusanRdk: "3.75%",
+      lpsValasKeputusanRdk: "2.00%",
+      usulanBunga: {
+        bankUmumRupiah: "3,75%",
+        bankUmumValas: "2,00%",
+        bprRupiah: "6,25%",
+        masaBerlaku: "1 Juli sampai dengan 30 September 2026"
+      },
+      kesimpulanUsulan: {
+        tbpRupiahBankUmum: [
+          "SBP Rupiah menunjukkan tren meningkat dengan spread SBP+DM melebar 53bps dan diproyeksikan melebar menjadi 76bps di atas TBP pada Sep-26. Diperlukan penyesuaian TBP Rupiah agar lebih kredibel sebagai acuan penetapan suku bunga wajar di samping memitigasi risiko konversi akibat faktor disparitas suku bunga dan pelemahan nilai tukar.",
+          "Cakupan penjaminan masih memadai namun kembali melandai (93,53%) dan diproyeksikan rentan tertekan turun ke 92,37%; Sep-26 jika tidak dilakukan penyesuaian TBP.",
+          "DPK Rupiah tumbuh lebih tinggi di ikuti pertumbuhan kredit yang membaik. Proyeksi ke depan, intermediasi potensial termoderasi dipengaruhi faktor kinerja ekonomi yang belum optimal (DPK 7,81% yoy; Kredit 9,43% yoy; Sep-26)."
+        ],
+        tbpValasBankUmum: [
+          "SBP valas bertahan di level tinggi dengan spread SBP+DM mencapai 82bps dan diproyeksikan konsisten meningkat menjadi sebesar 106bps di atas TBP pada Sep-26. Kondisi ini mengindikasikan bahwa TBP Valas juga kurang kredibel dalam merespon pergerakan SBP lintas bank sekaligus acuan bagi bank menentukan suku bunga wajar.",
+          "Cakupan penjaminan masih memadai dengan level (95,64%), namun diproyeksikan dapat mengalami penurunan terbatas ke level 95,48% pada Sep-26.",
+          "DPK valas relatif tumbuh stabil dengan menunjukkan tren meningkat di atas kredit valas. Proyeksi ke depan, intermediasi melandai dipengaruhi pertumbuhan DPK yang tinggi sementara kredit melambat (DPK: 11,19%; Kredit: 4,37%; Sep-26)."
+        ],
+        tbpRupiahBpr: [
+          "Rata-rata suku bunga BPR (SB BPR) turun terbatas ke level 5,18% atau masih berada 82bps di bawah TBP. Kenaikan SBP Rupiah Bank Umum menyebabkan spread SB BPR dan Bank umum menyempit ke level 196bps. Sehingga peningkatan TBP di BPR tetap perlu sejalan dengan peningkatan TBP di Bank Umum.",
+          "Cakupan penjaminan BPR konsisten terjaga tinggi (>90%) dari sisi rekening.",
+          "Kinerja intermediasi membaik namun funding gap cenderung volatile dengan Tingkat likuiditas yang ketat. Ke depan, BPR tetap membutuhkan ruang fleksibilitas dan daya saing yang memadai dalam menghimpun DPK."
+        ]
+      }
+    },
+    lampiran: [
+      { nama: "Repository_Kertas_Kerja_TBP.pdf", tipe: "pdf" },
+      { nama: "Hasil_Evaluasi_Suku_Bunga_LPS.pdf", tipe: "pdf" }
     ]
   },
   // EUIS Approval Items
