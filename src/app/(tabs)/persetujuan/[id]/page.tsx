@@ -516,7 +516,10 @@ export default function PersetujuanDetailPage({ params }: { params: Promise<{ id
         )}
 
         {/* Action Button to AI */}
-        <Link href="/ai" className="w-full bg-[#ECEBFB] hover:bg-[#E0DEFA] border border-[#4C46D9]/30 text-[#4C46D9] font-bold py-3.5 rounded-2xl flex items-center justify-center gap-2 transition-all shadow-sm">
+        <Link 
+          href={`/ai?q=${encodeURIComponent(`Apakah pengajuan ${id} (${title}) dari ${pemohon} sejumlah ${totalAmount ? 'Rp ' + totalAmount.toLocaleString('id-ID') : 'sesuai nota'} sudah sesuai aturan LPS?`)}`}
+          className="w-full bg-[#ECEBFB] hover:bg-[#E0DEFA] border border-[#4C46D9]/30 text-[#4C46D9] font-bold py-3.5 rounded-2xl flex items-center justify-center gap-2 transition-all shadow-sm"
+        >
           <Sparkles size={18} />
           Tanya AI Atlas Tentang Persetujuan Ini
         </Link>

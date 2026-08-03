@@ -104,6 +104,9 @@ export type Berita = {
   penulis?: string;
   tipe?: 'internal' | 'eksternal';
   pinned?: boolean;
+  gambar?: string;
+  isi?: string[];
+  officialUrl?: string;
 };
 
 export type DashboardData = {
@@ -504,10 +507,11 @@ export const MOCK_BERITA: Berita[] = [
     kategori: "Berita Internal",
     tanggal: "13 Jul 2026",
     waktu: "20:02",
-    ringkas: "Ringkasan tidak tersedia",
+    ringkas: "Ringkasan agenda koordinasi internal dalam rangka persiapan Rapat Pimpinan Lembaga Penjamin Simpanan.",
     penulis: "info.sdm@lps.go.id",
     tipe: "internal",
-    pinned: true
+    pinned: true,
+    gambar: "https://lps.go.id/konten/unggahan/2023/02/logo-lps-header-480x50-dark.png"
   },
   {
     id: "B-002",
@@ -515,7 +519,7 @@ export const MOCK_BERITA: Berita[] = [
     kategori: "Berita Internal",
     tanggal: "13 Jul 2026",
     waktu: "14:27",
-    ringkas: "Halo Insan LPS,Dalam upaya mendukung budaya inovasi di Lembaga Penjamin Simpanan, yuk dukung tim inovasi favoritmu dan jadilah bagian dari perjalanan dalam mewujudkan budaya kerja inovatif.",
+    ringkas: "Halo Insan LPS, Dalam upaya mendukung budaya inovasi di Lembaga Penjamin Simpanan, yuk dukung tim inovasi favoritmu dan jadilah bagian dari perjalanan dalam mewujudkan budaya kerja inovatif.",
     penulis: "idiclc@lps.go.id",
     tipe: "internal"
   },
@@ -525,29 +529,89 @@ export const MOCK_BERITA: Berita[] = [
     kategori: "Berita Internal",
     tanggal: "10 Jul 2026",
     waktu: "10:03",
-    ringkas: "Ringkasan tidak tersedia",
+    ringkas: "Penguatan manajemen kearsipan dan digitalisasi dokumen tata kelola di lingkungan Lembaga Penjamin Simpanan.",
     penulis: "info.glu@lps.go.id",
     tipe: "internal"
   },
   {
-    id: "B-004",
-    judul: "LPS Pertahankan Tingkat Bunga Penjaminan untuk Jaga Stabilitas Perbankan",
-    kategori: "Berita Eksternal",
-    tanggal: "10 Mei 2024",
-    waktu: "09:30",
-    ringkas: "Sepanjang tahun 2024, LPS mempertahankan kebijakan bunga penjaminan yang mendukung stabilitas sistem keuangan sambil tetap membuka peluang penyesuaian.",
+    id: "EXT-001",
+    judul: "LPS Lantik Sejumlah Pejabat Baru, Perkuat Organisasi melalui Sistem Meritokrasi yang Independen",
+    kategori: "Siaran Pers",
+    tanggal: "21 Jul 2026",
+    waktu: "16:53 WIB",
+    ringkas: "LPS melantik jajaran pejabat baru guna memperkuat jajaran kepemimpinan organisasi dalam melayani perbankan dan masyarakat melalui sistem meritokrasi yang independen.",
     penulis: "Humas LPS",
-    tipe: "eksternal"
+    tipe: "eksternal",
+    gambar: "https://lps.go.id/konten/unggahan/2026/07/1-Pelantikan.jpg-1.jpeg",
+    officialUrl: "https://lps.go.id/lps-lantik-sejumlah-pejabat-baru-perkuat-organisasi-melalui-sistem-meritokrasi-yang-independen/",
+    isi: [
+      "LPS – Jakarta, 21 Juli 2026. Lembaga Penjamin Simpanan (LPS) melantik sejumlah pejabat baru di lingkungan organisasi. Pelantikan dilakukan oleh Ketua Dewan Komisioner LPS, Anggito Abimanyu, pada Selasa (21/7), sebagai bagian dari upaya memperkuat organisasi guna mendukung pelaksanaan tugas dan fungsi LPS melalui penerapan sistem meritokrasi yang independen.",
+      "Pada kesempatan tersebut, LPS melantik tiga pejabat Direktur Eksekutif setingkat eselon I. Dari jumlah tersebut, dua pejabat memperoleh promosi jabatan, yaitu Hafidz Ashady sebagai Direktur Eksekutif Keuangan dan Investasi LPS serta R. Rizka S. Kurniawan sebagai Direktur Eksekutif Perencanaan Strategis, Penganggaran, dan Riset LPS. Sementara itu, satu pejabat menjalani mutasi jabatan, yakni Ridwan Nasution sebagai Direktur Eksekutif Surveilans, Pemeriksaan, dan Pengaturan Bank LPS.",
+      "Selain itu, LPS juga melantik lima pejabat Direktur Group setingkat eselon II. Dua di antaranya merupakan mutasi jabatan, yaitu Tri Wahyuni sebagai Kepala Satuan Kerja Audit Internal LPS dan Sofyan Baehaqie sebagai Direktur Group Resolusi dan Hubungan Investor Bank LPS. Adapun tiga pejabat lainnya memperoleh promosi jabatan, yaitu Johan Krisnamurti sebagai Direktur Group Penanganan Klaim Bank, Heady Anggoro Mukti sebagai Pelaksana Tugas (Plt.) Direktur Group Pengaturan Penjaminan dan Resolusi Bank, serta Arsandi Akhmad sebagai Pelaksana Tugas (Plt.) Direktur Group Pengembangan dan Operasional Teknologi Informasi.",
+      "Pelantikan tersebut turut dihadiri oleh seluruh anggota Dewan Komisioner LPS, termasuk Wakil Ketua Dewan Komisioner LPS yang membidangi sumber daya manusia, hukum, keuangan, serta pembidangan internal lainnya.",
+      "Usai pelantikan, Wakil Ketua Dewan Komisioner LPS, Farid Azhar Nasution, menegaskan bahwa promosi dan mutasi jabatan merupakan bagian penting dari pengembangan organisasi sekaligus bentuk apresiasi atas kinerja pegawai.",
+      "“Kami meyakini bahwa organisasi yang kuat dibangun oleh insan-insan terbaik yang diberikan kesempatan untuk terus berkembang. Karena itu, setiap promosi dan mutasi di LPS dilaksanakan berdasarkan prinsip meritokrasi sebagai bentuk penghargaan atas kompetensi, integritas, dan kinerja, sekaligus sebagai upaya menyiapkan pemimpin-pemimpin LPS di masa depan,” ujar Farid Azhar Nasution di Kantor Pusat LPS, Jakarta, Selasa (21/7/2026)."
+    ]
   },
   {
-    id: "B-005",
-    judul: "LPS Catat Penutupan BPR Tahun 2024 Capai 20 Bank",
-    kategori: "Berita Eksternal",
-    tanggal: "02 Jun 2024",
-    waktu: "14:15",
-    ringkas: "LPS secara konsisten melakukan proses rekonsiliasi dan verifikasi untuk membayarkan klaim penjaminan simpanan nasabah dari bank-bank tersebut agar prosesnya berjalan cepat.",
-    penulis: "Media Eksternal",
-    tipe: "eksternal"
+    id: "EXT-005",
+    judul: "Perubahan UU P2SK Perkuat Kewenangan LPS dalam Penanganan Bank dan Perusahaan Asuransi",
+    kategori: "Hukum & Regulasi",
+    tanggal: "09 Jul 2026",
+    waktu: "15:20 WIB",
+    ringkas: "Penguatan kewenangan LPS dalam kerangka UU P2SK memperkokoh jaring pengaman sistem keuangan (JPSK) nasional dan koordinasi antar anggota KSSK.",
+    penulis: "Divisi Hukum LPS",
+    tipe: "eksternal",
+    gambar: "https://lps.go.id/konten/unggahan/2026/07/media-jatim-1-506x285.jpeg",
+    officialUrl: "https://lps.go.id/perubahan-uu-p2sk-perkuat-kewenangan-lps-dalam-penanganan-bank-dan-perusahaan-asuransi/",
+    isi: [
+      "LPS – Surabaya. Perubahan Undang-Undang Nomor 4 Tahun 2023 tentang Pengembangan dan Penguatan Sektor Keuangan (UU P2SK) melalui Undang-Undang Nomor 4 Tahun 2026 memperkuat kewenangan Lembaga Penjamin Simpanan (LPS) dalam melaksanakan fungsi penjaminan dan resolusi bank, serta penanganan perusahaan asuransi. Penguatan tersebut menjadi bagian dari penyempurnaan kerangka penanganan lembaga jasa keuangan dalam rangka menjaga stabilitas sistem keuangan nasional.",
+      "Dalam sektor perbankan, perubahan UU P2SK memberikan kewenangan yang lebih luas kepada LPS dalam menangani Bank Dalam Resolusi (BDR), termasuk sebelum ditetapkannya metode penyelesaian. Setelah menerima pemberitahuan tertulis dari Otoritas Jasa Keuangan (OJK) mengenai penetapan suatu bank sebagai BDR, LPS dapat melakukan berbagai tindakan penanganan sesuai kewenangan yang diatur dalam undang-undang.",
+      "Selain kewenangan penanganan perbankan, perubahan UU P2SK juga memperluas fungsi LPS melalui penyelenggaraan Program Penjaminan Polis (PPP) asuransi. Program tersebut bertujuan untuk melindungi pemegang polis, tertanggung, atau peserta dari risiko kerugian akibat perusahaan asuransi yang dicabut izin usahanya. Penguatan fungsi tersebut melengkapi peran LPS sebagai jaring pengaman sektor keuangan nasional.",
+      "LPS memandang penguatan kewenangan melalui perubahan UU P2SK akan mendukung pelaksanaan mandat lembaga secara lebih efektif dalam menjaga kepercayaan masyarakat terhadap sistem keuangan. Ke depannya, LPS akan terus berkoordinasi dengan OJK, Bank Indonesia, Kementerian Keuangan, dan pemangku kepentingan terkait untuk memastikan implementasi ketentuan dalam UU P2SK berjalan secara efektif dan mendukung stabilitas sistem keuangan nasional."
+    ]
+  },
+  {
+    id: "EXT-006",
+    judul: "Perkembangan Indeks Menabung Konsumen dan Indeks Kepercayaan Konsumen (Juni 2026)",
+    kategori: "Riset & Data",
+    tanggal: "08 Jul 2026",
+    waktu: "10:58 WIB",
+    ringkas: "Hasil survei LPS menunjukkan Indeks Menabung Konsumen (IMK) dan Indeks Kepercayaan Konsumen (IKK) berada di level optimis, mengindikasikan ketahanan finansial rumah tangga yang kuat.",
+    penulis: "Group Riset LPS",
+    tipe: "eksternal",
+    gambar: "https://lps.go.id/konten/unggahan/2026/06/IMG-8008-768x512.jpg",
+    officialUrl: "https://lps.go.id/perkembangan-indeks-menabung-konsumen-dan-indeks-kepercayaan-konsumen-juni-2026/",
+    isi: [
+      "LPS – Jakarta, 8 Juli 2026. Hasil Survei Konsumen dan Perekonomian (SKP) LPS menunjukkan bahwa Indeks Menabung Konsumen (IMK) pada bulan Juni 2026 menguat 1,6 poin dibandingkan bulan sebelumnya menjadi 81,7. Komponen Indeks Kemauan Menabung (IKMM) naik 3,5 poin ke level 90,2, sementara Indeks Kemampuan Menabung (IKPM) sedikit menurun sebesar 0,4 poin ke level 73,2. Peningkatan kemauan menabung konsumen terutama tecermin dari membaiknya persepsi terhadap waktu yang tepat untuk menabung, sejalan dengan kebutuhan persiapan pengeluaran pendidikan dalam beberapa bulan mendatang.",
+      "Peningkatan IKMM tecermin dari naiknya persentase responden yang menilai bahwa saat ini merupakan waktu yang tepat untuk menabung, yaitu dari 25,5% pada Mei 2026 menjadi 27,0% pada Juni 2026. Selain itu, persentase responden yang menyatakan bahwa tiga bulan mendatang adalah waktu yang tepat untuk menabung juga meningkat dari 33,7% pada Mei 2026 menjadi 34,8% pada Juni 2026.",
+      "Sementara itu, penurunan IKPM terjadi karena menurunnya porsi responden yang menyatakan sering menabung, yakni dari 18,9% di bulan Mei 2026 menjadi 17,1% di bulan Juni 2026. Meskipun demikian, di periode yang sama, porsi responden yang menilai bahwa jumlah yang ditabung lebih kecil dari yang direncanakan juga mengalami penurunan, yakni dari 39,1% menjadi 37,1%.",
+      "Berdasarkan kelompok pendapatan rumah tangga (RT), IMK pada mayoritas kelompok pendapatan meningkat pada Juni 2026 dibandingkan bulan sebelumnya. Kenaikan IMK paling besar terlihat pada kelompok RT berpendapatan hingga Rp1,5 juta per bulan, yakni sebesar 5,0 poin, diikuti RT berpendapatan di atas Rp7 juta per bulan sebesar 2,4 poin, serta RT berpendapatan di atas Rp3 juta hingga Rp7 juta per bulan sebesar 1,0 poin."
+    ]
+  },
+  {
+    id: "EXT-002",
+    judul: "Simpanan Nasabah Aman, Total Rp30 Milyar Lebih Telah Dibayarkan LPS Kepada Nasabah BPRS Hasanah Mandiri",
+    kategori: "Siaran Pers",
+    tanggal: "21 Jul 2026",
+    waktu: "14:30 WIB",
+    ringkas: "Proses rekonsiliasi dan verifikasi simpanan nasabah BPRS Hasanah Mandiri berjalan cepat. LPS telah membayarkan klaim simpanan layak bayar mencapai lebih dari Rp30 Miliar.",
+    penulis: "Divisi Penanganan Klaim",
+    tipe: "eksternal",
+    gambar: "https://lps.go.id/konten/unggahan/2026/07/pembayaran-tahap-1-bprs-hasanah-mandiri-900x600.jpeg",
+    officialUrl: "https://lps.go.id/berita/"
+  },
+  {
+    id: "EXT-003",
+    judul: "LPS Perkuat Persiapan Menuju Aktivasi Program Penjaminan Polis Asuransi",
+    kategori: "Kebijakan & Edukasi",
+    tanggal: "19 Jul 2026",
+    waktu: "10:15 WIB",
+    ringkas: "Sesuai dengan amanat UU P2SK, LPS terus mematangkan infrastruktur IT, penyusunan Peraturan Lembaga (PLPS), serta kesiapan SDM menjelang pelaksanaan Program Penjaminan Polis.",
+    penulis: "Direktorat Penjaminan Polis",
+    tipe: "eksternal",
+    gambar: "https://lps.go.id/konten/unggahan/2026/06/Penetapan-Tingkat-Bunga-Penjaminan-1280x678.png",
+    officialUrl: "https://lps.go.id/berita/"
   }
 ];
 

@@ -17,8 +17,6 @@ type EventItem = {
   title: string;
   location: string;
   category: EventCategory;
-  color: string;
-  bg: string;
   pic: string;
   status: "Lancar" | "Mendekati SLA" | "Selesai";
 };
@@ -63,27 +61,27 @@ const DATES = [
 ];
 
 const MOCK_EVENTS: EventItem[] = [
-  { id: "e01", date: 8, dayName: "Rabu", month: "Juli", year: 2026, time: "09:00 WIB", title: "Rapat Persiapan Rekapitulasi Klaim BPR", location: "Ruang Rapat 2 - Lt. 3", category: "klaim", color: "text-emerald-800", bg: "bg-emerald-50 border-emerald-200", pic: "Hendra Wijaya", status: "Selesai" },
-  { id: "e02", date: 8, dayName: "Rabu", month: "Juli", year: 2026, time: "14:00 WIB", title: "Penelaahan Aturan Peraturan Lembaga (PLPS)", location: "Ruang Hukum Lt. 5", category: "hukum", color: "text-amber-800", bg: "bg-amber-50 border-amber-200", pic: "Tim Divisi GRC", status: "Selesai" },
-  { id: "e03", date: 11, dayName: "Sabtu", month: "Juli", year: 2026, time: "10:00 WIB", title: "Sosialisasi Edukasi Penjaminan Simpanan Nasabah", location: "Grand Ballroom Hotel Indonesia", category: "rapat", color: "text-blue-800", bg: "bg-blue-50 border-blue-200", pic: "Sintia Dewi", status: "Selesai" },
-  { id: "e04", date: 15, dayName: "Rabu", month: "Juli", year: 2026, time: "09:00 WIB", title: "Konsinyering Tim Rekonsiliasi & Verifikasi Bank CIU", location: "Ruang Rapat Utama", category: "klaim", color: "text-emerald-800", bg: "bg-emerald-50 border-emerald-200", pic: "Pak Budi Santoso", status: "Selesai" },
-  { id: "e05", date: 15, dayName: "Rabu", month: "Juli", year: 2026, time: "13:30 WIB", title: "Pembahasan Nota Dinas Pengadaan Perangkat IT", location: "Ruang Kerja Komisioner", category: "it", color: "text-purple-800", bg: "bg-purple-50 border-purple-200", pic: "Divisi SI", status: "Selesai" },
-  { id: "e1", date: 16, dayName: "Kamis", month: "Juli", year: 2026, time: "08:30 WIB", title: "Briefing Pagi & Standup Tim Penanganan Klaim", location: "Ruang Rapat 1 - Lt. 4", category: "klaim", color: "text-emerald-700", bg: "bg-emerald-50 border-emerald-200", pic: "Pak Budi Santoso", status: "Selesai" },
-  { id: "e2", date: 16, dayName: "Kamis", month: "Juli", year: 2026, time: "09:30 WIB", title: "Konsinyering GRC & Penelaahan Dokumen Peraturan", location: "Hotel Tentrem Yogyakarta", category: "hukum", color: "text-amber-800", bg: "bg-amber-50 border-amber-200", pic: "Tim Divisi GRC", status: "Lancar" },
-  { id: "e3", date: 16, dayName: "Kamis", month: "Juli", year: 2026, time: "11:30 WIB", title: "Review Redaksi Nota Dinas & SPJ Perjalanan Dinas", location: "Ruang Kerja Komisioner", category: "rapat", color: "text-blue-800", bg: "bg-blue-50 border-blue-200", pic: "Andi Pratama", status: "Lancar" },
-  { id: "e4", date: 16, dayName: "Kamis", month: "Juli", year: 2026, time: "14:00 WIB", title: "Rapat Pleno Pembayaran Klaim Bank CIU", location: "Auditorium Utama LPS", category: "klaim", color: "text-indigo-800", bg: "bg-indigo-50 border-indigo-200", pic: "Direksi Klaim", status: "Mendekati SLA" },
-  { id: "e5", date: 16, dayName: "Kamis", month: "Juli", year: 2026, time: "16:30 WIB", title: "Evaluasi Kinerja Sistem SCV BPR & Integrasi APOLO", location: "Online (Microsoft Teams)", category: "it", color: "text-purple-800", bg: "bg-purple-50 border-purple-200", pic: "Divisi Sistem Informasi", status: "Lancar" },
-  { id: "e6", date: 16, dayName: "Kamis", month: "Juli", year: 2026, time: "19:00 WIB", title: "Laporan Rekapitulasi Keberatan Nasabah", location: "Ruang Rapat Direksi", category: "hukum", color: "text-rose-800", bg: "bg-rose-50 border-rose-200", pic: "Tim Advokasi", status: "Lancar" },
-  { id: "e7", date: 17, dayName: "Jumat", month: "Juli", year: 2026, time: "08:00 WIB", title: "Sosialisasi Ketentuan Voucher Taksi & Lembur Pegawai", location: "Auditorium Lt. 3", category: "rapat", color: "text-blue-800", bg: "bg-blue-50 border-blue-200", pic: "SDM & Logistik", status: "Lancar" },
-  { id: "e8", date: 17, dayName: "Jumat", month: "Juli", year: 2026, time: "10:00 WIB", title: "Audiensi Pengurus BPR Terkait Single Customer View", location: "Ruang Rapat Utama", category: "klaim", color: "text-emerald-800", bg: "bg-emerald-50 border-emerald-200", pic: "Tim SCV BPR", status: "Lancar" },
-  { id: "e9", date: 17, dayName: "Jumat", month: "Juli", year: 2026, time: "13:30 WIB", title: "Monitoring Penyerapan Pagu Anggaran Q3", location: "Ruang Rapat Keuangan", category: "rapat", color: "text-teal-800", bg: "bg-teal-50 border-teal-200", pic: "Divisi Keuangan", status: "Lancar" },
-  { id: "e10", date: 17, dayName: "Jumat", month: "Juli", year: 2026, time: "15:30 WIB", title: "Serah Terima Aset IT Dinas & Pembaruan Sertifikat", location: "Helpdesk IT Center", category: "it", color: "text-purple-800", bg: "bg-purple-50 border-purple-200", pic: "Tim Helpdesk IT", status: "Lancar" },
-  { id: "e12", date: 18, dayName: "Sabtu", month: "Juli", year: 2026, time: "09:00 WIB", title: "Workshop Peningkatan Kapasitas Platform ATLAS", location: "Training Hall Lt. 5", category: "it", color: "text-purple-800", bg: "bg-purple-50 border-purple-200", pic: "Tim Pelatihan", status: "Lancar" },
-  { id: "e14", date: 20, dayName: "Senin", month: "Juli", year: 2026, time: "08:30 WIB", title: "Executive Summary Presentation to Board of Commissioners", location: "Board Room Lt. 20", category: "rapat", color: "text-blue-800", bg: "bg-blue-50 border-blue-200", pic: "Kepala Divisi", status: "Lancar" },
-  { id: "e15", date: 20, dayName: "Senin", month: "Juli", year: 2026, time: "10:30 WIB", title: "Penelaahan Hukum Sengketa Bank Gagal & Litigasi", location: "Ruang Rapat Hukum", category: "hukum", color: "text-amber-800", bg: "bg-amber-50 border-amber-200", pic: "Tim Advokasi", status: "Lancar" },
-  { id: "e16", date: 22, dayName: "Rabu", month: "Juli", year: 2026, time: "09:00 WIB", title: "Diskusi Integrasi On-Premise AI Knowledge Hub", location: "Ruang AI Innovation Center", category: "it", color: "text-indigo-800", bg: "bg-indigo-50 border-indigo-200", pic: "Tim AI ATLAS", status: "Lancar" },
-  { id: "e18", date: 28, dayName: "Selasa", month: "Juli", year: 2026, time: "08:30 WIB", title: "Evaluasi Penyerapan Pagu Anggaran Operasional Q3", location: "Ruang Keuangan", category: "rapat", color: "text-teal-800", bg: "bg-teal-50 border-teal-200", pic: "Bendahara", status: "Lancar" },
-  { id: "e20", date: 30, dayName: "Kamis", month: "Juli", year: 2026, time: "09:00 WIB", title: "Closing Meeting Rapat Kerja Bulanan LPS", location: "Grand Ballroom LPS", category: "rapat", color: "text-indigo-800", bg: "bg-indigo-50 border-indigo-200", pic: "Sekretariat Lembaga", status: "Lancar" },
+  { id: "e01", date: 8, dayName: "Rabu", month: "Juli", year: 2026, time: "09:00 WIB", title: "Rapat Persiapan Rekapitulasi Klaim BPR", location: "Ruang Rapat 2 - Lt. 3", category: "klaim", pic: "Hendra Wijaya", status: "Selesai" },
+  { id: "e02", date: 8, dayName: "Rabu", month: "Juli", year: 2026, time: "14:00 WIB", title: "Penelaahan Aturan Peraturan Lembaga (PLPS)", location: "Ruang Hukum Lt. 5", category: "hukum", pic: "Tim Divisi GRC", status: "Selesai" },
+  { id: "e03", date: 11, dayName: "Sabtu", month: "Juli", year: 2026, time: "10:00 WIB", title: "Sosialisasi Edukasi Penjaminan Simpanan Nasabah", location: "Grand Ballroom Hotel Indonesia", category: "rapat", pic: "Sintia Dewi", status: "Selesai" },
+  { id: "e04", date: 15, dayName: "Rabu", month: "Juli", year: 2026, time: "09:00 WIB", title: "Konsinyering Tim Rekonsiliasi & Verifikasi Bank CIU", location: "Ruang Rapat Utama", category: "klaim", pic: "Pak Budi Santoso", status: "Selesai" },
+  { id: "e05", date: 15, dayName: "Rabu", month: "Juli", year: 2026, time: "13:30 WIB", title: "Pembahasan Nota Dinas Pengadaan Perangkat IT", location: "Ruang Kerja Komisioner", category: "it", pic: "Divisi SI", status: "Selesai" },
+  { id: "e1", date: 16, dayName: "Kamis", month: "Juli", year: 2026, time: "08:30 WIB", title: "Briefing Pagi & Standup Tim Penanganan Klaim", location: "Ruang Rapat 1 - Lt. 4", category: "klaim", pic: "Pak Budi Santoso", status: "Selesai" },
+  { id: "e2", date: 16, dayName: "Kamis", month: "Juli", year: 2026, time: "09:30 WIB", title: "Konsinyering GRC & Penelaahan Dokumen Peraturan", location: "Hotel Tentrem Yogyakarta", category: "hukum", pic: "Tim Divisi GRC", status: "Lancar" },
+  { id: "e3", date: 16, dayName: "Kamis", month: "Juli", year: 2026, time: "11:30 WIB", title: "Review Redaksi Nota Dinas & SPJ Perjalanan Dinas", location: "Ruang Kerja Komisioner", category: "rapat", pic: "Andi Pratama", status: "Lancar" },
+  { id: "e4", date: 16, dayName: "Kamis", month: "Juli", year: 2026, time: "14:00 WIB", title: "Rapat Pleno Pembayaran Klaim Bank CIU", location: "Auditorium Utama LPS", category: "klaim", pic: "Direksi Klaim", status: "Mendekati SLA" },
+  { id: "e5", date: 16, dayName: "Kamis", month: "Juli", year: 2026, time: "16:30 WIB", title: "Evaluasi Kinerja Sistem SCV BPR & Integrasi APOLO", location: "Online (Microsoft Teams)", category: "it", pic: "Divisi Sistem Informasi", status: "Lancar" },
+  { id: "e6", date: 16, dayName: "Kamis", month: "Juli", year: 2026, time: "19:00 WIB", title: "Laporan Rekapitulasi Keberatan Nasabah", location: "Ruang Rapat Direksi", category: "hukum", pic: "Tim Advokasi", status: "Lancar" },
+  { id: "e7", date: 17, dayName: "Jumat", month: "Juli", year: 2026, time: "08:00 WIB", title: "Sosialisasi Ketentuan Voucher Taksi & Lembur Pegawai", location: "Auditorium Lt. 3", category: "rapat", pic: "SDM & Logistik", status: "Lancar" },
+  { id: "e8", date: 17, dayName: "Jumat", month: "Juli", year: 2026, time: "10:00 WIB", title: "Audiensi Pengurus BPR Terkait Single Customer View", location: "Ruang Rapat Utama", category: "klaim", pic: "Tim SCV BPR", status: "Lancar" },
+  { id: "e9", date: 17, dayName: "Jumat", month: "Juli", year: 2026, time: "13:30 WIB", title: "Monitoring Penyerapan Pagu Anggaran Q3", location: "Ruang Rapat Keuangan", category: "rapat", pic: "Divisi Keuangan", status: "Lancar" },
+  { id: "e10", date: 17, dayName: "Jumat", month: "Juli", year: 2026, time: "15:30 WIB", title: "Serah Terima Aset IT Dinas & Pembaruan Sertifikat", location: "Helpdesk IT Center", category: "it", pic: "Tim Helpdesk IT", status: "Lancar" },
+  { id: "e12", date: 18, dayName: "Sabtu", month: "Juli", year: 2026, time: "09:00 WIB", title: "Workshop Peningkatan Kapasitas Platform ATLAS", location: "Training Hall Lt. 5", category: "it", pic: "Tim Pelatihan", status: "Lancar" },
+  { id: "e14", date: 20, dayName: "Senin", month: "Juli", year: 2026, time: "08:30 WIB", title: "Executive Summary Presentation to Board of Commissioners", location: "Board Room Lt. 20", category: "rapat", pic: "Kepala Divisi", status: "Lancar" },
+  { id: "e15", date: 20, dayName: "Senin", month: "Juli", year: 2026, time: "10:30 WIB", title: "Penelaahan Hukum Sengketa Bank Gagal & Litigasi", location: "Ruang Rapat Hukum", category: "hukum", pic: "Tim Advokasi", status: "Lancar" },
+  { id: "e16", date: 22, dayName: "Rabu", month: "Juli", year: 2026, time: "09:00 WIB", title: "Diskusi Integrasi On-Premise AI Knowledge Hub", location: "Ruang AI Innovation Center", category: "it", pic: "Tim AI ATLAS", status: "Lancar" },
+  { id: "e18", date: 28, dayName: "Selasa", month: "Juli", year: 2026, time: "08:30 WIB", title: "Evaluasi Penyerapan Pagu Anggaran Operasional Q3", location: "Ruang Keuangan", category: "rapat", pic: "Bendahara", status: "Lancar" },
+  { id: "e20", date: 30, dayName: "Kamis", month: "Juli", year: 2026, time: "09:00 WIB", title: "Closing Meeting Rapat Kerja Bulanan LPS", location: "Grand Ballroom LPS", category: "rapat", pic: "Sekretariat Lembaga", status: "Lancar" },
 ];
 
 export default function AgendaPage() {
@@ -102,13 +100,14 @@ export default function AgendaPage() {
       <div className="w-full">
         <AppBar title="Agenda & Kalender" showBack />
 
+        {/* Tab Switcher */}
         <div className="px-6 flex items-center justify-center my-4">
-          <div className="bg-white p-1.5 rounded-2xl flex gap-1 shadow-sm border border-slate-200/60 w-full max-w-[340px]">
+          <div className="bg-white p-1.5 rounded-2xl flex gap-1 shadow-xs border border-slate-200/80 w-full max-w-[360px]">
             <button 
               onClick={() => setActiveTab('today')}
               className={cn(
                 "flex-1 py-2.5 rounded-xl text-[13px] font-bold transition-all text-center cursor-pointer",
-                activeTab === 'today' ? "bg-[#12294D] text-white shadow-sm" : "text-muted hover:text-ink"
+                activeTab === 'today' ? "bg-navy text-white shadow-xs" : "text-slate-600 hover:text-ink hover:bg-slate-50"
               )}
             >
               Hari Ini (16 Jul)
@@ -117,7 +116,7 @@ export default function AgendaPage() {
               onClick={() => setActiveTab('calendar')}
               className={cn(
                 "flex-1 py-2.5 rounded-xl text-[13px] font-bold transition-all text-center cursor-pointer",
-                activeTab === 'calendar' ? "bg-[#12294D] text-white shadow-sm" : "text-muted hover:text-ink"
+                activeTab === 'calendar' ? "bg-navy text-white shadow-xs" : "text-slate-600 hover:text-ink hover:bg-slate-50"
               )}
             >
               Kalender & Bulanan
@@ -128,11 +127,11 @@ export default function AgendaPage() {
         {/* Calendar Grid Card */}
         {activeTab === 'calendar' && (
           <div className="px-5 md:px-8 mb-6">
-            <div className="bg-white rounded-[28px] p-5 shadow-[0_8px_30px_rgba(0,0,0,0.03)] border border-slate-100 space-y-4">
+            <div className="bg-white rounded-[24px] p-5 shadow-xs border border-slate-200/80 space-y-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <CalendarIcon className="w-5 h-5 text-amber-600" />
-                  <h2 className="text-[16px] font-extrabold text-ink">{currentMonth}</h2>
+                  <CalendarIcon className="w-5 h-5 text-orange" />
+                  <h2 className="text-[16px] font-extrabold text-navy">{currentMonth}</h2>
                 </div>
                 <div className="flex items-center gap-1">
                   <button onClick={() => setCurrentMonth("Juni 2026")} className="p-1.5 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-50 cursor-pointer">
@@ -162,13 +161,13 @@ export default function AgendaPage() {
                         className={cn(
                           "w-9 h-9 rounded-2xl flex flex-col items-center justify-center text-[13px] font-bold transition-all relative cursor-pointer",
                           dt.isPrevMonth ? "text-slate-300 pointer-events-none" : "text-ink hover:bg-slate-100",
-                          hasEventsOnDate && !isSelected && "bg-amber-50 text-amber-900 border border-amber-300/80 font-black shadow-xs",
-                          isSelected && "bg-[#F26E22] text-white shadow-md shadow-orange/30 font-black scale-105"
+                          hasEventsOnDate && !isSelected && "bg-orange/10 text-orange-d border border-orange/30 font-black shadow-2xs",
+                          isSelected && "bg-orange text-white shadow-md shadow-orange/30 font-black scale-105"
                         )}
                       >
                         {dt.day}
                         {hasEventsOnDate && !isSelected && (
-                          <span className="w-1.5 h-1.5 bg-amber-600 rounded-full absolute bottom-1" />
+                          <span className="w-1.5 h-1.5 bg-orange rounded-full absolute bottom-1" />
                         )}
                         {isSelected && (
                           <span className="w-1.5 h-1.5 bg-white rounded-full absolute bottom-1" />
@@ -179,11 +178,11 @@ export default function AgendaPage() {
                 })}
               </div>
 
-              <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] font-medium text-slate-500">
+              <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] font-medium text-slate-500">
                 <span className="flex items-center gap-1.5">
-                  <span className="w-2.5 h-2.5 rounded-full bg-amber-500"></span> Tanggal Bertanda = Ada Agenda
+                  <span className="w-2.5 h-2.5 rounded-full bg-orange"></span> Tanggal Bertanda = Ada Agenda
                 </span>
-                <span className="font-bold text-ink">Klik tanggal untuk buka detail</span>
+                <span className="font-bold text-navy">Klik tanggal untuk buka agenda</span>
               </div>
             </div>
           </div>
@@ -191,108 +190,167 @@ export default function AgendaPage() {
 
         {activeTab === 'today' ? (
           <div className="px-5 md:px-8 flex flex-col flex-1 space-y-6">
+            
+            {/* Header KPI Cards (Clean, Simple, & Relevant) */}
             <div className="grid grid-cols-3 gap-3">
-              <div className="bg-[#12294D] rounded-[22px] p-4 flex flex-col items-center justify-center text-center shadow-md shadow-navy/10 text-white">
-                <span className="text-[28px] font-black leading-none mb-1">{todayEvents.length}</span>
-                <span className="text-[10.5px] font-bold text-slate-300 uppercase leading-tight">Total Agenda Hari Ini</span>
+              {/* Card 1: Agenda Hari Ini */}
+              <div className="bg-white rounded-2xl p-4 flex flex-col justify-between border border-slate-200/80 shadow-xs">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wide">Hari Ini</span>
+                  <div className="w-6 h-6 rounded-lg bg-orange/10 flex items-center justify-center text-orange">
+                    <Clock className="w-3.5 h-3.5" />
+                  </div>
+                </div>
+                <div>
+                  <span className="text-[26px] font-black text-navy leading-none">{todayEvents.length}</span>
+                  <p className="text-[11px] font-semibold text-slate-600 mt-1">Kegiatan Terjadwal</p>
+                </div>
               </div>
-              <div className="bg-[#F26E22] rounded-[22px] p-4 flex flex-col items-center justify-center text-center shadow-md shadow-orange/10 text-white">
-                <span className="text-[28px] font-black leading-none mb-1">1j 45m</span>
-                <span className="text-[10.5px] font-bold text-orange-100 uppercase leading-tight">Rata-rata Durasi</span>
+
+              {/* Card 2: Agenda Pekan Ini */}
+              <div className="bg-white rounded-2xl p-4 flex flex-col justify-between border border-slate-200/80 shadow-xs">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wide">Pekan Ini</span>
+                  <div className="w-6 h-6 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600">
+                    <CalendarIcon className="w-3.5 h-3.5" />
+                  </div>
+                </div>
+                <div>
+                  <span className="text-[26px] font-black text-navy leading-none">12</span>
+                  <p className="text-[11px] font-semibold text-slate-600 mt-1">Total Agenda Minggu Ini</p>
+                </div>
               </div>
-              <div className="bg-white rounded-[22px] p-4 flex flex-col items-center justify-center text-center shadow-sm border border-slate-200 text-ink">
-                <span className="text-[28px] font-black leading-none mb-1 text-emerald-600">100%</span>
-                <span className="text-[10.5px] font-bold text-muted uppercase leading-tight">Status Terjadwal</span>
+
+              {/* Card 3: Undangan Rapat */}
+              <div className="bg-white rounded-2xl p-4 flex flex-col justify-between border border-slate-200/80 shadow-xs">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wide">Undangan</span>
+                  <div className="w-6 h-6 rounded-lg bg-emerald-50 flex items-center justify-center text-emerald-600">
+                    <User className="w-3.5 h-3.5" />
+                  </div>
+                </div>
+                <div>
+                  <span className="text-[26px] font-black text-emerald-600 leading-none">2</span>
+                  <p className="text-[11px] font-semibold text-slate-600 mt-1">Undangan Baru Hari Ini</p>
+                </div>
               </div>
             </div>
 
+            {/* List Header */}
             <div className="flex items-center justify-between">
-              <h2 className="text-[16px] font-extrabold text-ink flex items-center gap-2">
-                <Clock className="w-4 h-4 text-amber-600" />
+              <h2 className="text-[15px] font-extrabold text-navy flex items-center gap-2">
+                <Clock className="w-4 h-4 text-orange" />
                 Agenda Hari Ini (Kamis, 16 Juli 2026)
               </h2>
-              <span className="text-[11px] font-bold bg-amber-100 text-amber-800 px-3 py-1 rounded-full">
+              <span className="text-[11px] font-bold bg-orange/10 text-orange-d px-3 py-1 rounded-full border border-orange/20">
                 {todayEvents.length} Kegiatan
               </span>
             </div>
 
-              <div className="space-y-4">
-                {todayEvents.map((item) => (
-                  <div key={item.id} className={cn("bg-white border rounded-[24px] p-5 shadow-xs transition-all hover:shadow-md space-y-3", item.bg)}>
-                    <div className="flex items-start justify-between gap-3">
-                      <div className="flex items-center gap-2">
-                        <span className="bg-white px-3 py-1 rounded-xl text-[11px] font-mono font-bold text-ink shadow-xs border border-slate-200 flex items-center gap-1.5">
-                          <Clock className="w-3.5 h-3.5 text-amber-600" />
-                          {item.time}
-                        </span>
-                        <span className={cn(
-                          "px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase",
-                          item.status === 'Selesai' ? 'bg-emerald-100 text-emerald-800' :
-                          item.status === 'Mendekati SLA' ? 'bg-amber-100 text-amber-800' : 'bg-blue-100 text-blue-800'
-                        )}>
-                          {item.status}
-                        </span>
-                      </div>
-                      <span className="text-[11px] font-bold text-muted flex items-center gap-1 bg-white/80 px-2.5 py-1 rounded-full border border-slate-200">
-                        <User className="w-3 h-3 text-slate-500" /> {item.pic}
+            {/* Clean Agenda List */}
+            <div className="space-y-3">
+              {todayEvents.map((item) => (
+                <div 
+                  key={item.id} 
+                  className={cn(
+                    "bg-white border border-slate-200/80 rounded-2xl p-4 md:p-5 shadow-xs transition-all hover:border-slate-300 hover:shadow-sm space-y-3 relative overflow-hidden",
+                    item.category === "klaim" ? "border-l-4 border-l-orange" :
+                    item.category === "hukum" ? "border-l-4 border-l-navy" :
+                    item.category === "it" ? "border-l-4 border-l-purple-600" : "border-l-4 border-l-blue-600"
+                  )}
+                >
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="flex items-center gap-2">
+                      <span className="bg-slate-100 px-2.5 py-0.5 rounded-lg text-[11px] font-mono font-bold text-navy border border-slate-200 flex items-center gap-1.5">
+                        <Clock className="w-3 h-3 text-orange" />
+                        {item.time}
+                      </span>
+                      <span className={cn(
+                        "px-2.5 py-0.5 rounded-full text-[10.5px] font-bold",
+                        item.status === 'Selesai' ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' :
+                        item.status === 'Mendekati SLA' ? 'bg-amber-50 text-amber-700 border border-amber-200' : 
+                        'bg-slate-100 text-slate-700 border border-slate-200'
+                      )}>
+                        {item.status}
                       </span>
                     </div>
 
-                    <div>
-                      <h3 className={cn("text-[15px] font-extrabold leading-snug", item.color)}>{item.title}</h3>
-                      <p className="text-[12px] font-medium text-slate-600 flex items-center gap-1.5 mt-2">
-                        <MapPin className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-                        <span>{item.location}</span>
-                      </p>
-                    </div>
+                    <span className="text-[11px] font-semibold text-slate-600 flex items-center gap-1 bg-slate-50 px-2.5 py-0.5 rounded-full border border-slate-200">
+                      <User className="w-3 h-3 text-slate-400" /> {item.pic}
+                    </span>
                   </div>
-                ))}
-              </div>
+
+                  <div>
+                    <h3 className="text-[14.5px] font-bold text-navy leading-snug">{item.title}</h3>
+                    <p className="text-[12px] font-medium text-slate-600 flex items-center gap-1.5 mt-1.5">
+                      <MapPin className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                      <span>{item.location}</span>
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         ) : (
           <div className="px-5 md:px-8 flex flex-col flex-1 space-y-6">
-            <div className="flex items-center justify-between bg-white p-4.5 rounded-[22px] border border-slate-200/80 shadow-xs">
+            
+            {/* Selected Date Header */}
+            <div className="flex items-center justify-between bg-white p-4 rounded-2xl border border-slate-200/80 shadow-xs">
               <div>
-                <span className="text-[11px] font-bold text-muted uppercase">Rincian Agenda Terpilih:</span>
-                <h3 className="text-[17px] font-black text-ink">{selectedDate} Juli 2026 ({selectedDateDayName})</h3>
+                <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Agenda Terpilih:</span>
+                <h3 className="text-[16px] font-extrabold text-navy">{selectedDate} Juli 2026 ({selectedDateDayName})</h3>
               </div>
-              <span className="text-[12px] font-extrabold bg-[#12294D] text-white px-3 py-1.5 rounded-xl">
+              <span className="text-[12px] font-extrabold bg-navy text-white px-3 py-1 rounded-xl">
                 {filteredCalendarEvents.length} Agenda
               </span>
             </div>
 
             {filteredCalendarEvents.length > 0 ? (
-              <div className="space-y-3.5">
-                <h4 className="text-[13px] font-bold text-muted uppercase tracking-wider">Daftar Kegiatan Tanggal {selectedDate} Juli:</h4>
+              <div className="space-y-3">
+                <h4 className="text-[12px] font-bold text-slate-500 uppercase tracking-wider">Daftar Kegiatan Tanggal {selectedDate} Juli:</h4>
                 {filteredCalendarEvents.map((item) => (
-                  <div key={item.id} className={cn("bg-white border rounded-[24px] p-4.5 shadow-xs space-y-3 transition-all hover:shadow-md", item.bg)}>
+                  <div 
+                    key={item.id} 
+                    className={cn(
+                      "bg-white border border-slate-200/80 rounded-2xl p-4 md:p-5 shadow-xs space-y-3 transition-all hover:border-slate-300 hover:shadow-sm",
+                      item.category === "klaim" ? "border-l-4 border-l-orange" :
+                      item.category === "hukum" ? "border-l-4 border-l-navy" :
+                      item.category === "it" ? "border-l-4 border-l-purple-600" : "border-l-4 border-l-blue-600"
+                    )}
+                  >
                     <div className="flex items-center justify-between">
-                      <span className="text-[11px] font-mono font-bold text-ink bg-white px-3 py-0.5 rounded-lg border border-slate-200">
-                        ⏱ {item.time}
+                      <span className="text-[11px] font-mono font-bold text-navy bg-slate-100 px-2.5 py-0.5 rounded-lg border border-slate-200 flex items-center gap-1.5">
+                        <Clock className="w-3 h-3 text-orange" />
+                        {item.time}
                       </span>
-                      <span className="text-[11px] font-bold text-slate-600 flex items-center gap-1 bg-white/80 px-2.5 py-0.5 rounded-full border border-slate-200">
-                        <User className="w-3 h-3 text-slate-500" /> {item.pic}
+                      <span className="text-[11px] font-semibold text-slate-600 flex items-center gap-1 bg-slate-50 px-2.5 py-0.5 rounded-full border border-slate-200">
+                        <User className="w-3 h-3 text-slate-400" /> {item.pic}
                       </span>
                     </div>
 
-                    <h4 className={cn("text-[15px] font-extrabold leading-snug", item.color)}>{item.title}</h4>
+                    <h4 className="text-[14.5px] font-bold text-navy leading-snug">{item.title}</h4>
                     
-                    <div className="flex items-center justify-between text-[11.5px] text-slate-600 pt-2 border-t border-slate-200/60">
-                      <span className="flex items-center gap-1 font-medium">
+                    <div className="flex items-center justify-between text-[11.5px] text-slate-600 pt-2 border-t border-slate-100">
+                      <span className="flex items-center gap-1 font-medium text-slate-600">
                         <MapPin className="w-3.5 h-3.5 text-slate-400" /> {item.location}
                       </span>
-                      <span className="font-bold text-emerald-700 flex items-center gap-1 bg-emerald-100/60 px-2 py-0.5 rounded-md">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" /> {item.status}
+                      <span className={cn(
+                        "text-[10.5px] font-bold px-2.5 py-0.5 rounded-md flex items-center gap-1",
+                        item.status === 'Selesai' ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' :
+                        item.status === 'Mendekati SLA' ? 'bg-amber-50 text-amber-700 border border-amber-200' : 
+                        'bg-slate-100 text-slate-700 border border-slate-200'
+                      )}>
+                        <CheckCircle2 className="w-3 h-3" /> {item.status}
                       </span>
                     </div>
                   </div>
                 ))}
               </div>
             ) : (
-              <div className="bg-white rounded-[24px] p-8 text-center border border-slate-200 space-y-2">
+              <div className="bg-white rounded-2xl p-8 text-center border border-slate-200/80 shadow-xs space-y-2">
                 <span className="text-[32px]">📅</span>
-                <h4 className="text-[15px] font-bold text-ink">Tidak Ada Agenda di Tanggal {selectedDate} Juli</h4>
-                <p className="text-[12.5px] font-medium text-muted">Silakan klik tanggal bertanda latar kuning/oranye pada kalender untuk melihat kegiatan di tanggal tersebut.</p>
+                <h4 className="text-[15px] font-bold text-navy">Tidak Ada Agenda di Tanggal {selectedDate} Juli</h4>
+                <p className="text-[12.5px] font-medium text-slate-500">Silakan klik tanggal bertanda titik oranye pada kalender untuk melihat kegiatan di tanggal tersebut.</p>
               </div>
             )}
           </div>

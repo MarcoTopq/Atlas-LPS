@@ -76,20 +76,20 @@ export default function Sidebar() {
             className={cn(
               "flex items-center gap-4 px-4 py-3.5 rounded-2xl transition-all duration-300 group",
               pathname.startsWith("/ai") 
-                ? "bg-gradient-to-r from-[#5D55F3] to-[#433BCA] text-white shadow-[0_4px_12px_rgba(76,70,217,0.3)]" 
-                : "bg-white border border-slate-100 hover:border-[#5D55F3]/30 hover:shadow-sm"
+                ? "bg-gradient-to-r from-[#F26E22] to-[#D95E15] text-white shadow-[0_4px_12px_rgba(242,110,34,0.35)]" 
+                : "bg-white border border-slate-100 hover:border-orange/30 hover:shadow-sm"
             )}
           >
             <Sparkles 
               size={20} 
               className={cn(
                 "transition-all duration-300",
-                pathname.startsWith("/ai") ? "text-white" : "text-[#5D55F3] group-hover:scale-110"
+                pathname.startsWith("/ai") ? "text-white" : "text-orange group-hover:scale-110"
               )} 
             />
             <span className={cn(
               "text-[14px] font-bold",
-              pathname.startsWith("/ai") ? "text-white" : "text-[#5D55F3]"
+              pathname.startsWith("/ai") ? "text-white" : "text-orange"
             )}>
               Asisten AI
             </span>
