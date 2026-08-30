@@ -1,4 +1,4 @@
-const CACHE_NAME = 'atlas-lps-v3';
+const CACHE_NAME = 'atlas-lps-v4';
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();
