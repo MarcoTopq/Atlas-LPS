@@ -31,6 +31,7 @@ type Message = {
 
 type SelectedPdf = {
   document: string;
+  document_id?: string;
   article?: string;
   page?: number;
   excerpt?: string;

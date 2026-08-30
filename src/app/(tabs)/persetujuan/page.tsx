@@ -3,136 +3,204 @@
 import AppBar from "@/components/AppBar";
 import { MOCK_TASKS } from "@/lib/mock/data";
 import Link from "next/link";
-import { Filter, Search, Clock, ArrowRight, CheckCircle2, FileText, AlertCircle, User, Calendar } from "lucide-react";
+import { ArrowRight, CheckCircle2, Sparkles, AlertCircle, Clock } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 
 export default function PersetujuanPage() {
   const [activeTab, setActiveTab] = useState("Semua");
-  const tabs = ["Semua", "ICS", "EUIS", "Nota Dinas", "BPM", "OneLPS"];
+  const [searchQuery, setSearchQuery] = useState("");
+  const tabs = ["Semua", "ICS", "EUIS", "e-Correspondence", "BPM", "OneLPS"];
 
   const filteredTasks = MOCK_TASKS.filter(task => {
-    if (activeTab === "Semua") return true;
-    if (activeTab === "ICS") return task.sistem === "ICS" || task.jenis === "ics";
-    if (activeTab === "EUIS") return task.sistem === "EUIS" || task.jenis === "euis";
-    if (activeTab === "Nota Dinas") return task.sistem === "e-Correspondence" || task.sistem === "Nota Dinas" || task.jenis === "nota_dinas";
-    if (activeTab === "BPM") return task.sistem === "BPM" || task.jenis === "bpm";
-    if (activeTab === "OneLPS") return task.sistem === "OneLPS" || task.jenis === "onelps";
-    return true;
+    // 1. Tab filter
+    let matchTab = true;
+    if (activeTab === "ICS") matchTab = task.sistem === "ICS" || task.jenis === "ics";
+    else if (activeTab === "EUIS") matchTab = task.sistem === "EUIS" || task.jenis === "euis";
+    else if (activeTab === "e-Correspondence") matchTab = task.sistem === "e-Correspondence" || task.sistem === "Nota Dinas" || task.jenis === "nota_dinas";
+    else if (activeTab === "BPM") matchTab = task.sistem === "BPM" || task.jenis === "bpm";
+    else if (activeTab === "OneLPS") matchTab = task.sistem === "OneLPS" || task.jenis === "onelps";
+
+    if (!matchTab) return false;
+
+    // 2. Search filter
+    if (!searchQuery.trim()) return true;
+    const q = searchQuery.toLowerCase();
+    return (
+      task.judul.toLowerCase().includes(q) ||
+      task.id.toLowerCase().includes(q) ||
+      task.pemohon.toLowerCase().includes(q) ||
+      task.sistem.toLowerCase().includes(q) ||
+      (task.brief?.ringkasan && task.brief.ringkasan.toLowerCase().includes(q))
+    );
   });
 
   return (
-    <div className="flex flex-col min-h-full bg-[#F8FAFC] pb-32 md:pb-12 relative w-full items-center">
-      <div className="w-full">
-        <AppBar title="Persetujuan" showBack />
+    <div className="flex flex-col min-h-full bg-[#F6F7F9] pb-32 md:pb-12 relative w-full items-center font-sans text-[#172033]">
+      <div className="w-full max-w-5xl">
+        <AppBar 
+          title="Persetujuan" 
+          showBack 
+          onSearchChange={(q) => setSearchQuery(q)}
+          searchValue={searchQuery}
+          searchPlaceholder="Cari persetujuan, nomor nota, atau pemohon..."
+        />
 
-        <div className="px-5 md:px-8 mt-4 space-y-6">
-        
-        {/* Toggle Nav (Dribbble "Add Task / Task Box" style) */}
-        <div className="bg-white p-2 rounded-[20px] shadow-[0_8px_24px_rgba(0,0,0,0.03)] flex overflow-x-auto scrollbar-hide">
-          {tabs.map(tab => (
-            <button 
-              key={tab} 
-              onClick={() => setActiveTab(tab)}
-              className={cn(
-                "whitespace-nowrap px-6 py-3.5 rounded-2xl text-[13px] font-bold transition-all duration-300 cursor-pointer",
-                activeTab === tab 
-                  ? "bg-orange text-white shadow-[0_4px_12px_rgba(242,110,34,0.3)]" 
-                  : "bg-transparent text-muted hover:text-ink"
-              )}
-            >
-              {tab}
-            </button>
-          ))}
-        </div>
-
-        {/* Search */}
-        <div className="relative group shadow-[0_4px_20px_rgba(0,0,0,0.02)] rounded-full md:rounded-[32px]">
-          <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-light group-focus-within:text-orange transition-colors w-[18px] h-[18px] md:w-6 md:h-6" />
-          <input 
-            type="text" 
-            placeholder="Cari persetujuan..." 
-            className="w-full bg-white border-transparent rounded-full md:rounded-[32px] py-4 md:py-6 pl-12 md:pl-16 pr-6 md:text-[16px] text-[14px] font-medium focus:outline-none focus:ring-2 focus:ring-orange/20 transition-all placeholder:text-light text-ink" 
-          />
-        </div>
-
-        {/* Task List (Dribbble "Device" style) */}
-        <div className="space-y-4">
-          <h2 className="text-[17px] md:text-[22px] font-bold text-ink tracking-tight mb-2 md:mb-4 px-1">Daftar Tugas</h2>
+        <div className="px-4 sm:px-6 md:px-8 pt-4 space-y-5">
           
+          {/* Header Description Banner */}
+          <div className="bg-white p-4 sm:p-5 rounded-[22px] border border-[#EAECF0] shadow-2xs flex items-center justify-between gap-4">
+            <div>
+              <h1 className="text-[17px] sm:text-[19px] font-extrabold text-[#172033] tracking-tight">
+                Daftar Tugas & Persetujuan
+              </h1>
+              <p className="text-xs text-[#667085] font-normal mt-0.5">
+                {filteredTasks.length} tugas memerlukan evaluasi & keputusan Anda
+              </p>
+            </div>
+            <div className="flex items-center gap-1.5 px-3 py-1 bg-[#F56621]/10 text-[#F56621] rounded-full text-xs font-semibold border border-[#F56621]/20">
+              <Sparkles size={13} />
+              <span>Decision Brief Aktif</span>
+            </div>
+          </div>
+
+          {/* Tab Filter Chips */}
+          <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-hide -mx-1 px-1">
+            {tabs.map((tab) => (
+              <button
+                key={tab}
+                type="button"
+                onClick={() => setActiveTab(tab)}
+                className={cn(
+                  "px-4 py-2 rounded-full text-xs font-semibold transition-all flex-shrink-0 whitespace-nowrap cursor-pointer",
+                  activeTab === tab
+                    ? "bg-[#172033] text-white shadow-xs"
+                    : "bg-white text-[#667085] hover:text-[#172033] border border-[#EAECF0] hover:bg-[#F9FAFB]"
+                )}
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
+
+          {/* Search Result Feedback if searching */}
+          {searchQuery.trim() && (
+            <div className="flex items-center justify-between text-xs text-[#667085] px-1">
+              <span>Hasil pencarian untuk: &ldquo;<strong className="text-[#172033]">{searchQuery}</strong>&rdquo;</span>
+              <button 
+                type="button"
+                onClick={() => setSearchQuery("")}
+                className="text-[#F56621] font-semibold hover:underline cursor-pointer"
+              >
+                Reset
+              </button>
+            </div>
+          )}
+
+          {/* Task List Grid with Decision Brief */}
           {filteredTasks.length === 0 ? (
-            <div className="text-center py-16 flex flex-col items-center justify-center bg-white rounded-[32px] shadow-[0_8px_24px_rgba(0,0,0,0.02)]">
-              <div className="w-20 h-20 bg-emerald-50 rounded-full flex items-center justify-center mb-5 text-emerald-500">
-                <CheckCircle2 size={36} />
+            <div className="text-center py-16 flex flex-col items-center justify-center bg-white rounded-3xl border border-[#EAECF0] shadow-2xs space-y-2">
+              <div className="w-14 h-14 bg-[#ECFDF3] rounded-full flex items-center justify-center text-[#027A48]">
+                <CheckCircle2 size={28} />
               </div>
-              <p className="text-[16px] font-bold text-ink tracking-tight">Semua Tuntas!</p>
-              <p className="text-[13px] font-medium text-muted mt-2 max-w-[70%] leading-relaxed">
-                Tidak ada persetujuan yang sedang menunggu keputusan Anda.
+              <p className="text-base font-bold text-[#172033]">Semua Tuntas!</p>
+              <p className="text-xs text-[#667085] max-w-xs leading-relaxed">
+                Tidak ada persetujuan yang sedang menunggu keputusan Anda untuk kategori ini.
               </p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {filteredTasks.map(task => (
-              <Link key={task.id} href={`/persetujuan/${encodeURIComponent(task.id)}`} className="flex flex-col bg-white rounded-[32px] md:rounded-[40px] p-4 md:p-6 shadow-[0_8px_24px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_30px_rgba(0,0,0,0.06)] transition-all duration-300 group relative overflow-hidden w-full">
-                
-                {/* Top Row: Icon, Title, Arrow */}
-                <div className="flex items-start justify-between mb-4 md:mb-6">
-                  <div className="flex items-center gap-3 md:gap-4 min-w-0">
-                    <div className="w-[46px] md:w-[60px] h-[46px] md:h-[60px] rounded-[16px] md:rounded-[20px] bg-slate-100 flex items-center justify-center relative overflow-hidden flex-shrink-0">
-                      <div className={cn(
-                        "absolute inset-0 opacity-20",
-                        task.prioritas === 'hi' ? 'bg-danger' : 
-                        task.prioritas === 'mid' ? 'bg-warn' : 'bg-slate-400'
-                      )}></div>
-                      <FileText className={cn(
-                        "relative z-10 w-5 h-5 md:w-7 md:h-7",
-                        task.prioritas === 'hi' ? 'text-danger' : 
-                        task.prioritas === 'mid' ? 'text-warn' : 'text-slate-500'
-                      )} />
-                    </div>
-                    <div className="min-w-0">
-                      <h3 className="font-bold text-[15px] md:text-[18px] text-ink leading-tight mb-1 md:mb-1.5 group-hover:text-orange transition-colors line-clamp-2">{task.judul}</h3>
-                      <p className="text-[12px] md:text-[14px] font-medium text-muted">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {filteredTasks.map((task) => (
+                <Link
+                  key={task.id}
+                  href={`/persetujuan/${encodeURIComponent(task.id)}`}
+                  className="bg-white rounded-[20px] p-4 sm:p-5 border border-[#EAECF0] shadow-[0_2px_12px_rgba(23,32,51,0.03)] hover:border-[#F56621]/60 hover:shadow-[0_8px_24px_rgba(245,102,33,0.08)] transition-all flex flex-col justify-between space-y-3.5 group active:scale-[0.99]"
+                >
+                  {/* Top: Priority Badge + System Name */}
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between gap-2">
+                      <span className={cn(
+                        "text-[11px] font-medium px-2.5 py-0.5 rounded-full flex items-center gap-1.5 border",
+                        task.prioritas === 'hi' 
+                          ? 'bg-[#FEF3F2] text-[#D92D20] border-[#FEE4E2]' 
+                          : task.prioritas === 'mid'
+                          ? 'bg-[#FFFAEB] text-[#B54708] border-[#FEDF89]'
+                          : 'bg-[#F2F4F7] text-[#475467] border-[#EAECF0]'
+                      )}>
+                        <span className={cn(
+                          "w-1.5 h-1.5 rounded-full",
+                          task.prioritas === 'hi' ? 'bg-[#D92D20]' : task.prioritas === 'mid' ? 'bg-[#B54708]' : 'bg-[#475467]'
+                        )} />
+                        <span>Prioritas {task.prioritas === 'hi' ? 'Tinggi' : task.prioritas === 'mid' ? 'Sedang' : 'Rendah'}</span>
+                      </span>
+
+                      <span className="text-[11.5px] font-medium text-[#98A2B3]">
                         {task.sistem}
-                      </p>
+                      </span>
+                    </div>
+
+                    {/* Document Title */}
+                    <div>
+                      <h2 className="font-semibold text-[14.5px] text-[#172033] leading-snug group-hover:text-[#F56621] transition-colors">
+                        {task.judul}
+                      </h2>
+                      <div className="flex items-center gap-2.5 mt-1.5 text-[11.5px] text-[#667085] flex-wrap">
+                        <span className="font-mono font-medium text-[#475467] bg-[#F2F4F7] px-1.5 py-0.2 rounded border border-[#EAECF0]">
+                          {task.id}
+                        </span>
+                        <span>oleh <strong>{task.pemohon}</strong></span>
+                        <span className="text-[#98A2B3]">• {task.sla.replace('⏱ ', '')}</span>
+                      </div>
                     </div>
                   </div>
-                  <div className="w-8 md:w-12 h-8 md:h-12 rounded-full bg-slate-50 flex items-center justify-center text-light group-hover:bg-orange/10 group-hover:text-orange transition-colors flex-shrink-0 ml-2">
-                    <ArrowRight className="w-4 h-4 md:w-6 md:h-6 -rotate-45" />
-                  </div>
-                </div>
 
-                {/* Bottom Row: Status/Info Chips */}
-                <div className="flex flex-wrap items-center gap-2 mt-auto pt-2 min-w-0">
-                  <div className={cn(
-                    "px-3 md:px-4 py-1.5 md:py-2 rounded-xl text-[11px] md:text-[13px] font-bold border flex items-center gap-1.5 md:gap-2 whitespace-nowrap flex-shrink-0",
-                    task.prioritas === 'hi' ? 'bg-danger/5 border-danger/10 text-danger' :
-                    task.prioritas === 'mid' ? 'bg-warn/5 border-warn/10 text-warn' :
-                    'bg-slate-50 border-slate-100 text-slate-500'
-                  )}>
-                    {task.prioritas === 'hi' && <AlertCircle className="w-3 h-3 md:w-4 md:h-4" />}
-                    {task.prioritas === 'mid' && <Clock className="w-3 h-3 md:w-4 md:h-4" />}
-                    {task.prioritas === 'lo' && <CheckCircle2 className="w-3 h-3 md:w-4 md:h-4" />}
-                    <span>{task.prioritas === 'hi' ? 'Prioritas Tinggi' : task.prioritas === 'mid' ? 'Prioritas Sedang' : 'Prioritas Rendah'}</span>
+                  {/* Decision Brief Component (AI On-Premise LPS) */}
+                  <div className="bg-[#F9FAFB] rounded-[16px] p-3.5 space-y-2 border border-[#EAECF0] group-hover:border-[#F56621]/20 transition-colors">
+                    <div className="flex items-center justify-between">
+                      <span className="flex items-center gap-1.5 text-[12px] font-semibold text-[#172033]">
+                        <Sparkles size={13} className="text-[#F56621]" /> Decision Brief
+                      </span>
+                      <span className="text-[10.5px] font-medium bg-[#ECFDF3] text-[#027A48] border border-[#A6F4C5] px-2.5 py-0.5 rounded-full flex items-center gap-1">
+                        ✓ {task.brief?.flag === 'anomali' ? 'Perlu Perhatian' : 'Sesuai SOP'}
+                      </span>
+                    </div>
+
+                    <div className="space-y-1 text-[11.5px] text-[#475467] leading-relaxed pt-0.5">
+                      {task.brief?.ringkasan && (
+                        <p className="text-[11.5px] text-[#475467] line-clamp-2">
+                          {task.brief.ringkasan}
+                        </p>
+                      )}
+                      
+                      {task.brief?.kv && task.brief.kv.length > 0 && (
+                        <div className="grid grid-cols-2 gap-1.5 pt-1 border-t border-[#EAECF0]/80">
+                          {task.brief.kv.slice(0, 2).map((item, idx) => (
+                            <div key={idx} className="text-[11px] truncate">
+                              <span className="text-[#98A2B3]">{item.k}: </span>
+                              <span className="font-semibold text-[#172033]">{item.v}</span>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+
+                      {task.brief?.sitasi && (
+                        <div className="text-[10.5px] text-[#667085] pt-0.5 flex items-start gap-1">
+                          <span className="text-[#98A2B3] flex-shrink-0">Dasar:</span>
+                          <span className="truncate">{task.brief.sitasi}</span>
+                        </div>
+                      )}
+                    </div>
                   </div>
 
-                  {/* Tanggal chip */}
-                  <div className="px-3 md:px-4 py-1.5 md:py-2 rounded-xl bg-slate-100 border border-slate-200 text-[11px] md:text-[13px] font-bold text-slate-700 flex items-center gap-1.5 md:gap-2 whitespace-nowrap flex-shrink-0">
-                    <Calendar className="w-3 h-3 md:w-4 md:h-4 text-slate-500" />
-                    <span className="whitespace-nowrap">{task.sla.replace('⏱ ', '')}</span>
+                  {/* Footer Action */}
+                  <div className="pt-2 border-t border-[#EAECF0] flex items-center justify-between text-[11.5px] font-medium text-[#667085] group-hover:text-[#F56621] transition-colors">
+                    <span>Tinjau & Setujui</span>
+                    <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform text-[#F56621]" />
                   </div>
-
-                  <div className="px-3 md:px-4 py-1.5 md:py-2 rounded-xl bg-slate-50 border border-slate-100 text-[11px] md:text-[13px] font-bold text-muted flex items-center gap-1.5 md:gap-2 whitespace-nowrap min-w-0 max-w-full">
-                    <User className="w-3 h-3 md:w-4 md:h-4 flex-shrink-0" />
-                    <span className="truncate max-w-[120px] md:max-w-[150px]">{task.pemohon}</span>
-                  </div>
-                </div>
-
-              </Link>
+                </Link>
               ))}
             </div>
           )}
-        </div>
 
         </div>
       </div>

@@ -1,0 +1,15 @@
+services:
+  atlas-mobile:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: 10.121.88.26:8082/poc/atlas-mobile:dev
+    container_name: atlas-mobile
+    restart: always
+    ports:
+      - "5174:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    env_file:
+      - .env

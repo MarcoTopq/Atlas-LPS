@@ -88,3 +88,16 @@ body {
     display: none;
   }
 }
+
+/* Hide Next.js Development Indicator Badge ("N" button) */
+nextjs-portal,
+[data-nextjs-dev-overlay-container],
+[data-nextjs-toast],
+[data-next-badge],
+[data-nextjs-indicator],
+div[data-nextjs-dialog-overlay] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}

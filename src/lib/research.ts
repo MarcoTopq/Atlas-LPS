@@ -142,7 +142,30 @@ export const useResearch = create<ResearchState>()(
     }),
     {
       name: "atlas-research",
-      storage: createJSONStorage(() => localStorage),
+      storage: createJSONStorage(() => ({
+        getItem: (name) => {
+          if (typeof window === "undefined") return null;
+          const val = localStorage.getItem(name);
+          if (!val) return null;
+          try {
+            JSON.parse(val);
+            return val;
+          } catch {
+            localStorage.removeItem(name);
+            return null;
+          }
+        },
+        setItem: (name, value) => {
+          if (typeof window !== "undefined") {
+            localStorage.setItem(name, value);
+          }
+        },
+        removeItem: (name) => {
+          if (typeof window !== "undefined") {
+            localStorage.removeItem(name);
+          }
+        },
+      })),
       partialize: (s) => ({
         participant: s.participant,
         participants: s.participants,

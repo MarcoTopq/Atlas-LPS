@@ -679,20 +679,20 @@ export const MOCK_ABSENSI_TIDAK_HADIR = [
 ];
 
 export const MOCK_ABSENSI_RATA = [
-  { nama: 'Zulfikri', status: 'Normal', durasi: '11:23:14' },
-  { nama: 'Wirawan Bagus Prakosa', status: 'Normal', durasi: '11:15:57' },
-  { nama: 'Nasril Hidayat', status: 'Normal', durasi: '11:09:29' },
-  { nama: 'Arif Rahman H', status: 'Normal', durasi: '11:07:01' },
-  { nama: 'Dafit Suhendra', status: 'Normal', durasi: '10:59:41' },
-  { nama: 'Husain Panatas', status: 'Normal', durasi: '10:55:37' }
+  { nama: 'Ahmad Fauzi', status: 'Normal', durasi: '11:23:14' },
+  { nama: 'Budi Santoso', status: 'Normal', durasi: '11:15:57' },
+  { nama: 'Cahyo Wibowo', status: 'Normal', durasi: '11:09:29' },
+  { nama: 'Dedi Kurniawan', status: 'Normal', durasi: '11:07:01' },
+  { nama: 'Eko Prasetyo', status: 'Normal', durasi: '10:59:41' },
+  { nama: 'Fajar Hidayat', status: 'Normal', durasi: '10:55:37' }
 ];
 
 export const MOCK_ABSENSI_DETAIL = [
-  { nama: 'A. Harpin Vienza Yora Siregar', grup: 'Group Pengembangan dan Operasional TI', date: '2 January 2026', masuk: '06:54', keluar: '16:35', status: 'Normal' },
-  { nama: 'A. Harpin Vienza Yora Siregar', grup: 'Group Pengembangan dan Operasional TI', date: '2 February 2026', masuk: '07:54', keluar: '17:19', status: 'Normal' },
-  { nama: 'A. Harpin Vienza Yora Siregar', grup: 'Group Pengembangan dan Operasional TI', date: '2 March 2026', masuk: '07:56', keluar: '15:32', status: 'Normal' },
-  { nama: 'A. Harpin Vienza Yora Siregar', grup: 'Group Pengembangan dan Operasional TI', date: '3 February 2026', masuk: '07:47', keluar: '16:48', status: 'Normal' },
-  { nama: 'A. Harpin Vienza Yora Siregar', grup: 'Group Pengembangan dan Operasional TI', date: '3 March 2026', masuk: '06:53', keluar: '16:22', status: 'Normal' }
+  { nama: 'Ahmad Fauzi', grup: 'Group Penjaminan & Resolusi', date: '2 January 2026', masuk: '06:54', keluar: '16:35', status: 'Normal' },
+  { nama: 'Budi Santoso', grup: 'Group Penjaminan & Resolusi', date: '2 February 2026', masuk: '07:54', keluar: '17:19', status: 'Normal' },
+  { nama: 'Cahyo Wibowo', grup: 'Group Pengembangan TI', date: '2 March 2026', masuk: '07:56', keluar: '15:32', status: 'Normal' },
+  { nama: 'Dedi Kurniawan', grup: 'Group Hukum & GRC', date: '3 February 2026', masuk: '07:47', keluar: '16:48', status: 'Normal' },
+  { nama: 'Eko Prasetyo', grup: 'Group Riset & Surveilans', date: '3 March 2026', masuk: '06:53', keluar: '16:22', status: 'Normal' }
 ];
 
 export const MOCK_KEP_STATUS = [
@@ -731,21 +731,21 @@ export const MOCK_KEP_PANGKAT_BAR = [
 ];
 
 export const MOCK_KEP_MASA_KERJA = [
-  { nama: 'Teguh Pribadi', value: 16 },
-  { nama: 'Muhammad Sulaiman', value: 12 },
-  { nama: 'Agha Dwi Nugraha', value: 11 },
-  { nama: 'Bobon Putra', value: 10 },
-  { nama: 'Tiswa Ramdani', value: 10 }
+  { nama: 'Bambang Sudiro', value: 16 },
+  { nama: 'Hendro Gunawan', value: 12 },
+  { nama: 'Iwan Setiawan', value: 11 },
+  { nama: 'Joko Priyono', value: 10 },
+  { nama: 'Kusuma Wardhana', value: 10 }
 ];
 
 export const MOCK_KEP_DETAIL = [
-  { nama: 'A. Harpin Vienza Yora Siregar', kelamin: 'Male', grup: 'Group Pengembangan', umur: 34, masa: 5, pangkat: 'Senior Assistant', status: 'Pegawai Tetap' },
-  { nama: 'Adenia Adiresta', kelamin: 'Female', grup: 'Group Pengembangan', umur: 27, masa: 5, pangkat: 'Junior Sub Manager', status: 'Pegawai Tetap' },
-  { nama: 'Adrian Caesar Prabowo', kelamin: 'Male', grup: 'Group Perencanaan', umur: 30, masa: 7, pangkat: 'Sub Manager', status: 'Pegawai Tetap' },
-  { nama: 'Aelisa Nailin Nabila', kelamin: 'Female', grup: 'Group Perencanaan', umur: 28, masa: 5, pangkat: 'Junior Sub Manager', status: 'Pegawai Tetap' },
-  { nama: 'Ageng Andri Amukti', kelamin: 'Male', grup: 'Group Perencanaan', umur: 36, masa: 6, pangkat: 'Assistant Manager', status: 'Pegawai Tetap' },
-  { nama: 'Agha Dwi Nugraha', kelamin: 'Male', grup: 'Group Pengembangan', umur: 38, masa: 11, pangkat: 'Manager', status: 'Pegawai Tetap' },
-  { nama: 'Agung Fauzi Sulaksana', kelamin: 'Male', grup: 'Group Pengembangan', umur: 33, masa: 3, pangkat: 'Outsource', status: 'Tenaga Alih Daya' }
+  { nama: 'Ahmad Fauzi', kelamin: 'Male', grup: 'Group Penjaminan Bank', umur: 34, masa: 5, pangkat: 'Senior Assistant', status: 'Pegawai Tetap' },
+  { nama: 'Anisa Putri', kelamin: 'Female', grup: 'Group Penjaminan Asuransi', umur: 27, masa: 5, pangkat: 'Junior Sub Manager', status: 'Pegawai Tetap' },
+  { nama: 'Budi Santoso', kelamin: 'Male', grup: 'Group Resolusi Bank', umur: 30, masa: 7, pangkat: 'Sub Manager', status: 'Pegawai Tetap' },
+  { nama: 'Citra Dewi', kelamin: 'Female', grup: 'Group Hukum & GRC', umur: 28, masa: 5, pangkat: 'Junior Sub Manager', status: 'Pegawai Tetap' },
+  { nama: 'Dimas Anggara', kelamin: 'Male', grup: 'Group Surveilans', umur: 36, masa: 6, pangkat: 'Assistant Manager', status: 'Pegawai Tetap' },
+  { nama: 'Eko Prasetyo', kelamin: 'Male', grup: 'Group Teknologi Informasi', umur: 38, masa: 11, pangkat: 'Manager', status: 'Pegawai Tetap' },
+  { nama: 'Fajar Hidayat', kelamin: 'Male', grup: 'Group Logistik & Aset', umur: 33, masa: 3, pangkat: 'Outsource', status: 'Tenaga Alih Daya' }
 ];
 
 // --- PERJALANAN DINAS & UANG MUKA MOCK DATA ---
@@ -825,9 +825,9 @@ export const MOCK_PERDIN_JENIS_RESERVASI = [
 ];
 
 export const MOCK_PERDIN_DETAIL = [
-  { no: '30230713', tgl: '13 July 2023', jenis: 'Operasional Jumps - Luar Kota', pemohon: 'Agung Fauzi Sulaksana', grup: 'Group Pengembangan', hutang: 'Tidak', reservasiHotel: 'Tidak', tiket: 'Tidak', meeting: 'Tidak', spj: '30 August 2023' },
-  { no: '30230718', tgl: '18 July 2023', jenis: 'Operasional Jumps - Luar Kota', pemohon: 'A Harpin Vienza Yora Siregar', grup: 'Group Perencanaan', hutang: 'Tidak', reservasiHotel: 'Tidak', tiket: 'Tidak', meeting: 'Tidak', spj: '12 August 2023' },
-  { no: '30230805', tgl: '5 August 2023', jenis: 'Perdin Dinas - Luar Kota', pemohon: 'Adriana Adiresta', grup: 'Group Pengembangan', hutang: 'Ya', reservasiHotel: 'Ya', tiket: 'Ya', meeting: 'Ya', spj: '15 September 2023' }
+  { no: '30230713', tgl: '13 July 2023', jenis: 'Operasional Jumps - Luar Kota', pemohon: 'Ahmad Fauzi', grup: 'Group Pengembangan TI', hutang: 'Tidak', reservasiHotel: 'Tidak', tiket: 'Tidak', meeting: 'Tidak', spj: '30 August 2023' },
+  { no: '30230718', tgl: '18 July 2023', jenis: 'Operasional Jumps - Luar Kota', pemohon: 'Budi Santoso', grup: 'Group Perencanaan', hutang: 'Tidak', reservasiHotel: 'Tidak', tiket: 'Tidak', meeting: 'Tidak', spj: '12 August 2023' },
+  { no: '30230805', tgl: '5 August 2023', jenis: 'Perdin Dinas - Luar Kota', pemohon: 'Citra Dewi', grup: 'Group Penjaminan', hutang: 'Ya', reservasiHotel: 'Ya', tiket: 'Ya', meeting: 'Ya', spj: '15 September 2023' }
 ];
 
 
@@ -849,11 +849,11 @@ export const MOCK_PEMBAYARAN_STATUS = [
 ];
 
 export const MOCK_PEMBAYARAN_DETAIL = [
-  { docSap: '172804535', deskripsi: 'BBM, Tol, & Parkir Pembukaan Lc Jalan', vendor: 'Dinda Karisma Putri', bank: 'BSI', rek: '1234567890', namaRek: 'DINDA KARISMA PUTRI', currency: 'IDR', amount: '183,000.00', status: 'Terbayar', tgl: '13 Jul' },
-  { docSap: '172804536', deskripsi: 'EOC Kegiatan Bimtek 24 Juni 2026', vendor: 'PT Indomedia', bank: 'Mandiri', rek: '0987654321', namaRek: 'PT INDOMEDIA', currency: 'IDR', amount: '18,163,500.00', status: 'Terbayar', tgl: '13 Jul' },
-  { docSap: '172804539', deskripsi: 'Pembayaran katering rapat rutin', vendor: 'CV Rasa Nusantara', bank: 'BCA', rek: '1122334455', namaRek: 'CV RASA NUSANTARA', currency: 'IDR', amount: '4,524,500.00', status: 'Terbayar', tgl: '13 Jul' },
-  { docSap: '172804550', deskripsi: 'Pembayaran Hasil cetak modul', vendor: 'Arif Rahman Hakim', bank: 'Mandiri', rek: '5566778899', namaRek: 'ARIF RAHMAN HAKIM', currency: 'IDR', amount: '150,000.00', status: 'Terbayar', tgl: '26 Jul' },
-  { docSap: '172804555', deskripsi: 'Reimburse Perdin Jateng', vendor: 'Budi Prakoso', bank: 'BCA', rek: '9988776655', namaRek: 'BUDI PRAKOSO', currency: 'IDR', amount: '350,000.00', status: 'Terbayar', tgl: '26 Jul' }
+  { docSap: '172804535', deskripsi: 'BBM, Tol, & Parkir Operasional', vendor: 'Dinda Maharani', bank: 'BSI', rek: '1234567890', namaRek: 'DINDA MAHARANI', currency: 'IDR', amount: '183,000.00', status: 'Terbayar', tgl: '13 Jul' },
+  { docSap: '172804536', deskripsi: 'EOC Kegiatan Bimtek 24 Juni 2026', vendor: 'PT Media Solusi', bank: 'Mandiri', rek: '0987654321', namaRek: 'PT MEDIA SOLUSI', currency: 'IDR', amount: '18,163,500.00', status: 'Terbayar', tgl: '13 Jul' },
+  { docSap: '172804539', deskripsi: 'Pembayaran katering rapat rutin', vendor: 'CV Berkah Rasa', bank: 'BCA', rek: '1122334455', namaRek: 'CV BERKAH RASA', currency: 'IDR', amount: '4,524,500.00', status: 'Terbayar', tgl: '13 Jul' },
+  { docSap: '172804550', deskripsi: 'Pembayaran Hasil cetak modul', vendor: 'Arif Wibowo', bank: 'Mandiri', rek: '5566778899', namaRek: 'ARIF WIBOWO', currency: 'IDR', amount: '150,000.00', status: 'Terbayar', tgl: '26 Jul' },
+  { docSap: '172804555', deskripsi: 'Reimburse Perdin Jateng', vendor: 'Budi Santoso', bank: 'BCA', rek: '9988776655', namaRek: 'BUDI SANTOSO', currency: 'IDR', amount: '350,000.00', status: 'Terbayar', tgl: '26 Jul' }
 ];
 
 
@@ -897,10 +897,10 @@ export const MOCK_UM_SLA_KEGIATAN = [
 export const MOCK_UM_SLA_PENGADAAN = [];
 
 export const MOCK_UM_DETAIL = [
-  { header: 'BOM Channel Management', pemohon: 'Fadila Tri Yunita', cc: 'SKL', jenis: 'Reimbursement Kegiatan atau Diluar Perdin', tglAju: '31 Des 2025', tglSetuju: '05 Jan 2026', tglBayar: '10 Jan 2026', status: 'APPROVED' },
-  { header: 'Keanggotaan ACN Emersing', pemohon: 'Mita Randa Puspa', cc: 'PPP', jenis: 'Reimbursement Kegiatan atau Diluar Perdin', tglAju: '18 Jun 2025', tglSetuju: '19 Jun 2025', tglBayar: '21 Jun 2025', status: 'APPROVED' },
-  { header: 'Lisensi Office 365', pemohon: 'Luis Yulianto', cc: 'OG', jenis: 'Reimbursement Kegiatan atau Diluar Perdin', tglAju: '11 Okt 2024', tglSetuju: '04 Nov 2024', tglBayar: '06 Nov 2024', status: 'APPROVED' },
-  { header: 'Lisensi Adobe CC', pemohon: 'Luis Yulianto', cc: 'OG', jenis: 'Reimbursement Kegiatan atau Diluar Perdin', tglAju: '02 Sep 2024', tglSetuju: '04 Sep 2024', tglBayar: '14 Sep 2024', status: 'APPROVED' },
-  { header: 'PMI Sertifikasi', pemohon: 'Aris Wiyono', cc: 'STI', jenis: 'Uang Muka Kegiatan atau Diluar Perdin', tglAju: '11 Jun 2025', tglSetuju: '12 Jun 2025', tglBayar: '12 Jun 2025', status: 'APPROVED' }
+  { header: 'BOM Channel Management', pemohon: 'Dewi Lestari', cc: 'SKL', jenis: 'Reimbursement Kegiatan atau Diluar Perdin', tglAju: '31 Des 2025', tglSetuju: '05 Jan 2026', tglBayar: '10 Jan 2026', status: 'APPROVED' },
+  { header: 'Keanggotaan ACN Emersing', pemohon: 'Fitri Handayani', cc: 'PPP', jenis: 'Reimbursement Kegiatan atau Diluar Perdin', tglAju: '18 Jun 2025', tglSetuju: '19 Jun 2025', tglBayar: '21 Jun 2025', status: 'APPROVED' },
+  { header: 'Lisensi Office 365', pemohon: 'Gunawan Prasetya', cc: 'OG', jenis: 'Reimbursement Kegiatan atau Diluar Perdin', tglAju: '11 Okt 2024', tglSetuju: '04 Nov 2024', tglBayar: '06 Nov 2024', status: 'APPROVED' },
+  { header: 'Lisensi Adobe CC', pemohon: 'Gunawan Prasetya', cc: 'OG', jenis: 'Reimbursement Kegiatan atau Diluar Perdin', tglAju: '02 Sep 2024', tglSetuju: '04 Sep 2024', tglBayar: '14 Sep 2024', status: 'APPROVED' },
+  { header: 'PMI Sertifikasi', pemohon: 'Hadi Susanto', cc: 'STI', jenis: 'Uang Muka Kegiatan atau Diluar Perdin', tglAju: '11 Jun 2025', tglSetuju: '12 Jun 2025', tglBayar: '12 Jun 2025', status: 'APPROVED' }
 ];
 
