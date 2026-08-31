@@ -123,15 +123,15 @@ export const MOCK_TASKS: Task[] = [
   {
     id: "ND-1610/2026",
     jenis: "nota_dinas",
-    judul: "Nota Dinas Perjalanan Dinas Proyek X",
+    judul: "Nota Dinas Perjalanan Dinas Sosialisasi KPW Surabaya",
     pemohon: "Budi Santoso",
     sistem: "e-Correspondence",
     prioritas: "hi",
     sla: "16 Jul 2026",
     brief: {
-      ringkasan: "Pengajuan perjalanan dinas untuk tim proyek X ke Surabaya selama 3 hari terkait koordinasi awal.",
+      ringkasan: "Pengajuan perjalanan dinas untuk tim sosialisasi ke KPW Surabaya selama 3 hari terkait koordinasi awal.",
       kv: [
-        { k: "Tujuan", v: "Surabaya" },
+        { k: "Tujuan", v: "KPW Surabaya" },
         { k: "Durasi", v: "3 Hari" }
       ],
       sitasi: "Peraturan Kepegawaian LPS Bab VI Pasal 32 (1) terkait Perjalanan Dinas Biasa.",
