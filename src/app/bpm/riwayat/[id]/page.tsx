@@ -2,7 +2,7 @@
 
 import AppBar from "@/components/AppBar";
 import { MOCK_BPM_DETAIL } from "@/lib/mock/bpm";
-import { Receipt, Lock, FileText, CheckCircle2, AlertTriangle } from "lucide-react";
+import { Receipt, Lock, FileText, CheckCircle2, AlertTriangle, Sparkles } from "lucide-react";
 import { useState } from "react";
 import { use } from "react";
 import { cn } from "@/lib/utils";
@@ -48,35 +48,39 @@ export default function BpmRiwayatDetailPage({ params }: { params: Promise<{ id:
 
         {/* Decision Brief */}
         {data.brief && (
-          <div className="bg-[#ECEBFB] rounded-[24px] p-5 shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-[#4C46D9]/20 mb-6">
-            <div className="flex items-center gap-2 mb-4">
-              <Lock size={14} className="text-[#4C46D9]" />
-              <span className="text-[11px] font-bold text-[#4C46D9] bg-white px-2 py-0.5 rounded-full shadow-sm">
-                AI On-Prem LPS
+          <div className="bg-white rounded-[22px] p-5 shadow-2xs border border-[#EAECF0] space-y-3.5 relative overflow-hidden mb-6">
+            <div className="flex items-center justify-between">
+              <span className="text-[11px] font-semibold text-[#172033] bg-[#F4F6F9] px-2.5 py-0.5 rounded-full border border-[#EAECF0] flex items-center gap-1.5">
+                <Lock size={12} className="text-[#F56621]" />
+                <span>AI On-Prem LPS</span>
               </span>
+              <div className="flex items-center gap-1 text-[11px] font-bold text-[#F56621]">
+                <Sparkles size={13} />
+                <span>ATLAS AI</span>
+              </div>
             </div>
             
-            <h3 className="text-[14px] font-bold text-ink mb-2">Decision Brief</h3>
-            <p className="text-[13px] text-ink/80 mb-4 leading-relaxed">
+            <h3 className="text-[14px] font-bold text-[#172033] mb-1">Decision Brief</h3>
+            <p className="text-[12.5px] text-[#475467] leading-relaxed">
               {data.brief.ringkasan}
             </p>
             
-            <div className="bg-white rounded-[16px] p-4 mb-4 shadow-sm border border-[#4C46D9]/10">
+            <div className="bg-[#F9FAFB] rounded-[16px] p-3.5 border border-[#EAECF0]">
               <div className="grid grid-cols-2 gap-4 text-xs">
                 {data.brief.kv.map((item, idx) => (
                   <div key={idx} className="flex flex-col">
-                    <span className="text-muted text-[11px] mb-1">{item.k}</span>
-                    <span className="font-bold text-ink text-[13px]">{item.v}</span>
+                    <span className="text-[#667085] text-[11px] mb-0.5">{item.k}</span>
+                    <span className="font-bold text-[#172033] text-[13px]">{item.v}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="bg-blue-50 border border-blue-100 rounded-[16px] p-4 flex gap-3">
-              <FileText size={18} className="text-blue-600 flex-shrink-0 mt-0.5" />
+            <div className="bg-[#F9FAFB] border border-[#EAECF0] rounded-xl p-3 flex gap-3">
+              <FileText size={16} className="text-[#F56621] flex-shrink-0 mt-0.5" />
               <div>
-                <p className="text-[11px] font-bold text-blue-800 mb-1">Sumber Terverifikasi</p>
-                <p className="text-[12px] text-blue-900/80 leading-relaxed">{data.brief.sitasi}</p>
+                <p className="text-[11px] font-bold text-[#172033] mb-0.5">Dasar Aturan & Sumber Terverifikasi</p>
+                <p className="text-[11.5px] text-[#475467] leading-relaxed">{data.brief.sitasi}</p>
               </div>
             </div>
             

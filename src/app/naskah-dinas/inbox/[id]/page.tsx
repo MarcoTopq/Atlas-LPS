@@ -24,32 +24,36 @@ export default function NaskahDinasInboxDetailPage() {
         </div>
 
         {/* AI Decision Brief */}
-        <div className="bg-[#ECEBFB] rounded-[24px] p-5 shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-[#4C46D9]/20">
-          <div className="flex items-center gap-2 mb-4">
-            <Lock size={14} className="text-[#4C46D9]" />
-            <span className="text-[11px] font-bold text-[#4C46D9] bg-white px-2 py-0.5 rounded-full shadow-sm">
-              🔒 AI On-Prem LPS Summary
+        <div className="bg-white rounded-[22px] p-5 shadow-2xs border border-[#EAECF0] space-y-3.5 relative overflow-hidden">
+          <div className="flex items-center justify-between">
+            <span className="text-[11px] font-semibold text-[#172033] bg-[#F4F6F9] px-2.5 py-0.5 rounded-full border border-[#EAECF0] flex items-center gap-1.5">
+              <Lock size={12} className="text-[#F56621]" />
+              <span>AI On-Prem LPS</span>
             </span>
+            <div className="flex items-center gap-1 text-[11px] font-bold text-[#F56621]">
+              <Sparkles size={13} />
+              <span>ATLAS AI</span>
+            </div>
           </div>
           
-          <h3 className="text-[14px] font-bold text-ink mb-2">Decision Brief AI Atlas</h3>
-          <p className="text-[13px] text-ink/80 mb-4 leading-relaxed">
+          <h3 className="text-[14px] font-bold text-[#172033] mb-1">Decision Brief</h3>
+          <p className="text-[12.5px] text-[#475467] leading-relaxed">
             Permohonan pendampingan audit TI tahunan selama 5 hari kerja. Memerlukan penunjukan 2 personel teknis STI sebagai pendamping auditor internal.
           </p>
           
-          <div className="bg-blue-50 border border-blue-100 rounded-[16px] p-3.5 flex gap-3">
-            <FileText size={18} className="text-blue-600 flex-shrink-0 mt-0.5" />
+          <div className="bg-[#F9FAFB] border border-[#EAECF0] rounded-xl p-3 flex gap-3">
+            <FileText size={16} className="text-[#F56621] flex-shrink-0 mt-0.5" />
             <div>
-              <p className="text-[11px] font-bold text-blue-800 mb-0.5">Sumber Terverifikasi</p>
-              <p className="text-[12px] text-blue-900/80 leading-relaxed">
+              <p className="text-[11px] font-bold text-[#172033] mb-0.5">Dasar Aturan & Sumber Terverifikasi</p>
+              <p className="text-[11.5px] text-[#475467] leading-relaxed">
                 Pedoman Audit Internal LPS No. 02/2023 Bab IV: &quot;Divisi TI wajib memfasilitasi pendampingan data log dan arsitektur teknis.&quot;
               </p>
             </div>
           </div>
           
-          <div className="mt-3 flex items-center gap-2 text-[12px] font-bold p-2.5 rounded-xl border bg-[#E4F5EE] text-[#1E9E6A] border-[#1E9E6A]/20">
-            <CheckCircle2 size={16}/>
-            Dokumen Resmi Terotentikasi TTD Digital e-Correspondence
+          <div className="flex items-center gap-2 text-[11.5px] font-semibold p-2.5 rounded-xl border bg-[#ECFDF3] text-[#027A48] border-[#A6F4C5]">
+            <CheckCircle2 size={15} className="text-[#12B76A]" />
+            <span>Dokumen Resmi Terotentikasi TTD Digital e-Correspondence</span>
           </div>
         </div>
 
@@ -174,9 +178,9 @@ export default function NaskahDinasInboxDetailPage() {
           </div>
         )}
 
-        <Link href="/ai" className="w-full bg-[#ECEBFB] hover:bg-[#E0DEFA] border border-[#4C46D9]/30 text-[#4C46D9] font-bold py-3.5 rounded-2xl flex items-center justify-center gap-2 transition-all shadow-sm">
-          <Sparkles size={18} />
-          Ringkas & Tanya AI Atlas Mengenai Surat Masuk Ini
+        <Link href="/ai" className="w-full bg-[#FFF4ED] hover:bg-[#FFE6D5] border border-[#F56621]/30 text-[#F56621] font-bold text-xs sm:text-sm py-3.5 rounded-2xl flex items-center justify-center gap-2 transition-all shadow-2xs">
+          <Sparkles size={16} />
+          Ringkas & Tanya AI ATLAS Mengenai Surat Masuk Ini
         </Link>
       </div>
     </div>

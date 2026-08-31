@@ -106,8 +106,8 @@ export default function HomePage() {
 
         <div className="px-4 sm:px-6 md:px-8 pt-3 sm:pt-4 space-y-4 sm:space-y-5">
 
-          {/* SECTION 1: AI ASSISTANT — TANYA AI AMARTA (EXECUTIVE SEARCH) */}
-          <section aria-label="Tanya AI Amarta" className="space-y-2">
+          {/* SECTION 1: AI ASSISTANT — TANYA AI ATLAS (EXECUTIVE SEARCH) */}
+          <section aria-label="Tanya AI ATLAS" className="space-y-2">
             <form onSubmit={handleAiSubmit} className="space-y-2.5">
               <div className="flex items-center bg-white rounded-2xl p-2 sm:p-2.5 border border-[#EAECF0] shadow-[0_2px_12px_rgba(23,32,51,0.03)] focus-within:border-[#F56621] focus-within:ring-2 focus-within:ring-[#F56621]/10 transition-all">
                 <div className="pl-2.5 pr-2 text-[#F56621] flex items-center justify-center">
@@ -117,7 +117,7 @@ export default function HomePage() {
                   type="text"
                   value={aiQuery}
                   onChange={(e) => setAiQuery(e.target.value)}
-                  placeholder="Tanya AI Amarta"
+                  placeholder="Tanya AI ATLAS..."
                   className="w-full bg-transparent border-none py-1.5 text-[13.5px] font-normal text-[#172033] focus:outline-none placeholder:text-[#98A2B3] tracking-tight"
                 />
                 <button

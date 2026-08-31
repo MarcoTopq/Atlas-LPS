@@ -24,45 +24,49 @@ export default function BpmPembayaranDetailPage() {
         </div>
 
         {/* AI Decision Brief */}
-        <div className="bg-[#ECEBFB] rounded-[24px] p-5 shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-[#4C46D9]/20">
-          <div className="flex items-center gap-2 mb-4">
-            <Lock size={14} className="text-[#4C46D9]" />
-            <span className="text-[11px] font-bold text-[#4C46D9] bg-white px-2 py-0.5 rounded-full shadow-sm">
-              AI On-Prem LPS Verification
+        <div className="bg-white rounded-[22px] p-5 shadow-2xs border border-[#EAECF0] space-y-3.5 relative overflow-hidden">
+          <div className="flex items-center justify-between">
+            <span className="text-[11px] font-semibold text-[#172033] bg-[#F4F6F9] px-2.5 py-0.5 rounded-full border border-[#EAECF0] flex items-center gap-1.5">
+              <Lock size={12} className="text-[#F56621]" />
+              <span>AI On-Prem LPS</span>
             </span>
+            <div className="flex items-center gap-1 text-[11px] font-bold text-[#F56621]">
+              <Sparkles size={13} />
+              <span>ATLAS AI</span>
+            </div>
           </div>
           
-          <h3 className="text-[14px] font-bold text-ink mb-2">Decision Brief AI Atlas</h3>
-          <p className="text-[13px] text-ink/80 mb-4 leading-relaxed">
-            Invoice & Faktur Pajak telah dicocokkan otomatis oleh AI Atlas dengan dokumen BAST dan SPK. Seluruh data rekening vendor terverifikasi cocok dengan Master Vendor SAP.
+          <h3 className="text-[14px] font-bold text-[#172033] mb-1">Decision Brief</h3>
+          <p className="text-[12.5px] text-[#475467] leading-relaxed">
+            Invoice & Faktur Pajak telah dicocokkan otomatis oleh AI ATLAS dengan dokumen BAST dan SPK. Seluruh data rekening vendor terverifikasi cocok dengan Master Vendor SAP.
           </p>
           
-          <div className="bg-white rounded-[16px] p-4 mb-4 shadow-sm border border-[#4C46D9]/10">
+          <div className="bg-[#F9FAFB] rounded-[16px] p-3.5 border border-[#EAECF0]">
             <div className="grid grid-cols-2 gap-4 text-xs">
               <div className="flex flex-col">
-                <span className="text-muted text-[11px] mb-1">Verifikasi Rekening</span>
+                <span className="text-[#667085] text-[11px] mb-0.5">Verifikasi Rekening</span>
                 <span className="font-bold text-emerald-600 text-[13px]">Valid & Cocok ✓</span>
               </div>
               <div className="flex flex-col">
-                <span className="text-muted text-[11px] mb-1">Faktur Pajak</span>
-                <span className="font-bold text-ink text-[13px]">Valid (e-Faktur)</span>
+                <span className="text-[#667085] text-[11px] mb-0.5">Faktur Pajak</span>
+                <span className="font-bold text-[#172033] text-[13px]">Valid (e-Faktur)</span>
               </div>
             </div>
           </div>
 
-          <div className="bg-blue-50 border border-blue-100 rounded-[16px] p-4 flex gap-3">
-            <FileText size={18} className="text-blue-600 flex-shrink-0 mt-0.5" />
+          <div className="bg-[#F9FAFB] border border-[#EAECF0] rounded-xl p-3 flex gap-3">
+            <FileText size={16} className="text-[#F56621] flex-shrink-0 mt-0.5" />
             <div>
-              <p className="text-[11px] font-bold text-blue-800 mb-1">Dasar Peraturan Keuangan</p>
-              <p className="text-[12px] text-blue-900/80 leading-relaxed">
+              <p className="text-[11px] font-bold text-[#172033] mb-0.5">Dasar Peraturan Keuangan</p>
+              <p className="text-[11.5px] text-[#475467] leading-relaxed">
                 PDK LPS No. 08/2024: &quot;Pembayaran termin fisik wajib disertai BAST dan Berita Acara Pembayaran dari Pejabat Pembuat Komitmen.&quot;
               </p>
             </div>
           </div>
           
-          <div className="mt-4 flex items-center gap-2 text-[13px] font-bold p-3 rounded-xl border bg-[#E4F5EE] text-[#1E9E6A] border-[#1E9E6A]/20">
-            <CheckCircle2 size={18}/>
-            Dokumen Keuangan Lengkap & Aman Ditransfer
+          <div className="flex items-center gap-2 text-[11.5px] font-semibold p-2.5 rounded-xl border bg-[#ECFDF3] text-[#027A48] border-[#A6F4C5]">
+            <CheckCircle2 size={15} className="text-[#12B76A]" />
+            <span>Dokumen Keuangan Lengkap & Aman Ditransfer</span>
           </div>
         </div>
 
@@ -85,9 +89,9 @@ export default function BpmPembayaranDetailPage() {
           </div>
         </div>
 
-        <Link href="/ai" className="w-full bg-[#ECEBFB] hover:bg-[#E0DEFA] border border-[#4C46D9]/30 text-[#4C46D9] font-bold py-3.5 rounded-2xl flex items-center justify-center gap-2 transition-all">
-          <Sparkles size={18} />
-          Tanya AI Atlas Tentang Pembayaran Ini
+        <Link href="/ai" className="w-full bg-[#FFF4ED] hover:bg-[#FFE6D5] border border-[#F56621]/30 text-[#F56621] font-bold text-xs sm:text-sm py-3.5 rounded-2xl flex items-center justify-center gap-2 transition-all shadow-2xs">
+          <Sparkles size={16} />
+          Tanya Asisten AI ATLAS Tentang Pembayaran Ini
         </Link>
       </div>
     </div>
