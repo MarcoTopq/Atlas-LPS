@@ -42,32 +42,32 @@ export default function DashboardPage() {
       title: "Penjaminan LPS",
       subtitle: "Batas Tingkat Bunga, Cakupan Simpanan & Kepesertaan Bank",
       icon: ShieldCheck,
-      stat: "Rp 2 Miliar / Nasabah",
-      badge: "LPS Rate Aktif"
+      stat: "Rp 10.349 T Simpanan",
+      badge: "LPS Rate 4.25%"
     },
     {
       id: "resolusi-bank",
       title: "Resolusi Bank",
-      subtitle: "Penanganan Bank Bermasalah, Bank Sistemik & Rencana Resolusi",
+      subtitle: "Dashboard Resolusi Bank, PRP & Penanganan Bank Bermasalah",
       icon: ShieldAlert,
-      stat: "16 Bank Resolusi",
-      badge: "CIU Terdaftar"
+      stat: "21 Bank Resolusi",
+      badge: "Framework Resolusi"
     },
     {
       id: "pembayaran-klaim",
       title: "Pembayaran & Klaim",
-      subtitle: "Rekonsiliasi Simpanan, Verifikasi Single Customer View (SCV)",
+      subtitle: "Dashboard Pembayaran Klaim Penjaminan Bank CIU",
       icon: Coins,
-      stat: "99.2% Terbayar",
-      badge: "12 BPR Selesai"
+      stat: "Rp 1,93 T Dicairkan",
+      badge: "Klaim Bank"
     },
     {
       id: "aset-bdl",
       title: "Sisa Aset BDL",
       subtitle: "Pemberesan, Pemulihan Aset & Likuidasi Bank Cabut Izin Usaha",
       icon: Landmark,
-      stat: "Rp 420 M Recovery",
-      badge: "Tim Aktif"
+      stat: "Rp 2,45 T Sisa Aset",
+      badge: "Recovery 42.8%"
     }
   ];
 
@@ -76,42 +76,42 @@ export default function DashboardPage() {
     {
       id: "persiapan-kepesertaan",
       title: "Persiapan Kepesertaan",
-      subtitle: "Kesiapan Regulasi, Kriteria & Integrasi Perusahaan Asuransi",
+      subtitle: "Monitoring Registrasi Kepesertaan & Integrasi Perusahaan Asuransi",
       icon: FileCheck2,
-      stat: "54 Perusahaan",
-      badge: "Kesiapan UU P2SK"
+      stat: "39 Pengajuan",
+      badge: "Monitoring Registrasi"
     },
     {
       id: "penjaminan-asuransi",
       title: "Penjaminan Asuransi",
       subtitle: "Batasan & Ruang Lingkup Penjaminan Polis Asuransi Jiwa & Umum",
       icon: ShieldCheck,
-      stat: "Polis Terproteksi",
-      badge: "Mandat UU"
+      stat: "Rp 1.485 T Manfaat Polis",
+      badge: "PPP Rate 4.00%"
     },
     {
       id: "resolusi-asuransi",
       title: "Resolusi Asuransi",
       subtitle: "Mekanisme Penanganan & Resolusi Perusahaan Asuransi Bermasalah",
       icon: ShieldAlert,
-      stat: "Protokol Siaga",
-      badge: "Framework 2026"
+      stat: "14 Perusahaan Resolusi",
+      badge: "Framework UU P2SK"
     },
     {
       id: "pembayaran-polis",
       title: "Pembayaran Polis",
       subtitle: "Verifikasi Klaim, Nilai Tunai & Penjaminan Manfaat Pemegang Polis",
       icon: Coins,
-      stat: "Sistem Terpadu",
-      badge: "Skema Klaim"
+      stat: "Rp 1,48 T Dicairkan",
+      badge: "Klaim Polis Terbayar"
     },
     {
       id: "aset-asuransi",
       title: "Sisa Aset",
-      subtitle: "Penatausahaan Portofolio, Penjualan & Recovery Sisa Aset Asuransi",
+      subtitle: "Dashboard Industri Asuransi & Portofolio Sisa Aset",
       icon: Building,
-      stat: "Monitoring Portofolio",
-      badge: "Likuidasi"
+      stat: "Rp 890,22 T Aset",
+      badge: "Industri Asuransi"
     }
   ];
 

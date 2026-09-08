@@ -68,6 +68,15 @@ import {
   Award,
   CreditCard
 } from "lucide-react";
+import MonitoringRegistrasiKepesertaan from "@/components/dashboard/MonitoringRegistrasiKepesertaan";
+import DashboardIndustriAsuransi from "@/components/dashboard/DashboardIndustriAsuransi";
+import DashboardPembayaranKlaimBank from "@/components/dashboard/DashboardPembayaranKlaimBank";
+import DashboardResolusiBank from "@/components/dashboard/DashboardResolusiBank";
+import DashboardPenjaminanLPS from "@/components/dashboard/DashboardPenjaminanLPS";
+import DashboardSisaAsetBDL from "@/components/dashboard/DashboardSisaAsetBDL";
+import DashboardPenjaminanAsuransi from "@/components/dashboard/DashboardPenjaminanAsuransi";
+import DashboardResolusiAsuransi from "@/components/dashboard/DashboardResolusiAsuransi";
+import DashboardPembayaranPolis from "@/components/dashboard/DashboardPembayaranPolis";
 
 // Mock datasets for Talent Profile
 const TALENT_EMPLOYEES = [
@@ -203,6 +212,7 @@ export default function DashboardDetailPage({ params }: { params: Promise<{ id: 
   
   const [selectedTalentId, setSelectedTalentId] = useState("88102");
   const [searchQuery, setSearchQuery] = useState("");
+  const [asuransiTab, setAsuransiTab] = useState<string>("Monitoring Registrasi");
 
   const currentTalent = TALENT_EMPLOYEES.find(e => e.id === selectedTalentId) || TALENT_EMPLOYEES[0];
 
@@ -1015,8 +1025,28 @@ export default function DashboardDetailPage({ params }: { params: Promise<{ id: 
                 </div>
               )}
 
-              {/* BANK MODULES */}
-              {(id === "likuidasi" || id === "aset-bdl" || id === "resolusi-bank") && (
+              {/* PEMBAYARAN & KLAIM BANK (DASHBOARD PEMBAYARAN) */}
+              {id === "pembayaran-klaim" && (
+                <DashboardPembayaranKlaimBank />
+              )}
+
+              {/* PENJAMINAN LPS (SUKU BUNGA & DISTRIBUSI SIMPANAN) */}
+              {(id === "penjaminan-lps" || id === "penjaminan-bank") && (
+                <DashboardPenjaminanLPS />
+              )}
+
+              {/* RESOLUSI BANK (DASHBOARD RESOLUSI BANK DENGAN 5 SUB-TAB) */}
+              {id === "resolusi-bank" && (
+                <DashboardResolusiBank />
+              )}
+
+              {/* SISA ASET BDL (BANK DALAM LIKUIDASI) */}
+              {id === "aset-bdl" && (
+                <DashboardSisaAsetBDL />
+              )}
+
+              {/* BANK MODULES: BANK DALAM LIKUIDASI (CIU) */}
+              {id === "likuidasi" && (
                 <div className="space-y-5">
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                     <div className="bg-white rounded-2xl p-4.5 shadow-2xs border border-[#EAECF0]">
@@ -1099,74 +1129,123 @@ export default function DashboardDetailPage({ params }: { params: Promise<{ id: 
                 </div>
               )}
 
+              {/* SISA ASET ASURANSI (DASHBOARD INDUSTRI ASURANSI) */}
+              {id === "aset-asuransi" && (
+                <DashboardIndustriAsuransi />
+              )}
+
+              {/* PENJAMINAN ASURANSI (PROGRAM PENJAMINAN POLIS - PPP) */}
+              {id === "penjaminan-asuransi" && (
+                <DashboardPenjaminanAsuransi />
+              )}
+
+              {/* RESOLUSI ASURANSI (DASHBOARD RESOLUSI ASURANSI 5 SUB-TAB) */}
+              {id === "resolusi-asuransi" && (
+                <DashboardResolusiAsuransi />
+              )}
+
+              {/* PEMBAYARAN POLIS (DASHBOARD PEMBAYARAN MANFAAT POLIS & KLAIM ASURANSI) */}
+              {id === "pembayaran-polis" && (
+                <DashboardPembayaranPolis />
+              )}
+
               {/* ASURANSI MODULES */}
-              {(id.includes("asuransi") || id === "persiapan-kepesertaan" || id === "pembayaran-polis") && (
-                <div className="space-y-5">
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                    <div className="bg-white rounded-2xl p-4.5 shadow-2xs border border-[#EAECF0]">
-                      <span className="text-[11px] font-bold text-[#667085] uppercase">Kesiapan Program PPP</span>
-                      <p className="text-3xl font-extrabold text-[#172033] mt-1">94.8%</p>
-                      <span className="text-xs text-[#667085] font-medium">Mandat UU P2SK 2026-2028</span>
-                    </div>
-                    <div className="bg-white rounded-2xl p-4.5 shadow-2xs border border-[#EAECF0]">
-                      <span className="text-[11px] font-bold text-[#667085] uppercase">Perusahaan Terdaftar</span>
-                      <p className="text-3xl font-extrabold text-[#172033] mt-1">54 Entitas</p>
-                      <span className="text-xs font-bold text-[#027A48]">Asuransi Jiwa & Umum</span>
-                    </div>
-                    <div className="bg-white rounded-2xl p-4.5 shadow-2xs border border-[#EAECF0]">
-                      <span className="text-[11px] font-bold text-[#667085] uppercase">Fokus Proteksi</span>
-                      <p className="text-3xl font-extrabold text-[#172033] mt-1">Polis Manfaat</p>
-                      <span className="text-xs text-[#667085] font-medium">Penjaminan Nilai Tunai & Klaim</span>
-                    </div>
+              {id !== "aset-asuransi" && id !== "penjaminan-asuransi" && id !== "resolusi-asuransi" && id !== "pembayaran-polis" && (id.includes("asuransi") || id === "persiapan-kepesertaan") && (
+                <div className="space-y-5 animate-in fade-in duration-200">
+                  {/* Tab Switcher for Persiapan Kepesertaan / Asuransi */}
+                  <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide bg-white p-1.5 rounded-2xl shadow-2xs border border-[#EAECF0] w-full">
+                    {["Monitoring Registrasi", "Kesiapan Perusahaan & Regulasi"].map((tab) => (
+                      <button
+                        key={tab}
+                        type="button"
+                        onClick={() => setAsuransiTab(tab)}
+                        className={cn(
+                          "flex-1 py-2.5 px-4 rounded-xl text-xs sm:text-[13px] font-bold transition-all text-center cursor-pointer select-none whitespace-nowrap",
+                          asuransiTab === tab
+                            ? "bg-[#F56621] text-white shadow-xs"
+                            : "bg-transparent text-[#667085] hover:text-[#172033] hover:bg-[#F9FAFB]"
+                        )}
+                      >
+                        {tab}
+                      </button>
+                    ))}
                   </div>
 
-                  <div className="bg-white p-5 rounded-2xl shadow-2xs border border-[#EAECF0] space-y-4">
-                    <div className="flex items-center justify-between">
-                      <h3 className="text-sm font-bold text-[#172033]">Daftar Kesiapan Kepesertaan Asuransi</h3>
-                      <div className="relative w-48 sm:w-64">
-                        <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#98A2B3]" />
-                        <input
-                          type="text"
-                          placeholder="Cari perusahaan..."
-                          value={searchQuery}
-                          onChange={(e) => setSearchQuery(e.target.value)}
-                          className="w-full bg-[#F6F7F9] border border-[#EAECF0] rounded-xl pl-8 pr-3 py-1.5 text-xs focus:outline-none focus:border-[#172033]"
-                        />
+                  {/* TAB 1: MONITORING REGISTRASI KEPESERTAAN (MATCHING USER SCREENSHOT) */}
+                  {asuransiTab === "Monitoring Registrasi" && (
+                    <MonitoringRegistrasiKepesertaan />
+                  )}
+
+                  {/* TAB 2: KESIAPAN PERUSAHAAN & REGULASI */}
+                  {asuransiTab === "Kesiapan Perusahaan & Regulasi" && (
+                    <div className="space-y-5 animate-in fade-in duration-300">
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <div className="bg-white rounded-2xl p-4.5 shadow-2xs border border-[#EAECF0]">
+                          <span className="text-[11px] font-bold text-[#667085] uppercase">Kesiapan Program PPP</span>
+                          <p className="text-3xl font-extrabold text-[#172033] mt-1">94.8%</p>
+                          <span className="text-xs text-[#667085] font-medium">Mandat UU P2SK 2026-2028</span>
+                        </div>
+                        <div className="bg-white rounded-2xl p-4.5 shadow-2xs border border-[#EAECF0]">
+                          <span className="text-[11px] font-bold text-[#667085] uppercase">Perusahaan Terdaftar</span>
+                          <p className="text-3xl font-extrabold text-[#172033] mt-1">54 Entitas</p>
+                          <span className="text-xs font-bold text-[#027A48]">Asuransi Jiwa & Umum</span>
+                        </div>
+                        <div className="bg-white rounded-2xl p-4.5 shadow-2xs border border-[#EAECF0]">
+                          <span className="text-[11px] font-bold text-[#667085] uppercase">Fokus Proteksi</span>
+                          <p className="text-3xl font-extrabold text-[#172033] mt-1">Polis Manfaat</p>
+                          <span className="text-xs text-[#667085] font-medium">Penjaminan Nilai Tunai & Klaim</span>
+                        </div>
+                      </div>
+
+                      <div className="bg-white p-5 rounded-2xl shadow-2xs border border-[#EAECF0] space-y-4">
+                        <div className="flex items-center justify-between">
+                          <h3 className="text-sm font-bold text-[#172033]">Daftar Kesiapan Kepesertaan Asuransi</h3>
+                          <div className="relative w-48 sm:w-64">
+                            <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#98A2B3]" />
+                            <input
+                              type="text"
+                              placeholder="Cari perusahaan..."
+                              value={searchQuery}
+                              onChange={(e) => setSearchQuery(e.target.value)}
+                              className="w-full bg-[#F6F7F9] border border-[#EAECF0] rounded-xl pl-8 pr-3 py-1.5 text-xs focus:outline-none focus:border-[#172033]"
+                            />
+                          </div>
+                        </div>
+
+                        <div className="overflow-x-auto rounded-xl border border-[#EAECF0]">
+                          <table className="w-full text-left text-xs">
+                            <thead>
+                              <tr className="border-b border-[#EAECF0] bg-[#F9FAFB] text-[#667085] font-bold uppercase">
+                                <th className="p-3">Perusahaan Asuransi</th>
+                                <th className="p-3">Jenis Portofolio</th>
+                                <th className="p-3">Indeks Kesiapan</th>
+                                <th className="p-3 text-right">Status</th>
+                              </tr>
+                            </thead>
+                            <tbody className="divide-y divide-[#EAECF0]">
+                              {MOCK_ASURANSI_PESERTA
+                                .filter(row => row.nama.toLowerCase().includes(searchQuery.toLowerCase()))
+                                .map((row, idx) => (
+                                  <tr key={idx} className="hover:bg-[#F6F7F9] transition-colors">
+                                    <td className="p-3 font-bold text-[#172033]">{row.nama}</td>
+                                    <td className="p-3 text-[#667085]">{row.jenis}</td>
+                                    <td className="p-3 font-semibold text-[#172033]">{row.kesiapan}</td>
+                                    <td className="p-3 text-right">
+                                      <span className={cn(
+                                        "px-2 py-0.5 rounded-full font-bold text-[10px] border",
+                                        row.status === "Memenuhi Syarat" ? "bg-[#ECFDF3] text-[#027A48] border-[#A6F4C5]" : "bg-[#FFFAEB] text-[#B54708] border-[#FEDF89]"
+                                      )}>
+                                        {row.status}
+                                      </span>
+                                    </td>
+                                  </tr>
+                                ))}
+                            </tbody>
+                          </table>
+                        </div>
                       </div>
                     </div>
-
-                    <div className="overflow-x-auto rounded-xl border border-[#EAECF0]">
-                      <table className="w-full text-left text-xs">
-                        <thead>
-                          <tr className="border-b border-[#EAECF0] bg-[#F9FAFB] text-[#667085] font-bold uppercase">
-                            <th className="p-3">Perusahaan Asuransi</th>
-                            <th className="p-3">Jenis Portofolio</th>
-                            <th className="p-3">Indeks Kesiapan</th>
-                            <th className="p-3 text-right">Status</th>
-                          </tr>
-                        </thead>
-                        <tbody className="divide-y divide-[#EAECF0]">
-                          {MOCK_ASURANSI_PESERTA
-                            .filter(row => row.nama.toLowerCase().includes(searchQuery.toLowerCase()))
-                            .map((row, idx) => (
-                              <tr key={idx} className="hover:bg-[#F6F7F9] transition-colors">
-                                <td className="p-3 font-bold text-[#172033]">{row.nama}</td>
-                                <td className="p-3 text-[#667085]">{row.jenis}</td>
-                                <td className="p-3 font-semibold text-[#172033]">{row.kesiapan}</td>
-                                <td className="p-3 text-right">
-                                  <span className={cn(
-                                    "px-2 py-0.5 rounded-full font-bold text-[10px] border",
-                                    row.status === "Memenuhi Syarat" ? "bg-[#ECFDF3] text-[#027A48] border-[#A6F4C5]" : "bg-[#FFFAEB] text-[#B54708] border-[#FEDF89]"
-                                  )}>
-                                    {row.status}
-                                  </span>
-                                </td>
-                              </tr>
-                            ))}
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
+                  )}
                 </div>
               )}
 
